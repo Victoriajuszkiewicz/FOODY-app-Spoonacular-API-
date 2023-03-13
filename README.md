@@ -26,3 +26,6 @@ API documentation: https://spoonacular.com/food-api/docs
 -ES6 JavaScript </br>
 -React </br>
 -Git/Github
+
+- React js
+- MySql
