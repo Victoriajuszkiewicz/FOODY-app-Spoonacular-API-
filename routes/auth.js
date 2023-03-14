@@ -1,11 +1,8 @@
 var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
-
 const bcrypt = require("bcryptjs"); // run npm install bcrypt in client and server DONE
-
 const { BCRYPT_WORK_FACTOR, SECRET_KEY } = require("../config");
-
 const jwt = require("jsonwebtoken"); // run  npm install jwt in server DONE
 
 /* POST new user added to DB*/
