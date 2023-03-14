@@ -1,13 +1,20 @@
+import React from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css"; //this is a the css file used in react bootstrap libraries
 import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import ResultView from "./components/ResultView";
+
+import NavBar from "./components/NavBar";
+import HomePage from "./views/Home/HomePage";
 
 // test test
 
 function App() {
   return (
     <div className="App">
-      <ResultView />
+      <NavBar />
+      <Routes>
+        <Route path="*" element={<HomePage />} />
+      </Routes>
     </div>
   );
 }
