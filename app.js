@@ -5,6 +5,7 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var authRouter = require("./routes/auth");
 var favoritesRouter = require("./routes/favorites"); //here i am importing favorites file in the routes
 
 var app = express();
