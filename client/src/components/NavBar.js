@@ -2,60 +2,38 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; //this is a the css file used in react bootstrap libraries
 import "./NavBar.css";
 import { GiCookingPot } from "react-icons/gi";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
-        <a className="navbar-brand">Queen's app</a>
+      <div className="btn-group">
         <button
-          className="navbar-toggler"
+          className="btn btn-secondary btn-sm dropdown-toggle"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavDarkDropdown"
-          aria-controls="navbarNavDarkDropdown"
+          data-bs-toggle="dropdown"
           aria-expanded="false"
-          aria-label="Toggle navigation"
         >
+          {/* this is the icon i import directly from react-icon library */}
           <GiCookingPot />
-          {/* <span className="navbar-toggler-icon"></span> this line add the three line icon*/}
         </button>
-
-        <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
-          <ul className="navbar-nav">
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDarkDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              ></a>
-
-              <ul
-                className="dropdown-menu dropdown-menu-dark"
-                aria-labelledby="navbarDarkDropdownMenuLink"
-              >
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Login
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Favorites
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    About us
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+        <ul className="dropdown-menu dropdown-menu-dark">
+          <li>
+            <NavLink to="/login" className="dropdown-item">
+              Login
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/favorites" className="dropdown-item">
+              Favorites
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/aboutUs" className="dropdown-item">
+              About us
+            </NavLink>
+          </li>
+        </ul>
       </div>
     </nav>
   );
