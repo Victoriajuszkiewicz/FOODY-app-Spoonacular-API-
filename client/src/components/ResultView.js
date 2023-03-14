@@ -4,8 +4,13 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import RecipeView from "./RecipeView";
+import { Button } from "bootstrap";
+import { Navigate, useNavigate } from "react-router-dom";
 
-export default function ResultView() {
+export default function ResultView(props) {
+  const { recipes, setRecipes } = props;
+  const navigate = useNavigate();
+
   return (
     <div>
       <h2>ResultView</h2>
@@ -28,6 +33,8 @@ export default function ResultView() {
             </Card>
           </Col>
         </Row>
+        {/* we need to add the onClick={() => navigate("/")} to do another call and get more recipes */}
+        <Button variant="primary">See more recipes</Button>
         <RecipeView />
       </Container>
     </div>
