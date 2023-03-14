@@ -5,6 +5,7 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var authRouter = require("./routes/auth");
 
 var app = express();
 const cors = require("cors"); // add at the top
@@ -17,6 +18,7 @@ app.use(cookieParser());
 app.use(cors()); // add after 'app' is created
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/", usersRouter);
+app.use("/", authRouter);
 
 module.exports = app;
