@@ -22,7 +22,7 @@ module.exports = async function db(query) {
 
     con.connect(function (err) {
       if (err) throw err;
-      // console.log("Connected!");
+      console.log("Connected!");
 
       con.query(query, function (err, result) {
         if (err) {
@@ -41,10 +41,6 @@ module.exports = async function db(query) {
             con.end();
             return;
           }
-
-          // push the result (which should be an OkPacket) to data
-          // germinal - removed next line because it returns an array in an array when empty set
-          // results.data.push(result);
         } else if (result[0].constructor.name == "RowDataPacket") {
           // push each row (RowDataPacket) to data
           result.forEach((row) => results.data.push(row));
