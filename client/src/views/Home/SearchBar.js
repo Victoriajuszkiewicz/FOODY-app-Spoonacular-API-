@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ResultView from "../../components/ResultView";
 import Api from "../../helpers/Api";
 
 const SearchBar = (props) => {
   let [ingredients, setIngredients] = useState(""); //ingredients we typed in the input field
-  let [recipes, setRecipes] = useState([]); //recipes fetched from api
+  // let [recipes, setRecipes] = useState([]); //recipes fetched from api
+  const { setRecipes, recipes } = props;
+  console.log(recipes);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,6 +32,7 @@ const SearchBar = (props) => {
         ></input>
         <button type="submit">Search</button>
       </form>
+      {recipes && <ResultView recipes={recipes} />}
     </div>
   );
 };

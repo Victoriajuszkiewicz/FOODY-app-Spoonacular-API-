@@ -4,8 +4,9 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import RecipeView from "./RecipeView";
-import { Button } from "bootstrap";
+import Button from "react-bootstrap/Button";
 import { Navigate, useNavigate } from "react-router-dom";
+import SearchBar from "../views/Home/SearchBar";
 
 export default function ResultView(props) {
   const { recipes, setRecipes } = props;
@@ -13,24 +14,21 @@ export default function ResultView(props) {
 
   return (
     <div>
-      <h2>ResultView</h2>
       <Container>
         <Row>
           <Col xs={12} md={8}>
-            <Card className="card-recipe" style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                src="https://spoonacular.com/recipeImages/642582-312x231.jpg"
-              />
-              <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            {recipes.map((recipe) => (
+              <Card
+                key={recipe.id}
+                className="card-recipe"
+                style={{ width: "18rem" }}
+              >
+                <Card.Img variant="top" src={recipe.image} />
+                <Card.Body>
+                  <Card.Title>{recipe.title}</Card.Title>
+                </Card.Body>
+              </Card>
+            ))}
           </Col>
         </Row>
         {/* we need to add the onClick={() => navigate("/")} to do another call and get more recipes */}

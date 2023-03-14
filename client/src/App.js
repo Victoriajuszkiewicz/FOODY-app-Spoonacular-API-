@@ -16,11 +16,14 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path="*" element={<HomePage />} />
         <Route
+          path="*"
+          element={<HomePage recipes={recipes} setRecipes={setRecipes} />}
+        />
+        {/* <Route
           path="/resultview"
           element={<ResultView recipes={recipes} setRecipes={setRecipes} />}
-        />
+        /> */}
       </Routes>
     </div>
   );
