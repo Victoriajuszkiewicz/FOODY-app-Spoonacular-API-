@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import RecipeView from "./RecipeView";
 
 export default function ResultView() {
   return (
@@ -27,6 +28,7 @@ export default function ResultView() {
             </Card>
           </Col>
         </Row>
+        <RecipeView />
       </Container>
     </div>
   );
