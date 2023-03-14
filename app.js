@@ -6,6 +6,7 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var authRouter = require("./routes/auth");
+
 var favoritesRouter = require("./routes/favorites"); //here i am importing favorites file in the routes
 
 var app = express();
@@ -20,7 +21,8 @@ app.use(cors()); // add after 'app' is created
 
 // if you add something in .js file after the / THEN don't add anything here
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/", usersRouter);
+app.use("/", authRouter);
 app.use("/favorites", favoritesRouter); //here i am saying all the methods i create in the favorites.js file apply them in /favorites route
 
 module.exports = app;
