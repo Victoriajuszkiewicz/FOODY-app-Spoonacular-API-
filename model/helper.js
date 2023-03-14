@@ -16,7 +16,7 @@ module.exports = async function db(query) {
       host: DB_HOST || "127.0.0.1",
       user: DB_USER || "root",
       password: DB_PASS,
-      database: DB_NAME || "auth",
+      database: DB_NAME || "recipes",
       multipleStatements: true,
     });
 
@@ -42,6 +42,7 @@ module.exports = async function db(query) {
             return;
           }
         } else if (result[0].constructor.name == "RowDataPacket") {
+          // push each row (RowDataPacket) to data
           result.forEach((row) => results.data.push(row));
         } else if (result[0].constructor.name == "OkPacket") {
           // push the first item in result list to data (this accounts for situations

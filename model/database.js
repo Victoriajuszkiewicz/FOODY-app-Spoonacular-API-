@@ -11,8 +11,7 @@ const con = mysql.createConnection({
   host: DB_HOST || "127.0.0.1",
   user: DB_USER || "root",
   password: DB_PASS,
-  //updated DB NAME(Victoria)
-  database: DB_NAME || "auth",
+  database: DB_NAME || "recipes",
   multipleStatements: true,
 });
 
