@@ -1,7 +1,7 @@
 import React from "react";
 
 const InputForm = () => {
-  return <div>InputForm</div>;
+  return <div>Test test</div>;
 };
 
 export default InputForm;
