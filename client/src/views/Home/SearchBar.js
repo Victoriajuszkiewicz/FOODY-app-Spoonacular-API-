@@ -5,7 +5,7 @@ import Api from "../../helpers/Api";
 
 const SearchBar = (props) => {
   let [ingredients, setIngredients] = useState(""); //ingredients we typed in the input field
-  // let [recipes, setRecipes] = useState([]); //recipes fetched from api
+  // let [recipes, setRecipes] = useState([]); //recipes fetched from api. I moved it to the parent
   const { setRecipes, recipes } = props;
   console.log(recipes);
 
