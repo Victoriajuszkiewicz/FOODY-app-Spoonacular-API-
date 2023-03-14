@@ -5,6 +5,7 @@ import "./App.css";
 
 import NavBar from "./components/NavBar";
 import HomePage from "./views/Home/HomePage";
+import ResultView from "./components/ResultView";
 
 // test test
 
@@ -14,6 +15,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="*" element={<HomePage />} />
+        <Route path="/resultview" element={<ResultView />} />
       </Routes>
     </div>
   );

@@ -1,6 +1,6 @@
 class Api {
   static getRecipes = async (ingredients) => {
-    const apiKey = "&apiKey=4ec6ccb601a94d3b90d713f3605e733f";
+    const apiKey = `&apiKey=${process.env.REACT_APP_SPOONACULAR_KEY}`;
     const baseUrl = "https://api.spoonacular.com/recipes/";
     const requestParams =
       "findByIngredients?number=10&limitLicense=true&ranking=1&ignorePantry=false";
