@@ -9,7 +9,7 @@ import LoginView from "./views/LoginView";
 import RegisterView from "./views/RegisterView";
 import RecipeView from "./components/RecipeView";
 import { getSteps } from "./helpers/Api";
-
+import Local from "./helpers/local";
 
 // test test
 
@@ -17,14 +17,14 @@ function App() {
   const [allRecipes, setAllRecipes] = useState([]); //I just changed to allRecipes to differenciate with "recipe" state
   const [recipe, setRecipe] = useState({}); //the recipe you clicked on in the result page
   const navigate = useNavigate(); //define it first then you can use it later
-  const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
-  const navigate = useNavigate(); //define it first then you can use it later
+  // const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
+  // const navigate = useNavigate(); //define it first then you can use it later
   const [recipeInstructions, setRecipeInstructions] = useState();
-
 
   const showRecipe = (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
     setRecipe(featuredRecipe); //save the correspondent recipe to the state
+    Local.saveFeaturedRecipe(featuredRecipe); //save to the localStorage!!!
     navigate(`/featured/${id}`); //navigate to the correspondent recipe page
   };
 
@@ -37,7 +37,6 @@ function App() {
       fetchData();
     }
   }, [recipe]);
-
 
   return (
     <div className="App">
@@ -59,7 +58,10 @@ function App() {
             />
           }
         />
-        <Route path="/Featured/:id" element={<RecipeView recipe={recipe} />} />
+        <Route
+          path="/Featured/:id"
+          element={<RecipeView recipe={recipe} setRecipe={setRecipe} />}
+        />
 
         <Route path="/login" element={<LoginView />} />
         <Route path="/register" element={<RegisterView />} />
