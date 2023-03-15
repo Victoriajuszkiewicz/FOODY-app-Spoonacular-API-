@@ -15,9 +15,12 @@ import { getSteps } from "./helpers/Api";
 
 function App() {
   const [allRecipes, setAllRecipes] = useState([]); //I just changed to allRecipes to differenciate with "recipe" state
+  const [recipe, setRecipe] = useState({}); //the recipe you clicked on in the result page
+  const navigate = useNavigate(); //define it first then you can use it later
   const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
   const navigate = useNavigate(); //define it first then you can use it later
   const [recipeInstructions, setRecipeInstructions] = useState();
+
 
   const showRecipe = (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
@@ -34,6 +37,7 @@ function App() {
       fetchData();
     }
   }, [recipe]);
+
 
   return (
     <div className="App">
