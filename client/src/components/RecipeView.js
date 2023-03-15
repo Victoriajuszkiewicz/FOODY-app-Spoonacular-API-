@@ -8,10 +8,19 @@ export default function RecipeView(props) {
     let instructions = {};
     let ingredients = {};
     for (let objects of steps) {
-      console.log("objects", objects);
       instructions[objects.number] = objects.step;
     }
-    console.log(instructions);
+    for (let obj of steps) {
+      for (let categories in obj) {
+        console.log(categories);
+        if (categories === "ingredients") {
+          for (let ingredient of categories) {
+            // ingredients = ingredient.name;
+            console.log(ingredient);
+          }
+        }
+      }
+    }
   }
 
   return (

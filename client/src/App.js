@@ -53,7 +53,15 @@ function App() {
             />
           }
         />
-        <Route path="/Featured/:id" element={<RecipeView recipe={recipe} />} />
+        <Route
+          path="/Featured/:id"
+          element={
+            <RecipeView
+              recipe={recipe}
+              recipeInstructions={recipeInstructions}
+            />
+          }
+        />
 
         <Route path="/login" element={<LoginView />} />
       </Routes>

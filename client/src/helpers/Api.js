@@ -31,7 +31,6 @@ export async function getSteps(recipeId) {
     let response = await fetch(url);
     if (response.ok) {
       let recipeInstructions = await response.json();
-      console.log(recipeInstructions);
       return recipeInstructions;
     } else {
       console.log("Server error: ", response);
