@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import HomePage from "./views/Home/HomePage";
 import ResultView from "./components/ResultView";
 import LoginView from "./views/LoginView";
+import RegisterView from "./views/RegisterView";
 
 // test test
 
@@ -27,6 +28,7 @@ function App() {
         /> */}
 
         <Route path="/login" element={<LoginView />} />
+        <Route path="/register" element={<RegisterView />} />
       </Routes>
     </div>
   );
