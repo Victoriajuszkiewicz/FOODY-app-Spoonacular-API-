@@ -2,11 +2,11 @@ import React from "react";
 import SearchBar from "./SearchBar";
 
 const HomePage = (props) => {
-  const { setRecipes, recipes } = props;
+  const { setAllRecipes, allRecipes } = props;
 
   return (
     <div>
-      <SearchBar setRecipes={setRecipes} recipes={recipes} />
+      <SearchBar setAllRecipes={setAllRecipes} allRecipes={allRecipes} />
     </div>
   );
 };

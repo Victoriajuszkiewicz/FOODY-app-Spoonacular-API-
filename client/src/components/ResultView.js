@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
@@ -7,9 +7,10 @@ import RecipeView from "./RecipeView";
 import Button from "react-bootstrap/Button";
 import { Navigate, useNavigate } from "react-router-dom";
 import SearchBar from "../views/Home/SearchBar";
+import { getSteps } from "../helpers/Api";
 
 export default function ResultView(props) {
-  const { allRecipes, setAllRecipes } = props;
+  const { allRecipes, setAllRecipes, showRecipe } = props;
   const navigate = useNavigate();
 
   return (
@@ -31,7 +32,7 @@ export default function ResultView(props) {
                   key={recipe.id}
                   className="card-recipe"
                   style={{ width: "18rem" }}
-                  onClick={(event) => props.showRecipe(recipe.id)}
+                  onClick={(event) => showRecipe(recipe.id)}
                 >
                   <Card.Img variant="top" src={recipe.image} />
                   <Card.Body>
