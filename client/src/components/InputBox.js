@@ -1,7 +1,11 @@
 import React from "react";
 
-const InputForm = () => {
-  return <div>Test test</div>;
+const InputBox = (props) => {
+  return (
+    <div>
+      <input />
+    </div>
+  );
 };
 
-export default InputForm;
+export default InputBox;
