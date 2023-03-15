@@ -24,7 +24,7 @@ const SearchBar = (props) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>What do you see in the fridge?</label>
+        <label>What do you have in the fridge?</label>
         <input
           type="text"
           value={ingredients}

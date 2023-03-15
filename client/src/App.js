@@ -6,6 +6,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import HomePage from "./views/Home/HomePage";
 import ResultView from "./components/ResultView";
+import LoginView from "./views/LoginView";
 import RecipeView from "./components/RecipeView";
 
 // test test
@@ -34,6 +35,8 @@ function App() {
           element={<ResultView allRecipes={allRecipes} setAllRecipes={setAllRecipes} showRecipe={showRecipe} />}
         />
         <Route path="/Featured/:id" element={<RecipeView recipe={recipe}  />} />
+
+        <Route path="/login" element={<LoginView />} />
       </Routes>
     </div>
   );

@@ -14,7 +14,7 @@ const NavBar = () => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          {/* this is the icon i import directly from react-icon library */}
+          {/* this is the icon I have imported directly from react-icon library */}
           <GiCookingPot />
         </button>
         <ul className="dropdown-menu dropdown-menu-dark">
