@@ -1,10 +1,12 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 
-const HomePage = () => {
+const HomePage = (props) => {
+  const { setRecipes, recipes } = props;
+
   return (
     <div>
-      <SearchBar />
+      <SearchBar setRecipes={setRecipes} recipes={recipes} />
     </div>
   );
 };
