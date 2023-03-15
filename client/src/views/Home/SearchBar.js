@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ResultView from "../../components/ResultView";
-import Api from "../../helpers/Api";
+import { Api } from "../../helpers/Api";
+import { getSteps } from "../../helpers/Api";
 
 const SearchBar = (props) => {
   let [ingredients, setIngredients] = useState(""); //ingredients we typed in the input field
   // let [recipes, setRecipes] = useState([]); //recipes fetched from api. I moved it to the parent
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const { setAllRecipes, allRecipes } = props;
 
   const handleSubmit = async (event) => {
