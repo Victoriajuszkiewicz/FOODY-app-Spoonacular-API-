@@ -6,6 +6,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import HomePage from "./views/Home/HomePage";
 import ResultView from "./components/ResultView";
+import LoginView from "./views/LoginView";
 
 // test test
 
@@ -24,6 +25,8 @@ function App() {
           path="/resultview"
           element={<ResultView recipes={recipes} setRecipes={setRecipes} />}
         /> */}
+
+        <Route path="/login" element={<LoginView />} />
       </Routes>
     </div>
   );
