@@ -6,8 +6,10 @@ import NavBar from "./components/NavBar";
 import HomePage from "./views/Home/HomePage";
 import ResultView from "./components/ResultView";
 import LoginView from "./views/LoginView";
+import RegisterView from "./views/RegisterView";
 import RecipeView from "./components/RecipeView";
 import { getSteps } from "./helpers/Api";
+
 
 // test test
 
@@ -56,6 +58,7 @@ function App() {
         <Route path="/Featured/:id" element={<RecipeView recipe={recipe} />} />
 
         <Route path="/login" element={<LoginView />} />
+        <Route path="/register" element={<RegisterView />} />
       </Routes>
     </div>
   );
