@@ -9,21 +9,29 @@ import { Navigate, useNavigate } from "react-router-dom";
 import SearchBar from "../views/Home/SearchBar";
 
 export default function ResultView(props) {
-  const { recipes, setRecipes } = props;
+  const { allRecipes, setAllRecipes } = props;
   const navigate = useNavigate();
 
   return (
     <div>
+      {/*Resing the SearchBar component: it is displaying in result page */}
+      <div>
+        <SearchBar setAllRecipes={setAllRecipes} />
+      </div>
+
       <Container>
         <Row xs={1} md={2} className="g-4">
-          {Array.from({ length: 4 }).map((_, idx) => (
-            <Col>
-              {/* xs={12} md={8} */}
-              {recipes.map((recipe) => (
+          {/*{ length: 1 } => it's duplicating colunme*/}
+          {Array.from({ length: 1 }).map((_, idx) => (
+            <Col key={idx}>
+              {" "}
+              {/*list needs a unic key*/},{/* xs={12} md={8} */},
+              {allRecipes.map((recipe) => (
                 <Card
                   key={recipe.id}
                   className="card-recipe"
                   style={{ width: "18rem" }}
+                  onClick={(event) => props.showRecipe(recipe.id)}
                 >
                   <Card.Img variant="top" src={recipe.image} />
                   <Card.Body>
@@ -36,7 +44,7 @@ export default function ResultView(props) {
         </Row>
         {/* we need to add the onClick={() => navigate("/")} to do another call and get more recipes */}
         <Button variant="primary">See more recipes</Button>
-        <RecipeView />
+        {/* <RecipeView /> */}
       </Container>
     </div>
   );

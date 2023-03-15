@@ -7,9 +7,6 @@ import { NavLink } from "react-router-dom";
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <NavLink to="*">
-        <h1 style={{ color: "white" }}>LOGO here</h1>
-      </NavLink>
       <div className="btn-group">
         <button
           className="btn btn-secondary btn-sm dropdown-toggle"
@@ -38,6 +35,9 @@ const NavBar = () => {
           </li>
         </ul>
       </div>
+      <NavLink to="*">
+        <h1 style={{ color: "white" }}>LOGO here</h1>
+      </NavLink>
     </nav>
   );
 };
