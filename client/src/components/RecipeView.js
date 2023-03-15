@@ -10,7 +10,8 @@ export default function RecipeView(props) {
       <h5>Ingredients</h5>
       {/* There's more then one property in the missedIngredients, 
       could we do the map instead hardcode way to render them? */}
-      <p>{recipe.missedIngredients[0].name}</p>
+      <p>All the ingredients</p>
+      {/* {recipe.missedIngredients[0].name} */}
     </div>
   );
 }
