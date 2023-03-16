@@ -3,10 +3,12 @@ import "bootstrap/dist/css/bootstrap.min.css"; //this is a the css file used in 
 import "./NavBar.css";
 import { GiCookingPot } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
+import logo from "../img/foody.png";
 
 const NavBar = (props) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <nav className="navbar navbar-expand-lg navbar-light">
       {props.user ? (
         <div className="btn-group">
           <button
@@ -70,8 +72,14 @@ const NavBar = (props) => {
           </ul>
         </div>
       )}
+
       <NavLink to="*">
-        <h1 style={{ color: "white" }}>LOGO here</h1>
+        <img
+          className="logo"
+          src={logo}
+          alt="this is a logo of very cool app created by 4 very talented people"
+          style={{ width: 60, height: 60 }}
+        />
       </NavLink>
     </nav>
   );
