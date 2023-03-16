@@ -3,6 +3,23 @@
  **/
 
 class Local {
+
+  //Save & Get featured recipe data-----------------------------------------------
+
+  static saveFeaturedRecipe(recipe) {
+    // Data type would always be strings in the localStorage
+    localStorage.setItem("recipe", JSON.stringify(recipe));
+  }
+
+  static getFeaturedRecipe() {
+    let recipejson = localStorage.getItem("recipe");
+    // JSON.parse() is to convert data into object
+    return recipejson ? JSON.parse(recipejson) : {};
+  }
+
+  //-------------------------------------------------------------------------------
+  //Save, Get & Delete Token-------------------------------------------------------
+
   static saveUserInfo(token, user) {
     //if i wanted to write this in my app i would only use the codeline 9 and 10
     localStorage.setItem("token", token);
