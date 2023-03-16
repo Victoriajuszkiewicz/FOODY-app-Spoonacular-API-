@@ -37,7 +37,7 @@ router.post("/login", async (req, res) => {
 
     if (results.data.length === 0) {
       //email not found
-      res.status(401).send({ error: "Email not found.Login failed" });
+      res.status(401).send({ error: "Login failed" });
     } else {
       let user = results.data[0]; //the user's row/record from the db
       let passwordsEqual = await bcrypt.compare(passwordLogin, user.password);
@@ -64,12 +64,7 @@ router.post("/login", async (req, res) => {
           user: user,
         });
       } else {
-        //password doesn't match
-        res
-          .status(401)
-          .send(
-            "Failing because my boolean is telling me that the passwords are not matching: Login failed"
-          );
+        res.status(401).send("Login failed");
       }
     }
   } catch (err) {
