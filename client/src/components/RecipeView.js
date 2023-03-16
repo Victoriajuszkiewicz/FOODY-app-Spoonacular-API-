@@ -1,10 +1,15 @@
 import React, { useEffect } from "react";
-import { Api } from "../helpers/Api";
-import Local from "../helpers/Local";
+import { Local } from "../helpers/Local";
 
 export default function RecipeView(props) {
-  const { recipe, setRecipe } = props;
-  //  console.log(recipe)
+  const { recipe, setRecipe, recipeInstructions, ingredientList } = props;
+
+  const recipeSteps = [];
+  if (recipeInstructions) {
+    for (let step of recipeInstructions[0].steps) {
+      recipeSteps[step.number] = step.step;
+    }
+  }
 
   useEffect(() => {
     console.log("USING EFFECT!!!");
@@ -14,15 +19,35 @@ export default function RecipeView(props) {
     if (Object.keys(recipe).length === 0) {
       setRecipe(Local.getFeaturedRecipe()); //set the state from the recipe we stored in the localStorage
     }
-  }, [recipe]);
+  }, [recipe, setRecipe]);
   return (
     <div>
       <h3>{recipe.title}</h3>
       <img src={recipe.image} alt={recipe.title} />
-      {/* <h5>Ingredients</h5> */}
-      {/* There's more then one property in the missedIngredients, 
-      could we do the map instead hardcode way to render them? */}
-      {/* <p>{recipe.missedIngredients[0].name}</p> */}
+
+      <h3>Ingredient List</h3>
+      {ingredientList &&
+        ingredientList.map((ingredient, index) => {
+          return (
+            <div key={index}>
+              <p>
+                {ingredient.name} {ingredient.amount.metric.value}{" "}
+                {ingredient.amount.metric.unit}{" "}
+              </p>
+            </div>
+          );
+        })}
+      <h3>Step-by-step preparation</h3>
+      {recipeInstructions &&
+        recipeSteps.map((step, index) => {
+          return (
+            <div key={index}>
+              <p>
+                {index} {step}
+              </p>
+            </div>
+          );
+        })}
     </div>
   );
 }

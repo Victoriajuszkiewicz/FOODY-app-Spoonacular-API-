@@ -2,27 +2,27 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"; //this is a the css file used in react bootstrap libraries
 import "./App.css";
-import Local from "./helpers/Local";
+import { Local } from "./helpers/Local";
 import { Api } from "./helpers/Api";
-
 import NavBar from "./components/NavBar";
 import HomePage from "./views/Home/HomePage";
-
 import RegisterView from "./views/RegisterView";
 import LoginView from "./views/LoginView";
 import ResultView from "./components/ResultView";
 import RecipeView from "./components/RecipeView";
-
-import { getSteps } from "./helpers/Api";
+import { getIngredientList, getSteps } from "./helpers/Api";
 
 function App() {
   const [allRecipes, setAllRecipes] = useState([]); //I just changed to allRecipes to differenciate with "recipe" state
-  const [recipe, setRecipe] = useState({}); //the recipe you clicked on in the result page
   const navigate = useNavigate(); //define it first then you can use it later
-  const [recipeInstructions, setRecipeInstructions] = useState();
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
   let [allRegistered, setAllRegistered] = useState([]);
+
+  const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
+  const [recipeInstructions, setRecipeInstructions] = useState();
+  const [ingredientList, setIngredientList] = useState();
+
   //BACKEND ROUTES
 
   //GETs all registered users/works yay!
@@ -60,8 +60,7 @@ function App() {
   }
   // END OF DB ROUTES
 
-  //AUTHORIZATION
-
+  //AUTHORISATION
   // login
   async function doLogin(loginObj) {
     const myresponse = await Api.loginUser(loginObj);
@@ -97,6 +96,8 @@ function App() {
     async function fetchData() {
       const recipeInstructions = await getSteps(recipe.id);
       setRecipeInstructions(recipeInstructions);
+      const { ingredients } = await getIngredientList(recipe.id);
+      setIngredientList(ingredients);
     }
     if (recipe) {
       fetchData();
@@ -125,7 +126,14 @@ function App() {
         />
         <Route
           path="/Featured/:id"
-          element={<RecipeView recipe={recipe} setRecipe={setRecipe} />}
+          element={
+            <RecipeView
+              recipe={recipe}
+              recipeInstructions={recipeInstructions}
+              ingredientList={ingredientList}
+              setRecipe={setRecipe}
+            />
+          }
         />
 
         <Route
