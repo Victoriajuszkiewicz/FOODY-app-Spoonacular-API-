@@ -7,7 +7,7 @@ import HomePage from "./views/Home/HomePage";
 import ResultView from "./components/ResultView";
 import LoginView from "./views/LoginView";
 import RecipeView from "./components/RecipeView";
-import { getIngredientList, getIngredients, getSteps } from "./helpers/Api";
+import { getIngredientList, getSteps } from "./helpers/Api";
 
 // test test
 
@@ -28,7 +28,7 @@ function App() {
     async function fetchData() {
       const recipeInstructions = await getSteps(recipe.id);
       setRecipeInstructions(recipeInstructions);
-      const ingredients = await getIngredientList(recipe.id);
+      const { ingredients } = await getIngredientList(recipe.id);
       setIngredientList(ingredients);
     }
     if (recipe) {
@@ -62,6 +62,7 @@ function App() {
             <RecipeView
               recipe={recipe}
               recipeInstructions={recipeInstructions}
+              ingredientList={ingredientList}
             />
           }
         />

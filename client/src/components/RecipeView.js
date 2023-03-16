@@ -1,43 +1,57 @@
 import React from "react";
 
 export default function RecipeView(props) {
-  const { recipe, recipeInstructions } = props;
-  if (recipeInstructions) {
-    const { steps } = recipeInstructions[0];
+  const { recipe, recipeInstructions, ingredientList } = props;
+  console.log(recipeInstructions);
 
-    let instructions = {};
-    let ingredients = {};
+  // if (recipeInstructions) {
+  //   const recipeExtractor = recipeInstructions[0];
+  //   const { steps } = recipeExtractor;
+  //   let instructions = {};
+  //   for (let objects of steps) {
+  //     instructions[objects.number] = objects.step;
+  //   }
+  //   console.log(instructions);
+  // }
 
-    for (let objects of steps) {
-      console.log(objects);
-      instructions[objects.number] = objects.step;
-    }
-    console.log(instructions);
+  const recipeSteps = [];
 
-    for (let obj of steps) {
-      for (let categories in obj) {
-        console.log(categories);
-        if (categories === "ingredients") {
-          for (let ingredient of categories) {
-            // ingredients = ingredient.name;
-            console.log(ingredient);
-          }
-        }
-      }
-    }
+  for (const step of recipeInstructions[0].steps) {
+    recipeSteps[step.number] = step.step;
   }
+
+  console.log(recipeSteps);
 
   return (
     <div>
       <h3>{recipe.title}</h3>
       <img src={recipe.image} alt={recipe.title} />
-      {/* <p>{recipeInstructions}</p> */}
-      {/* {recipeInstructions.map((step) => (
-        <p>{step}</p>
-      ))} */}
 
       {/* There's more then one property in the missedIngredients, 
       could we do the map instead hardcode way to render them? */}
+      <h3>Ingredient List</h3>
+      {ingredientList &&
+        ingredientList.map((ingredient, index) => {
+          return (
+            <div key={index}>
+              <p>
+                {ingredient.name} {ingredient.amount.metric.value}{" "}
+                {ingredient.amount.metric.unit}{" "}
+              </p>
+            </div>
+          );
+        })}
+      <h3>Step-by-step preparation</h3>
+      {recipeInstructions &&
+        recipeSteps.map((step, index) => {
+          return (
+            <div key={index}>
+              <p>
+                {index} {step}
+              </p>
+            </div>
+          );
+        })}
     </div>
   );
 }
