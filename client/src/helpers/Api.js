@@ -1,4 +1,4 @@
-import Local from "./Local";
+import { Local } from "./Local";
 
 export class Api {
   static getRecipes = async (ingredients) => {
@@ -45,8 +45,8 @@ export class Api {
    * Get data for user with ID 'userId'
    **/
 
-  static async getUser(userId) {
-    return await this._doFetch(`/users/${userId}`);
+  static async getUser(id) {
+    return await this._doFetch(`/users/${id}`);
   }
 
   /**
@@ -85,7 +85,8 @@ export class Api {
     //this is to allow all the fetch for post, put, get, etc. Without this, we wouldn't be able to use fetch get or post etc
     let myresponse = { ok: false, data: null, status: 0, error: "" };
     try {
-      let response = await fetch(url, options);
+      // adding the /api here will make that all the call with the server to add /api
+      let response = await fetch("/api" + url, options);
       if (response.ok) {
         myresponse.ok = true;
         myresponse.data = await response.json();
@@ -111,8 +112,25 @@ export async function getSteps(recipeId) {
     let response = await fetch(url);
     if (response.ok) {
       let recipeInstructions = await response.json();
-      console.log(recipeInstructions);
       return recipeInstructions;
+    } else {
+      console.log("Server error: ", response);
+    }
+  } catch (err) {
+    console.log(`Network error: ${err.message}`);
+  }
+}
+
+//GET LIST OF INGREDIENTS
+export async function getIngredientList(recipeId) {
+  const apiKey = `?apiKey=${process.env.REACT_APP_SPOONACULAR_KEY}`;
+  const url = `https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json${apiKey}`;
+
+  try {
+    let response = await fetch(url);
+    if (response.ok) {
+      let ingredientList = await response.json();
+      return ingredientList;
     } else {
       console.log("Server error: ", response);
     }
