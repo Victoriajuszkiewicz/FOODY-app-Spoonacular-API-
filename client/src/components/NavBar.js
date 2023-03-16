@@ -7,7 +7,7 @@ import logo from "../img/foody.png";
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-light">
       <div className="btn-group">
         <button
           className="btn btn-secondary btn-sm dropdown-toggle"
@@ -38,6 +38,7 @@ const NavBar = () => {
       </div>
       <NavLink to="*">
         <img
+          className="logo"
           src={logo}
           alt="this is a logo of very cool app created by 4 very talented people"
           style={{ width: 60, height: 60 }}
