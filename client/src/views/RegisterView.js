@@ -3,7 +3,7 @@ import InputBox from "../components/InputBox";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
 
 const RegisterView = (props) => {
   const INIT_REGISTRATION = {
