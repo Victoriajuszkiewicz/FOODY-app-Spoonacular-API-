@@ -59,7 +59,7 @@ const RegisterView = (props) => {
         </div>
       ) : null}
 
-      <Form onSubmit={handleSubmit} style={{ border: "1px solid red" }}>
+      <Form onSubmit={handleSubmit}>
         <h2>Welcome to FoodApp!</h2>
         <Container className="d-flex flex-column align-items-center">
           <Form.Control
@@ -98,7 +98,9 @@ const RegisterView = (props) => {
           />
         </Container>
         <div>
-          <Button variant="secondary">Create an account</Button>
+          <Button variant="secondary" style={{ marginTop: "10px" }}>
+            Create an account
+          </Button>
         </div>
       </Form>
     </div>
