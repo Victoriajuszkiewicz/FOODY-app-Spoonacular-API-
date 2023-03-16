@@ -14,11 +14,53 @@ import { getSteps } from "./helpers/Api";
 
 function App() {
   const [allRecipes, setAllRecipes] = useState([]); //I just changed to allRecipes to differenciate with "recipe" state
-  const [recipe, setRecipe] = useState({}); //the recipe you clicked on in the result page
+  // const [recipe, setRecipe] = useState({}); //the recipe you clicked on in the result page
   const navigate = useNavigate(); //define it first then you can use it later
   const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
-  const navigate = useNavigate(); //define it first then you can use it later
+  // const navigate = useNavigate(); //define it first then you can use it later
   const [recipeInstructions, setRecipeInstructions] = useState();
+  let [allRegistered, setAllRegistered] = useState([]);
+
+  //BACKEND ROUTES
+
+  //GETs all registered users/works yay!
+  useEffect(() => {
+    fetch("http://localhost:5000/register")
+      .then((res) => res.json())
+      .then((json) => {
+        setAllRegistered(json);
+      })
+      .catch((error) => {
+        console.log(`Server error: ${error.message}`);
+      });
+  }, []);
+
+  // POST (add new user to DB)- not tested
+  async function addNew(registration) {
+    let options = {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(registration),
+    };
+    console.log(registration);
+
+    try {
+      let response = await fetch("/register", options);
+      if (response.ok) {
+        let data = await response.json();
+      } else {
+        console.log(`Server error: ${response.status}: ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
+  }
+
+  // LOGIN
+
+  //! Not finshed
+
+  // END OF DB ROUTES
 
   const showRecipe = (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
