@@ -3,13 +3,17 @@ import React from "react";
 export default function RecipeView(props) {
   const { recipe, recipeInstructions } = props;
   if (recipeInstructions) {
-    const extractSteps = recipeInstructions[0];
-    const { steps } = extractSteps;
+    const { steps } = recipeInstructions[0];
+
     let instructions = {};
     let ingredients = {};
+
     for (let objects of steps) {
+      console.log(objects);
       instructions[objects.number] = objects.step;
     }
+    console.log(instructions);
+
     for (let obj of steps) {
       for (let categories in obj) {
         console.log(categories);

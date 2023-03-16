@@ -7,7 +7,7 @@ import HomePage from "./views/Home/HomePage";
 import ResultView from "./components/ResultView";
 import LoginView from "./views/LoginView";
 import RecipeView from "./components/RecipeView";
-import { getSteps } from "./helpers/Api";
+import { getIngredientList, getIngredients, getSteps } from "./helpers/Api";
 
 // test test
 
@@ -16,6 +16,7 @@ function App() {
   const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
   const navigate = useNavigate(); //define it first then you can use it later
   const [recipeInstructions, setRecipeInstructions] = useState();
+  const [ingredientList, setIngredientList] = useState();
 
   const showRecipe = (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
@@ -27,6 +28,8 @@ function App() {
     async function fetchData() {
       const recipeInstructions = await getSteps(recipe.id);
       setRecipeInstructions(recipeInstructions);
+      const ingredients = await getIngredientList(recipe.id);
+      setIngredientList(ingredients);
     }
     if (recipe) {
       fetchData();
