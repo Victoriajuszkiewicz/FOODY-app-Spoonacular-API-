@@ -12,8 +12,7 @@ import RegisterView from "./views/RegisterView";
 import LoginView from "./views/LoginView";
 import ResultView from "./components/ResultView";
 import RecipeView from "./components/RecipeView";
-
-
+import { getIngredientList, getSteps } from "./helpers/Api";
 import { getSteps } from "./helpers/Api";
 
 
@@ -25,6 +24,7 @@ function App() {
   const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
   // const navigate = useNavigate(); //define it first then you can use it later
   const [recipeInstructions, setRecipeInstructions] = useState();
+  const [ingredientList, setIngredientList] = useState();
   let [allRegistered, setAllRegistered] = useState([]);
 
   //BACKEND ROUTES
@@ -98,6 +98,8 @@ function App() {
     async function fetchData() {
       const recipeInstructions = await getSteps(recipe.id);
       setRecipeInstructions(recipeInstructions);
+      const { ingredients } = await getIngredientList(recipe.id);
+      setIngredientList(ingredients);
     }
     if (recipe) {
       fetchData();
@@ -126,6 +128,13 @@ function App() {
         />
         <Route
           path="/Featured/:id"
+          element={
+            <RecipeView
+              recipe={recipe}
+              recipeInstructions={recipeInstructions}
+              ingredientList={ingredientList}
+            />
+          }
           element={<RecipeView recipe={recipe} setRecipe={setRecipe} />}
         />
 

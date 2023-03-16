@@ -109,8 +109,25 @@ export async function getSteps(recipeId) {
     let response = await fetch(url);
     if (response.ok) {
       let recipeInstructions = await response.json();
-      console.log(recipeInstructions);
       return recipeInstructions;
+    } else {
+      console.log("Server error: ", response);
+    }
+  } catch (err) {
+    console.log(`Network error: ${err.message}`);
+  }
+}
+
+//GET LIST OF INGREDIENTS
+export async function getIngredientList(recipeId) {
+  const apiKey = `?apiKey=${process.env.REACT_APP_SPOONACULAR_KEY}`;
+  const url = `https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json${apiKey}`;
+
+  try {
+    let response = await fetch(url);
+    if (response.ok) {
+      let ingredientList = await response.json();
+      return ingredientList;
     } else {
       console.log("Server error: ", response);
     }
