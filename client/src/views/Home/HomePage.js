@@ -6,6 +6,8 @@ import "./HomePage.css";
 const HomePage = (props) => {
   const { setAllRecipes, allRecipes } = props;
 
+  return <SearchBar setAllRecipes={setAllRecipes} allRecipes={allRecipes} />;
+
   return (
     <div>
       <SearchBar setAllRecipes={setAllRecipes} allRecipes={allRecipes} />
@@ -37,6 +39,7 @@ const HomePage = (props) => {
       </div>
     </div>
   );
+
 };
 
 export default HomePage;
