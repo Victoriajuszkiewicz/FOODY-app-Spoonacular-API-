@@ -30,6 +30,7 @@ function App() {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
       setUser(myresponse.data.user);
       setLoginErrorMsg("");
+      //after clicking on login, if the action succeed then the user is redirected to the homepage
       navigate("/");
     } else {
       setLoginErrorMsg("Login failed");

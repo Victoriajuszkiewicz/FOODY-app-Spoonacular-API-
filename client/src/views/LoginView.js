@@ -9,8 +9,8 @@ const INIT_LOGINFORM = {
 
 const LoginView = (props) => {
   const [loginInput, setLoginInput] = useState(INIT_LOGINFORM);
-
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginInput({ ...loginInput, [name]: value });
@@ -20,7 +20,7 @@ const LoginView = (props) => {
     event.preventDefault();
     props.inputLoginCb(loginInput);
     setLoginInput(INIT_LOGINFORM);
-    console.log("someone want to log in... oh lala");
+    // console.log("someone want to log in... oh lala");
   };
 
   return (
@@ -28,7 +28,7 @@ const LoginView = (props) => {
       <button onClick={(m) => navigate("/register")}>Register</button>
       {/* this button takes us to register page */}
 
-      <form onClick={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <h2>Welcome back</h2>
         {/* Label and placeholder can have the value of your choice */}
         <InputBox
@@ -39,6 +39,7 @@ const LoginView = (props) => {
           value={loginInput.email}
           label="Email"
           onChange={handleChange}
+          required
         />
         <InputBox
           id="password"
@@ -47,6 +48,7 @@ const LoginView = (props) => {
           value={loginInput.password}
           label="Password"
           onChange={handleChange}
+          required
         />
 
         <div>
