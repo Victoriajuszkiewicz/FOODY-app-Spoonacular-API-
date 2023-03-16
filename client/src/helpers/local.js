@@ -2,8 +2,7 @@
  * All localStorage implementation is here
  **/
 
-class Local {
-
+export class Local {
   //Save & Get featured recipe data-----------------------------------------------
 
   static saveFeaturedRecipe(recipe) {
@@ -60,5 +59,3 @@ class Local {
     return user.username;
   }
 }
-
-export default Local;

@@ -64,6 +64,7 @@ router.post("/login", async (req, res) => {
           user: user,
         });
       } else {
+        //password doesn't match
         res.status(401).send("Login failed");
       }
     }
