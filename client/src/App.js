@@ -2,27 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"; //this is a the css file used in react bootstrap libraries
 import "./App.css";
-import Local from "./helpers/Local";
+import { Local } from "./helpers/local";
 import { Api } from "./helpers/Api";
-
 import NavBar from "./components/NavBar";
 import HomePage from "./views/Home/HomePage";
-
 import RegisterView from "./views/RegisterView";
 import LoginView from "./views/LoginView";
 import ResultView from "./components/ResultView";
 import RecipeView from "./components/RecipeView";
 import { getIngredientList, getSteps } from "./helpers/Api";
-import { getSteps } from "./helpers/Api";
-
 
 function App() {
   const [allRecipes, setAllRecipes] = useState([]); //I just changed to allRecipes to differenciate with "recipe" state
-  // const [recipe, setRecipe] = useState({}); //the recipe you clicked on in the result page
   const navigate = useNavigate(); //define it first then you can use it later
 
   const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
-  // const navigate = useNavigate(); //define it first then you can use it later
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [ingredientList, setIngredientList] = useState();
   let [allRegistered, setAllRegistered] = useState([]);
@@ -68,7 +62,6 @@ function App() {
 
   // END OF DB ROUTES
 
-  const [recipeInstructions, setRecipeInstructions] = useState();
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
 
@@ -84,7 +77,6 @@ function App() {
       setLoginErrorMsg("Login failed");
     }
   }
-
 
   // RECIPES
   const showRecipe = (id) => {
@@ -133,9 +125,9 @@ function App() {
               recipe={recipe}
               recipeInstructions={recipeInstructions}
               ingredientList={ingredientList}
+              setRecipe={setRecipe}
             />
           }
-          element={<RecipeView recipe={recipe} setRecipe={setRecipe} />}
         />
 
         <Route

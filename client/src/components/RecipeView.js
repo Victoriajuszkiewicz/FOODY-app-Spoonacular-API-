@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import { Api } from "../helpers/Api";
-import Local from "../helpers/Local";
+import { Local } from "../helpers/local";
 
 export default function RecipeView(props) {
-const { recipe, recipeInstructions, ingredientList } = props;
+  const { recipe, setRecipe, recipeInstructions, ingredientList } = props;
 
   const recipeSteps = [];
   if (recipeInstructions) {
@@ -11,9 +10,6 @@ const { recipe, recipeInstructions, ingredientList } = props;
       recipeSteps[step.number] = step.step;
     }
   }
-
-  const { recipe, setRecipe } = props;
-  //  console.log(recipe)
 
   useEffect(() => {
     console.log("USING EFFECT!!!");
@@ -23,7 +19,7 @@ const { recipe, recipeInstructions, ingredientList } = props;
     if (Object.keys(recipe).length === 0) {
       setRecipe(Local.getFeaturedRecipe()); //set the state from the recipe we stored in the localStorage
     }
-  }, [recipe]);
+  }, [recipe, setRecipe]);
   return (
     <div>
       <h3>{recipe.title}</h3>
