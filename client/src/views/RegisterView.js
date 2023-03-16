@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const RegisterView = () => {
+const RegisterView = (props) => {
   const INIT_REGISTRATION = {
     name: "",
     password: "",
@@ -22,6 +22,7 @@ const RegisterView = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
+    props.addNewCb(registerForm);
     console.log("create an account submited", registerForm);
     //handleSubmit saves all info in register form
     setRegisterForm(INIT_REGISTRATION);

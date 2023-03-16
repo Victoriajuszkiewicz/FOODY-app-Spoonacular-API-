@@ -3,8 +3,8 @@ import InputBox from "../components/InputBox";
 import { useNavigate } from "react-router-dom";
 
 const INIT_LOGINFORM = {
-  email: "",
-  password: "",
+  emailLogin: "",
+  passwordLogin: "",
 };
 
 const LoginView = (props) => {
@@ -20,7 +20,7 @@ const LoginView = (props) => {
     event.preventDefault();
     props.inputLoginCb(loginInput);
     setLoginInput(INIT_LOGINFORM);
-    // console.log("someone want to log in... oh lala");
+    console.log("someone want to log in... oh lala");
   };
 
   return (
@@ -35,8 +35,8 @@ const LoginView = (props) => {
           id="email"
           type="text"
           placeholder="nugget@example.com"
-          name="email"
-          value={loginInput.email}
+          name="emailLogin"
+          value={loginInput.emailLogin}
           label="Email"
           onChange={handleChange}
           required
@@ -44,8 +44,8 @@ const LoginView = (props) => {
         <InputBox
           id="password"
           type="password"
-          name="password"
-          value={loginInput.password}
+          name="passwordLogin"
+          value={loginInput.passwordLogin}
           label="Password"
           onChange={handleChange}
           required

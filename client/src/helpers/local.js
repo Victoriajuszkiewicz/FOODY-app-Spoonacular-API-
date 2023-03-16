@@ -3,7 +3,6 @@
  **/
 
 class Local {
-
   //Save & Get featured recipe data-----------------------------------------------
 
   static saveFeaturedRecipe(recipe) {

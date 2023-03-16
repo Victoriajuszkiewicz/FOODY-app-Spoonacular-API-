@@ -22,19 +22,67 @@ function App() {
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
+  let [allRegistered, setAllRegistered] = useState([]);
+  //BACKEND ROUTES
 
-  //AUTHORISATION
+  //GETs all registered users/works yay!
+  useEffect(() => {
+    fetch("http://localhost:5000/api/register")
+      .then((res) => res.json())
+      .then((json) => {
+        setAllRegistered(json);
+      })
+      .catch((error) => {
+        console.log(`Server error: ${error.message}`);
+      });
+  }, []);
+
+  // POST (add new user to DB)- not tested
+  async function addNew(registerForm) {
+    let options = {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(registerForm),
+    };
+    // console.log(registerForm);
+    // console.log("passed to DB");
+
+    try {
+      let response = await fetch("http://localhost:5000/api/register", options);
+      if (response.ok) {
+        let data = await response.json();
+      } else {
+        console.log(`Server error: ${response.status}: ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
+  }
+  // END OF DB ROUTES
+
+  //AUTHORIZATION
+
+  // login
   async function doLogin(loginObj) {
     const myresponse = await Api.loginUser(loginObj);
+    console.log("passed to DB");
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
+      console.log("you are logged in");
       setUser(myresponse.data.user);
       setLoginErrorMsg("");
       //after clicking on login, if the action succeed then the user is redirected to the homepage
-      navigate("/");
+      navigate("*");
     } else {
       setLoginErrorMsg("Login failed");
     }
+  }
+
+  // logout
+  function doLogout() {
+    Local.removeUserInfo();
+    setUser(null);
+    // (NavBar will send user to home page)
   }
 
   // RECIPES
@@ -57,7 +105,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar user={user} logoutCb={doLogout} />
       <Routes>
         <Route
           path="*"
@@ -86,7 +134,7 @@ function App() {
             <LoginView inputLoginCb={doLogin} loginError={loginErrorMsg} />
           }
         />
-        <Route path="/register" element={<RegisterView />} />
+        <Route path="/register" element={<RegisterView addNewCb={addNew} />} />
       </Routes>
     </div>
   );
