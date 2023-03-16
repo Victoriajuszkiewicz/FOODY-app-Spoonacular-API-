@@ -3,6 +3,7 @@ import InputBox from "../components/InputBox";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
 const RegisterView = (props) => {
   const INIT_REGISTRATION = {
@@ -49,50 +50,57 @@ const RegisterView = (props) => {
   //Info from form is saved  in state but never reaches DB
   return (
     <div>
-      <button onClick={(e) => navigate("/login")}>Login</button>
+      <Button variant="secondary" onClick={(e) => navigate("/login")}>
+        Login
+      </Button>
       {show ? (
         <div>
           <ToastContainer />
         </div>
       ) : null}
 
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{ border: "1px solid red" }}>
         <h2>Welcome to FoodApp!</h2>
-        <InputBox
-          id="name"
-          type="text"
-          placeholder="Type your name"
-          name="name"
-          value={registerForm.name}
-          label="Name"
-          labels="Name"
-          required
-          onChange={handleChange}
-        />
-        <InputBox
-          id="email"
-          type="text"
-          placeholder="nugget@example.com"
-          name="email"
-          value={registerForm.email}
-          label="Email"
-          required
-          onChange={handleChange}
-        />
-        <InputBox
-          id="password"
-          type="password"
-          name="password"
-          value={registerForm.password}
-          label="Password"
-          placeholder="Password"
-          required
-          onChange={handleChange}
-        />
+        <Container className="d-flex flex-column align-items-center">
+          <Form.Control
+            style={{ width: "18rem", textAlign: "center" }}
+            id="name"
+            type="text"
+            placeholder="Type your name"
+            name="name"
+            value={registerForm.name}
+            label="Name"
+            labels="Name"
+            required
+            onChange={handleChange}
+          />
+          <Form.Control
+            style={{ width: "18rem", textAlign: "center" }}
+            id="email"
+            type="text"
+            placeholder="nugget@example.com"
+            name="email"
+            value={registerForm.email}
+            label="Email"
+            required
+            onChange={handleChange}
+          />
+          <Form.Control
+            style={{ width: "18rem", textAlign: "center" }}
+            id="password"
+            type="password"
+            name="password"
+            value={registerForm.password}
+            label="Password"
+            placeholder="Password"
+            required
+            onChange={handleChange}
+          />
+        </Container>
         <div>
-          <button>Create an account</button>
+          <Button variant="secondary">Create an account</Button>
         </div>
-      </form>
+      </Form>
     </div>
   );
 };

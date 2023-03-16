@@ -3,8 +3,6 @@ import { Local } from "../helpers/Local";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 export default function RecipeView(props) {
   const { recipe, setRecipe, recipeInstructions, ingredientList } = props;
@@ -17,7 +15,6 @@ export default function RecipeView(props) {
   }
 
   useEffect(() => {
-    console.log("USING EFFECT!!!");
     /*we use Object.keys() checkes if an object is empty, 
     it returns an array of keys when is not empty else return an empty array, 
     then checks the array using .length if it's emty array. we should run the effect if is empty */

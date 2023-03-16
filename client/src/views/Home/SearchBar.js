@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ResultView from "../../components/ResultView";
 import { Api } from "../../helpers/Api";
 import { getSteps } from "../../helpers/Api";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
 const SearchBar = (props) => {
   let [ingredients, setIngredients] = useState(""); //ingredients we typed in the input field
@@ -23,21 +24,35 @@ const SearchBar = (props) => {
     setIngredients(value); // use setter to update the state data
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>What do you have in the fridge?</label>
-        <input
+    <Container
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      className="d-flex flex-column align-items-center"
+    >
+      <Form onSubmit={handleSubmit}>
+        <Form.Label>
+          <h4 style={{ width: "25rem" }}> What do you have in the fridge?</h4>
+        </Form.Label>
+        <Form.Control
+          style={{
+            width: "18rem",
+            marginLeft: "55px",
+            marginBottom: "5px",
+            textAlign: "center",
+          }}
           type="text"
           value={ingredients}
           onChange={handleChange}
           placeholder="Search by ingredients"
-        ></input>
-        <button type="submit">Search</button>
-      </form>
-      {/* {recipes && <ResultView recipes={recipes} />} 
-      => SearchBar component is a reusable component, 
-      so we try keep here clean. We could use whole component from somewhere else!*/}
-    </div>
+        />
+        <Button variant="secondary" type="submit">
+          Search
+        </Button>
+      </Form>
+    </Container>
   );
 };
 
