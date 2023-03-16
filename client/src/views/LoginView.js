@@ -20,7 +20,7 @@ const LoginView = (props) => {
     event.preventDefault();
     props.inputLoginCb(loginInput);
     setLoginInput(INIT_LOGINFORM);
-    console.log("someone want to log in... oh lala");
+    console.log("someone want to log in... oh lala", loginInput);
   };
 
   return (
@@ -28,7 +28,7 @@ const LoginView = (props) => {
       <button onClick={(m) => navigate("/register")}>Register</button>
       {/* this button takes us to register page */}
 
-      <form onClick={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <h2>Welcome back</h2>
         {/* Label and placeholder can have the value of your choice */}
         <InputBox

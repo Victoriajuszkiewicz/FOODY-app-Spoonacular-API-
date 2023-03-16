@@ -38,16 +38,17 @@ function App() {
   }, []);
 
   // POST (add new user to DB)- not tested
-  async function addNew(registration) {
+  async function addNew(registerForm) {
     let options = {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify(registration),
+      body: JSON.stringify(registerForm),
     };
-    console.log(registration);
+    // console.log(registerForm);
+    // console.log("passed to DB");
 
     try {
-      let response = await fetch("/register", options);
+      let response = await fetch("http://localhost:5000/register", options);
       if (response.ok) {
         let data = await response.json();
       } else {
@@ -62,10 +63,15 @@ function App() {
   //AUTHORIZATION
   async function doLogin(loginObj) {
     const myresponse = await Api.loginUser(loginObj);
+
+    console.log("passed to DB");
     if (myresponse.ok) {
+      console.log(myresponse);
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
+      console.log("you are logged in");
       setUser(myresponse.data.user);
       setLoginErrorMsg("");
+
       navigate("/");
     } else {
       setLoginErrorMsg("Login failed");
@@ -121,7 +127,7 @@ function App() {
             <LoginView inputLoginCb={doLogin} loginError={loginErrorMsg} />
           }
         />
-        <Route path="/register" element={<RegisterView />} />
+        <Route path="/register" element={<RegisterView addNewCb={addNew} />} />
       </Routes>
     </div>
   );

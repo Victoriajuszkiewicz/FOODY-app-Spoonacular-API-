@@ -29,6 +29,7 @@ export class Api {
   //unrelated to form
   static async loginUser(loginObj) {
     //USE THE SAME URL than in app.js server side
+    // console.log(loginObj);
     return await this._doFetch("/login", "POST", loginObj);
   }
 
@@ -69,6 +70,7 @@ export class Api {
 
     // Add token to headers if it exists in localStorage
     let token = Local.getToken();
+    console.log(token);
     if (token) {
       options.headers["Authorization"] = "Bearer " + token;
     }
