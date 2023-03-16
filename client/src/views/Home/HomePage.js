@@ -17,11 +17,12 @@ const HomePage = (props) => {
               A food app that helps users search for recipes based on the
               ingredients they already have in their fridge is very practical
               and useful. It's a great way to avoid food waste and save time by
-              making the most of what you have at home. This type of app is
-              especially helpful for people who don't have a lot of experience
-              in the kitchen or are not sure how to combine ingredients to make
-              a meal. It can also be a great tool for those who want to try new
-              recipes or experiment with different ingredients.
+              making the most of what you have at home.
+              <br /> This type of app is especially helpful for people who don't
+              have a lot of experience in the kitchen or are not sure how to
+              combine ingredients to make a meal. It can also be a great tool
+              for those who want to try new recipes or experiment with different
+              ingredients.
             </p>
           </div>
 
