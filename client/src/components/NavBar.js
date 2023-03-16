@@ -35,6 +35,9 @@ const NavBar = () => {
           </li>
         </ul>
       </div>
+      <NavLink to="*">
+        <h1 style={{ color: "white" }}>LOGO here</h1>
+      </NavLink>
     </nav>
   );
 };
