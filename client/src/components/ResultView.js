@@ -3,9 +3,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import RecipeView from "./RecipeView";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
 import SearchBar from "../views/Home/SearchBar";
 
 export default function ResultView(props) {
