@@ -15,8 +15,6 @@ import RecipeView from "./components/RecipeView";
 
 import { getSteps } from "./helpers/Api";
 
-// test test
-
 function App() {
   const [allRecipes, setAllRecipes] = useState([]); //I just changed to allRecipes to differenciate with "recipe" state
   const [recipe, setRecipe] = useState({}); //the recipe you clicked on in the result page
@@ -24,8 +22,44 @@ function App() {
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
+  let [allRegistered, setAllRegistered] = useState([]);
+  //BACKEND ROUTES
 
-  //AUTHORISATION
+  //GETs all registered users/works yay!
+  useEffect(() => {
+    fetch("http://localhost:5000/register")
+      .then((res) => res.json())
+      .then((json) => {
+        setAllRegistered(json);
+      })
+      .catch((error) => {
+        console.log(`Server error: ${error.message}`);
+      });
+  }, []);
+
+  // POST (add new user to DB)- not tested
+  async function addNew(registration) {
+    let options = {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(registration),
+    };
+    console.log(registration);
+
+    try {
+      let response = await fetch("/register", options);
+      if (response.ok) {
+        let data = await response.json();
+      } else {
+        console.log(`Server error: ${response.status}: ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
+  }
+  // END OF DB ROUTES
+
+  //AUTHORIZATION
   async function doLogin(loginObj) {
     const myresponse = await Api.loginUser(loginObj);
     if (myresponse.ok) {
