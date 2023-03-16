@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"; //this is a the css file used in react bootstrap libraries
 import "./App.css";
-import { Local } from "./helpers/local";
+import { Local } from "./helpers/Local";
 import { Api } from "./helpers/Api";
 import NavBar from "./components/NavBar";
 import HomePage from "./views/Home/HomePage";
@@ -15,17 +15,19 @@ import { getIngredientList, getSteps } from "./helpers/Api";
 function App() {
   const [allRecipes, setAllRecipes] = useState([]); //I just changed to allRecipes to differenciate with "recipe" state
   const navigate = useNavigate(); //define it first then you can use it later
+  const [user, setUser] = useState(Local.getUser());
+  const [loginErrorMsg, setLoginErrorMsg] = useState("");
+  let [allRegistered, setAllRegistered] = useState([]);
 
   const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [ingredientList, setIngredientList] = useState();
-  let [allRegistered, setAllRegistered] = useState([]);
 
   //BACKEND ROUTES
 
   //GETs all registered users/works yay!
   useEffect(() => {
-    fetch("http://localhost:5000/register")
+    fetch("http://localhost:5000/api/register")
       .then((res) => res.json())
       .then((json) => {
         setAllRegistered(json);
@@ -36,16 +38,17 @@ function App() {
   }, []);
 
   // POST (add new user to DB)- not tested
-  async function addNew(registration) {
+  async function addNew(registerForm) {
     let options = {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify(registration),
+      body: JSON.stringify(registerForm),
     };
-    console.log(registration);
+    // console.log(registerForm);
+    // console.log("passed to DB");
 
     try {
-      let response = await fetch("/register", options);
+      let response = await fetch("http://localhost:5000/api/register", options);
       if (response.ok) {
         let data = await response.json();
       } else {
@@ -55,27 +58,30 @@ function App() {
       console.log(`Network error: ${err.message}`);
     }
   }
-
-  // LOGIN
-
-  //! Not finshed
-
   // END OF DB ROUTES
 
-  const [user, setUser] = useState(Local.getUser());
-  const [loginErrorMsg, setLoginErrorMsg] = useState("");
-
   //AUTHORISATION
+  // login
   async function doLogin(loginObj) {
     const myresponse = await Api.loginUser(loginObj);
+    console.log("passed to DB");
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
+      console.log("you are logged in");
       setUser(myresponse.data.user);
       setLoginErrorMsg("");
-      navigate("/");
+      //after clicking on login, if the action succeed then the user is redirected to the homepage
+      navigate("*");
     } else {
       setLoginErrorMsg("Login failed");
     }
+  }
+
+  // logout
+  function doLogout() {
+    Local.removeUserInfo();
+    setUser(null);
+    // (NavBar will send user to home page)
   }
 
   // RECIPES
@@ -100,7 +106,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar user={user} logoutCb={doLogout} />
       <Routes>
         <Route
           path="*"
@@ -136,7 +142,7 @@ function App() {
             <LoginView inputLoginCb={doLogin} loginError={loginErrorMsg} />
           }
         />
-        <Route path="/register" element={<RegisterView />} />
+        <Route path="/register" element={<RegisterView addNewCb={addNew} />} />
       </Routes>
     </div>
   );

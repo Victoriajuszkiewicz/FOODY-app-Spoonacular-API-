@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Local } from "../helpers/local";
+import { Local } from "../helpers/Local";
 
 export default function RecipeView(props) {
   const { recipe, setRecipe, recipeInstructions, ingredientList } = props;

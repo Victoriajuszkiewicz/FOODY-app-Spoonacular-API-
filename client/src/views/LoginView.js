@@ -3,14 +3,14 @@ import InputBox from "../components/InputBox";
 import { useNavigate } from "react-router-dom";
 
 const INIT_LOGINFORM = {
-  email: "",
-  password: "",
+  emailLogin: "",
+  passwordLogin: "",
 };
 
 const LoginView = (props) => {
   const [loginInput, setLoginInput] = useState(INIT_LOGINFORM);
-
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginInput({ ...loginInput, [name]: value });
@@ -28,25 +28,27 @@ const LoginView = (props) => {
       <button onClick={(m) => navigate("/register")}>Register</button>
       {/* this button takes us to register page */}
 
-      <form onClick={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <h2>Welcome back</h2>
         {/* Label and placeholder can have the value of your choice */}
         <InputBox
           id="email"
           type="text"
           placeholder="nugget@example.com"
-          name="email"
-          value={loginInput.email}
+          name="emailLogin"
+          value={loginInput.emailLogin}
           label="Email"
           onChange={handleChange}
+          required
         />
         <InputBox
           id="password"
           type="password"
-          name="password"
-          value={loginInput.password}
+          name="passwordLogin"
+          value={loginInput.passwordLogin}
           label="Password"
           onChange={handleChange}
+          required
         />
 
         <div>

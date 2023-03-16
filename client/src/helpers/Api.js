@@ -1,4 +1,4 @@
-import { Local } from "./local";
+import { Local } from "./Local";
 
 export class Api {
   static getRecipes = async (ingredients) => {
@@ -29,6 +29,7 @@ export class Api {
   //unrelated to form
   static async loginUser(loginObj) {
     //USE THE SAME URL than in app.js server side
+    // console.log(loginObj);
     return await this._doFetch("/login", "POST", loginObj);
   }
 
@@ -44,8 +45,8 @@ export class Api {
    * Get data for user with ID 'userId'
    **/
 
-  static async getUser(userId) {
-    return await this._doFetch(`/users/${userId}`);
+  static async getUser(id) {
+    return await this._doFetch(`/users/${id}`);
   }
 
   /**
@@ -69,6 +70,7 @@ export class Api {
 
     // Add token to headers if it exists in localStorage
     let token = Local.getToken();
+    console.log(token);
     if (token) {
       options.headers["Authorization"] = "Bearer " + token;
     }
@@ -83,7 +85,8 @@ export class Api {
     //this is to allow all the fetch for post, put, get, etc. Without this, we wouldn't be able to use fetch get or post etc
     let myresponse = { ok: false, data: null, status: 0, error: "" };
     try {
-      let response = await fetch(url, options);
+      // adding the /api here will make that all the call with the server to add /api
+      let response = await fetch("/api" + url, options);
       if (response.ok) {
         myresponse.ok = true;
         myresponse.data = await response.json();

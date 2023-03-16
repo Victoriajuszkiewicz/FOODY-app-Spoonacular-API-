@@ -20,9 +20,9 @@ app.use(cors()); // add after 'app' is created
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // if you add something in .js file after the / THEN don't add anything here
-app.use("/", indexRouter);
-app.use("/", usersRouter);
-app.use("/", authRouter);
-app.use("/favorites", favoritesRouter); //here i am saying all the methods i create in the favorites.js file apply them in /favorites route
+app.use("/api/", indexRouter);
+app.use("/api/", usersRouter);
+app.use("/api/", authRouter);
+app.use("/api/favorites", favoritesRouter); //here i am saying all the methods i create in the favorites.js file apply them in /favorites route
 
 module.exports = app;
