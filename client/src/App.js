@@ -40,6 +40,7 @@ function App() {
   const showRecipe = (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
     setRecipe(featuredRecipe); //save the correspondent recipe to the state
+    Local.saveFeaturedRecipe(featuredRecipe); //save to the localStorage!!!
     navigate(`/featured/${id}`); //navigate to the correspondent recipe page
   };
 
@@ -73,7 +74,10 @@ function App() {
             />
           }
         />
-        <Route path="/Featured/:id" element={<RecipeView recipe={recipe} />} />
+        <Route
+          path="/Featured/:id"
+          element={<RecipeView recipe={recipe} setRecipe={setRecipe} />}
+        />
 
         <Route
           path="/login"
