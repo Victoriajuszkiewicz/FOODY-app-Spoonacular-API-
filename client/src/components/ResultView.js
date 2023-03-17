@@ -15,28 +15,34 @@ export default function ResultView(props) {
         <SearchBar setAllRecipes={setAllRecipes} />
       </div>
 
-      <Container>
+      <Container
+        style={{
+          display: "grid",
+          justifyContent: "center",
+          marginTop: "25px",
+        }}
+      >
         <Row xs={1} md={2} className="g-4">
-          {Array.from({ length: 1 }).map((_, idx) => (
-            <Col key={idx}>
-              {allRecipes.map((recipe) => (
-                <Card
-                  key={recipe.id}
-                  className="card-recipe"
-                  style={{ width: "18rem" }}
-                  onClick={(event) => showRecipe(recipe.id)}
-                >
-                  <Card.Img variant="top" src={recipe.image} />
-                  <Card.Body>
-                    <Card.Title>{recipe.title}</Card.Title>
-                  </Card.Body>
-                </Card>
-              ))}
-            </Col>
-          ))}
+          <Col>
+            {allRecipes.map((recipe) => (
+              <Card
+                key={recipe.id}
+                className="card-recipe"
+                style={{ width: "18rem" }}
+                onClick={(event) => showRecipe(recipe.id)}
+              >
+                <Card.Img variant="top" src={recipe.image} />
+                <Card.Body>
+                  <Card.Title>{recipe.title}</Card.Title>
+                </Card.Body>
+              </Card>
+            ))}
+          </Col>
         </Row>
         {/* we need to add the onClick to do another call and get more recipes */}
-        <Button variant="primary">See more recipes</Button>
+        <Button variant="secondary" style={{ marginTop: "10px" }}>
+          See more recipes
+        </Button>
       </Container>
     </div>
   );
