@@ -6,11 +6,12 @@ import "./HomePage.css";
 const HomePage = (props) => {
   const { setAllRecipes, allRecipes } = props;
 
-  return <SearchBar setAllRecipes={setAllRecipes} allRecipes={allRecipes} />;
-
   return (
     <div>
-      <SearchBar setAllRecipes={setAllRecipes} allRecipes={allRecipes} />
+      <div className="searchdiv">
+        <SearchBar setAllRecipes={setAllRecipes} allRecipes={allRecipes} />
+      </div>
+
       <div className="container text-center">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2">
           <div className="col" id="textabout">
@@ -39,7 +40,6 @@ const HomePage = (props) => {
       </div>
     </div>
   );
-
 };
 
 export default HomePage;

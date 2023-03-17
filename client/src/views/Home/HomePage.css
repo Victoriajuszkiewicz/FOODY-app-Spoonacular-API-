@@ -9,3 +9,10 @@
 #textabout {
   text-align: left;
 }
+
+.searchdiv {
+  background: #49bbbd;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+}
