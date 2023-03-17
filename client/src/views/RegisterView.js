@@ -60,7 +60,7 @@ const RegisterView = (props) => {
       ) : null}
 
       <Form onSubmit={handleSubmit}>
-        <h2>Welcome to FoodApp!</h2>
+        <h2>Welcome to FOODY!</h2>
         <Form.Group className="d-flex flex-column align-items-center">
           <Form.Control
             style={{ width: "18rem", textAlign: "center" }}
