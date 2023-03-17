@@ -61,7 +61,7 @@ const RegisterView = (props) => {
 
       <Form onSubmit={handleSubmit}>
         <h2>Welcome to FoodApp!</h2>
-        <Container className="d-flex flex-column align-items-center">
+        <Form.Group className="d-flex flex-column align-items-center">
           <Form.Control
             style={{ width: "18rem", textAlign: "center" }}
             id="name"
@@ -96,9 +96,13 @@ const RegisterView = (props) => {
             required
             onChange={handleChange}
           />
-        </Container>
+        </Form.Group>
         <div>
-          <Button variant="secondary" style={{ marginTop: "10px" }}>
+          <Button
+            type="submit"
+            variant="secondary"
+            style={{ marginTop: "10px" }}
+          >
             Create an account
           </Button>
         </div>
