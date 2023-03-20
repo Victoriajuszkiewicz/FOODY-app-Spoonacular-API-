@@ -88,8 +88,10 @@ function App() {
   }
 
   // RECIPES
-  const showRecipe = (id) => {
+  const showRecipe = async (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
+    let recipePrepTime = await Api.getRecipeTime(id); //save it
+    featuredRecipe.preparationTime = recipePrepTime; //create a new property to store the preparation time
     setRecipe(featuredRecipe); //save the correspondent recipe to the state
     Local.saveFeaturedRecipe(featuredRecipe); //save to the localStorage!!!
     navigate(`/featured/${id}`); //navigate to the correspondent recipe page

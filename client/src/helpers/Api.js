@@ -1,6 +1,8 @@
 import { Local } from "./Local";
 
 export class Api {
+
+  //get recipe by ingredietns API
   static getRecipes = async (ingredients) => {
     const apiKey = `&apiKey=${process.env.REACT_APP_SPOONACULAR_KEY}`;
     const baseUrl = "https://api.spoonacular.com/recipes/";
@@ -23,6 +25,25 @@ export class Api {
     }
   };
 
+  //get recipe imformation API
+
+  static getRecipeTime = async (recipeId) => {
+    const apiKey = `?apiKey=${process.env.REACT_APP_SPOONACULAR_KEY}`;
+    const url = `https://api.spoonacular.com/recipes/${recipeId}/information${apiKey}`;
+
+    try {
+      let response = await fetch(url);
+      if (response.ok) {
+        let recipeTime = await response.json();
+        return recipeTime.readyInMinutes;//return only the recipe preparation time!
+      } else {
+        console.log("Server error: ", response);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
+  }
+  //------------------------------------------------------------------------------------------------
   /**
    * Get all users
    **/
