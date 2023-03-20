@@ -7,7 +7,6 @@ import logo from "../img/foody.png";
 
 const NavBar = (props) => {
   return (
-
     <nav className="navbar navbar-expand-lg navbar-light">
       {props.user ? (
         <div className="btn-group">
@@ -73,7 +72,7 @@ const NavBar = (props) => {
         </div>
       )}
 
-      <NavLink to="*">
+      <NavLink to="/">
         <img
           className="logo"
           src={logo}
