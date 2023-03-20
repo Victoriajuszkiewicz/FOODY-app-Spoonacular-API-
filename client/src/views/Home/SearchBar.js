@@ -9,9 +9,6 @@ import Badge from "react-bootstrap/Badge";
 
 const SearchBar = (props) => {
   const [inputValue, setInputValue] = useState("");
-  //move next line to parent
-  // let [ingredients, setIngredients] = useState([]);
-  // let [recipes, setRecipes] = useState([]); //recipes fetched from api. I moved it to the parent
   const navigate = useNavigate();
   const { setAllRecipes, allRecipes, ingredients, setIngredients } = props;
 
@@ -20,15 +17,12 @@ const SearchBar = (props) => {
     event.preventDefault();
     const result = await Api.getRecipes(ingredients);
     setAllRecipes(result); //Using state setter to save recipes fetched from api
-    //change the setIngredients by setInputValue
     setInputValue(""); //reset empty input field after clicked search button
     navigate("/resultview"); //after "search" go to the ResultView
   };
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
-    // const value = event.target.value;
-    // setIngredients(value); // use setter to update the state data
   };
 
   const handleKeyDown = (event) => {
