@@ -18,6 +18,7 @@ function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
   let [allRegistered, setAllRegistered] = useState([]);
+  let [ingredients, setIngredients] = useState([]);
 
   const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
@@ -111,7 +112,12 @@ function App() {
         <Route
           path="*"
           element={
-            <HomePage allRecipes={allRecipes} setAllRecipes={setAllRecipes} />
+            <HomePage
+              allRecipes={allRecipes}
+              setAllRecipes={setAllRecipes}
+              ingredients={ingredients}
+              setIngredients={setIngredients}
+            />
           }
         />
         <Route
@@ -121,6 +127,8 @@ function App() {
               allRecipes={allRecipes}
               setAllRecipes={setAllRecipes}
               showRecipe={showRecipe}
+              ingredients={ingredients}
+              setIngredients={setIngredients}
             />
           }
         />

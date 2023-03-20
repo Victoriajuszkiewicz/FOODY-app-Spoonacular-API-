@@ -7,7 +7,8 @@ import Button from "react-bootstrap/Button";
 import SearchBar from "../views/Home/SearchBar";
 
 export default function ResultView(props) {
-  const { allRecipes, setAllRecipes, showRecipe } = props;
+  const { allRecipes, setAllRecipes, showRecipe, ingredients, setIngredients } =
+    props;
 
   return (
     <div>
