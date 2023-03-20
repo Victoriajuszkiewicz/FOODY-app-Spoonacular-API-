@@ -23,6 +23,6 @@ app.use(cors()); // add after 'app' is created
 app.use("/api/", indexRouter);
 app.use("/api/", usersRouter);
 app.use("/api/", authRouter);
-app.use("/api/favorites", favoritesRouter); //here i am saying all the methods i create in the favorites.js file apply them in /favorites route
+app.use("/api/", favoritesRouter); //here i am saying all the methods i create in the favorites.js file apply them in /favorites route
 
 module.exports = app;
