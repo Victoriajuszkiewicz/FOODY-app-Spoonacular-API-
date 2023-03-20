@@ -29,7 +29,7 @@ const HomePage = (props) => {
             </p>
           </div>
 
-          <div className="col">
+          <div className="col, parentAboutUsImage">
             <img
               src={aboutus}
               className="aboutusimage"
