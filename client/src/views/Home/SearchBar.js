@@ -6,6 +6,7 @@ import { Api } from "../../helpers/Api";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./SearchBar.css";
 import Badge from "react-bootstrap/Badge";
+import XIcon from "../../components/XIcon";
 
 const SearchBar = (props) => {
   const [inputValue, setInputValue] = useState("");
@@ -51,7 +52,7 @@ const SearchBar = (props) => {
       id="container"
     >
       <Form onSubmit={handleSubmit}>
-        <Form.Label>
+        <Form.Label className="home-title">
           <h4 style={{ width: "25rem" }}> What do you have in the fridge?</h4>
         </Form.Label>
         <Form.Control
@@ -70,13 +71,29 @@ const SearchBar = (props) => {
         <div className="badge-container">
           {ingredients &&
             ingredients.map((ingredient, index) => (
-              <Badge pill bg="secondary" key={index} className="badge">
+              <Badge
+                pill
+                bg="#ffb441"
+                style={{ backgroundColor: "#ffb441" }}
+                key={index}
+                className="badge"
+              >
                 {ingredient}
-                <button onClick={() => handleDelete(index)}>x</button>
+                <button
+                  className="ingredient-x"
+                  onClick={() => handleDelete(index)}
+                >
+                  <XIcon />
+                </button>
               </Badge>
             ))}
         </div>
-        <Button variant="secondary" type="submit">
+        <Button
+          className="submit-button"
+          style={{ backgroundColor: "#358484", borderBlockColor: "#358484" }}
+          variant="secondary"
+          type="submit"
+        >
           Search
         </Button>
       </Form>

@@ -13,7 +13,12 @@ export default function ResultView(props) {
   return (
     <div>
       <div>
-        <SearchBar setAllRecipes={setAllRecipes} />
+        <SearchBar
+          setAllRecipes={setAllRecipes}
+          setIngredients={setIngredients}
+          // allRecipes={allRecipes}
+          ingredients={ingredients}
+        />
       </div>
 
       <Container
