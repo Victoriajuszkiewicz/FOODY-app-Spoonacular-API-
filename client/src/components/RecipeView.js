@@ -50,6 +50,7 @@ export default function RecipeView(props) {
           >
             <i className="bi bi-heart"> Save</i>
           </button>
+            <h5 className="bi bi-hand-thumbs-up-fill">{recipe.likes}</h5>
             <h5 className="bi bi-clock-fill"> Ready in {recipe.preparationTime} mins</h5>
         </div>
 
