@@ -59,3 +59,5 @@ export class Local {
     return user.username;
   }
 }
+
+export default Local;

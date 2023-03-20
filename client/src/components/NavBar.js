@@ -7,7 +7,6 @@ import logo from "../img/foody.png";
 
 const NavBar = (props) => {
   return (
-
     <nav className="navbar navbar-expand-lg navbar-light">
       {props.user ? (
         <div className="btn-group">
@@ -59,11 +58,12 @@ const NavBar = (props) => {
                 Sign in
               </NavLink>
             </li>
-            <li>
+            {/* Leave the code below commented out for now please */}
+            {/* <li>
               <NavLink to="/favorites" className="dropdown-item">
                 Favorites
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/aboutUs" className="dropdown-item">
                 About us

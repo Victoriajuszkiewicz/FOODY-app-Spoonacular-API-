@@ -4,12 +4,16 @@ import "bootstrap/dist/css/bootstrap.min.css"; //this is a the css file used in 
 import "./App.css";
 import { Local } from "./helpers/Local";
 import { Api } from "./helpers/Api";
+
 import NavBar from "./components/NavBar";
 import HomePage from "./views/Home/HomePage";
 import RegisterView from "./views/RegisterView";
 import LoginView from "./views/LoginView";
 import ResultView from "./components/ResultView";
 import RecipeView from "./components/RecipeView";
+import FavoritesView from "./views/FavoritesView";
+import PrivateRoute from "./components/PrivateRoute";
+
 import { getIngredientList, getSteps } from "./helpers/Api";
 
 function App() {
@@ -58,7 +62,6 @@ function App() {
       console.log(`Network error: ${err.message}`);
     }
   }
-  // END OF DB ROUTES
 
   //AUTHORISATION
   // login
@@ -104,6 +107,11 @@ function App() {
     }
   }, [recipe]);
 
+  //FAVOURITES routes
+
+  const handleClick = () => {
+    console.log("fav button was pressed and passed to APP.js");
+  };
   return (
     <div className="App">
       <NavBar user={user} logoutCb={doLogout} />
@@ -132,6 +140,7 @@ function App() {
               recipeInstructions={recipeInstructions}
               ingredientList={ingredientList}
               setRecipe={setRecipe}
+              handleClick={handleClick}
             />
           }
         />
@@ -143,6 +152,14 @@ function App() {
           }
         />
         <Route path="/register" element={<RegisterView addNewCb={addNew} />} />
+        <Route
+          path="/favorites"
+          element={
+            <PrivateRoute>
+              <FavoritesView />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
