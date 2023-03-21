@@ -73,7 +73,7 @@ const NavBar = (props) => {
         </div>
       )}
 
-      <NavLink to="*">
+      <NavLink to="/">
         <img
           className="logo"
           src={logo}

@@ -62,8 +62,9 @@ const RegisterView = (props) => {
       <Form onSubmit={handleSubmit}>
         <h2>Welcome to FOODY!</h2>
         <Form.Group className="d-flex flex-column align-items-center">
+          <Form.Label>Name</Form.Label>
           <Form.Control
-            style={{ width: "18rem", textAlign: "center" }}
+            style={{ width: "18rem" }}
             id="name"
             type="text"
             placeholder="Type your name"
@@ -74,8 +75,9 @@ const RegisterView = (props) => {
             required
             onChange={handleChange}
           />
+          <Form.Label>Email</Form.Label>
           <Form.Control
-            style={{ width: "18rem", textAlign: "center" }}
+            style={{ width: "18rem" }}
             id="email"
             type="text"
             placeholder="nugget@example.com"
@@ -85,8 +87,9 @@ const RegisterView = (props) => {
             required
             onChange={handleChange}
           />
+          <Form.Label>Password</Form.Label>
           <Form.Control
-            style={{ width: "18rem", textAlign: "center" }}
+            style={{ width: "18rem" }}
             id="password"
             type="password"
             name="password"
