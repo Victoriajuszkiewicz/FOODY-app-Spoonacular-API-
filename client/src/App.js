@@ -26,6 +26,7 @@ function App() {
   const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [ingredientList, setIngredientList] = useState();
+  const [allfav, setAllFav] = useState([]);
 
   //BACKEND ROUTES
 
@@ -112,6 +113,53 @@ function App() {
   const handleClick = () => {
     console.log("fav button was pressed and passed to APP.js");
   };
+
+  // GET always first!
+  // const [allfav, setAllFav] = useState([]);
+  useEffect(() => {
+    getFav();
+  }, []);
+
+  const getFav = () => {
+    fetch("/favorites/userId")
+      .then((response) => {
+        console.log("this is from GET FAV");
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(
+            `Server error: ${response.status}: ${response.statusText}`
+          );
+        }
+      })
+      .then((data) => {
+        setAllFav(data);
+        console.log("youre in then");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  //make one route for add/delete
+  const AddOrDelete = async (id) => {
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    };
+    console.log("this is from POST btw");
+    try {
+      let response = await fetch(`/favorites/userId`, options);
+      if (response.ok) {
+        let data = await response.json();
+        setAllFav(data);
+      } else {
+        console.log(`Server Error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network Error: ${err.message} `);
+    }
+  };
+
   return (
     <div className="App">
       <NavBar user={user} logoutCb={doLogout} />
@@ -141,6 +189,7 @@ function App() {
               ingredientList={ingredientList}
               setRecipe={setRecipe}
               handleClick={handleClick}
+              AddOrDelete={AddOrDelete}
             />
           }
         />
@@ -156,7 +205,7 @@ function App() {
           path="/favorites"
           element={
             <PrivateRoute>
-              <FavoritesView />
+              <FavoritesView getFav={getFav} />
             </PrivateRoute>
           }
         />

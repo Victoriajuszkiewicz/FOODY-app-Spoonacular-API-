@@ -1,4 +1,4 @@
-* {
+/* * {
   box-sizing: border-box;
 }
 
@@ -10,4 +10,9 @@
   align-items: center;
   height: 100vh;
   margin-left: 150px;
+} */
+#buttononrecipe {
+  margin: auto 0 0;
+  position: absolute;
+  left: 233px;
 }

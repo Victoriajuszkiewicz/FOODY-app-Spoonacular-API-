@@ -5,8 +5,14 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Container from "react-bootstrap/Container";
 
 export default function RecipeView(props) {
-  const { recipe, setRecipe, recipeInstructions, ingredientList, handleClick } =
-    props;
+  const {
+    recipe,
+    setRecipe,
+    recipeInstructions,
+    ingredientList,
+    handleClick,
+    AddOrDelete,
+  } = props;
 
   const recipeSteps = [];
   if (recipeInstructions) {
@@ -43,9 +49,10 @@ export default function RecipeView(props) {
         </Card>
 
         <div>
+          {/* if added to fav heart isn't filled once clicked it calls addFav fn from App.js clicked again it calls deleteFav */}
           <button
             type="button"
-            onClick={() => handleClick()}
+            onClick={() => AddOrDelete(recipe.id)}
             className="btn btn-secondary"
           >
             <i className="bi bi-heart"> Save</i>
