@@ -1,7 +1,14 @@
 import { useState } from "react";
 import InputBox from "../components/InputBox";
 import { useNavigate } from "react-router-dom";
-import { Container, Form, Button, Nav } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Button,
+  Nav,
+  ToggleButton,
+  ButtonGroup,
+} from "react-bootstrap";
 import "./LoginView.css";
 
 const INIT_LOGINFORM = {
@@ -31,7 +38,9 @@ const LoginView = (props) => {
         <h2>Welcome back</h2>
         {/* Label and placeholder can have the value of your choice */}
         <Form.Group className="d-flex flex-column align-items-center">
-          <Form.Label>Email Address</Form.Label>
+          <Form.Label style={{ marginBottom: "0.2rem" }}>
+            Email Address
+          </Form.Label>
           <Form.Control
             style={{ width: "18rem" }}
             id="email"
@@ -43,7 +52,7 @@ const LoginView = (props) => {
             onChange={handleChange}
             required
           />
-          <Form.Label>Password</Form.Label>
+          <Form.Label style={{ marginBottom: "0.2rem" }}>Password</Form.Label>
           <Form.Control
             style={{ width: "18rem" }}
             id="password"
@@ -64,6 +73,7 @@ const LoginView = (props) => {
           >
             Login
           </Button>
+
           <div>
             <p className="register-btn-container">
               If you don't have an account, click{" "}
