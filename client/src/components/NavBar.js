@@ -6,6 +6,10 @@ import { NavLink } from "react-router-dom";
 import logo from "../img/foody.png";
 
 const NavBar = (props) => {
+  const handleLogoClick = () => {
+    props.setIngredients([]);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       {props.user ? (
@@ -68,12 +72,13 @@ const NavBar = (props) => {
         </div>
       )}
 
-      <NavLink to="*">
+      <NavLink to="/">
         <img
           className="logo"
           src={logo}
           alt="this is a logo of very cool app created by 4 very talented people"
           style={{ width: 60, height: 60 }}
+          onClick={() => handleLogoClick()}
         />
       </NavLink>
     </nav>

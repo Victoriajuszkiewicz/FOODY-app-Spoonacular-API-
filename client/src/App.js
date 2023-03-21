@@ -22,6 +22,7 @@ function App() {
   const [user, setUser] = useState(Local.getUser());
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
   let [allRegistered, setAllRegistered] = useState([]);
+  let [ingredients, setIngredients] = useState([]);
 
   const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
@@ -89,8 +90,10 @@ function App() {
   }
 
   // RECIPES
-  const showRecipe = (id) => {
+  const showRecipe = async (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
+    let recipePrepTime = await Api.getRecipeTime(id); //save it
+    featuredRecipe.preparationTime = recipePrepTime; //create a new property to store the preparation time
     setRecipe(featuredRecipe); //save the correspondent recipe to the state
     Local.saveFeaturedRecipe(featuredRecipe); //save to the localStorage!!!
     navigate(`/featured/${id}`); //navigate to the correspondent recipe page
@@ -113,6 +116,7 @@ function App() {
   const handleClick = () => {
     console.log("fav button was pressed and passed to APP.js");
   };
+
 
   // GET always first!
   // const [allfav, setAllFav] = useState([]);
@@ -162,12 +166,17 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user} logoutCb={doLogout} />
+      <NavBar user={user} logoutCb={doLogout} setIngredients={setIngredients} />
       <Routes>
         <Route
-          path="*"
+          path="/"
           element={
-            <HomePage allRecipes={allRecipes} setAllRecipes={setAllRecipes} />
+            <HomePage
+              allRecipes={allRecipes}
+              setAllRecipes={setAllRecipes}
+              ingredients={ingredients}
+              setIngredients={setIngredients}
+            />
           }
         />
         <Route
@@ -177,6 +186,8 @@ function App() {
               allRecipes={allRecipes}
               setAllRecipes={setAllRecipes}
               showRecipe={showRecipe}
+              ingredients={ingredients}
+              setIngredients={setIngredients}
             />
           }
         />

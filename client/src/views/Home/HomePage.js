@@ -4,12 +4,17 @@ import aboutus from "../../img/about.jpg";
 import "./HomePage.css";
 
 const HomePage = (props) => {
-  const { setAllRecipes, allRecipes } = props;
+  const { setAllRecipes, allRecipes, ingredients, setIngredients } = props;
 
   return (
     <div>
       <div className="searchdiv">
-        <SearchBar setAllRecipes={setAllRecipes} allRecipes={allRecipes} />
+        <SearchBar
+          setAllRecipes={setAllRecipes}
+          allRecipes={allRecipes}
+          ingredients={ingredients}
+          setIngredients={setIngredients}
+        />
       </div>
 
       <div className="container text-center">
@@ -29,7 +34,7 @@ const HomePage = (props) => {
             </p>
           </div>
 
-          <div className="col">
+          <div className="col, parentAboutUsImage">
             <img
               src={aboutus}
               className="aboutusimage"
