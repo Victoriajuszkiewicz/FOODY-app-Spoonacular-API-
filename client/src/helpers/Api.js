@@ -1,7 +1,6 @@
-import { Local } from "./Local";
+import { Local } from "./local";
 
 export class Api {
-
   //get recipe by ingredietns API
   static getRecipes = async (ingredients) => {
     const apiKey = `&apiKey=${process.env.REACT_APP_SPOONACULAR_KEY}`;
@@ -35,14 +34,14 @@ export class Api {
       let response = await fetch(url);
       if (response.ok) {
         let recipeTime = await response.json();
-        return recipeTime.readyInMinutes;//return only the recipe preparation time!
+        return recipeTime.readyInMinutes; //return only the recipe preparation time!
       } else {
         console.log("Server error: ", response);
       }
     } catch (err) {
       console.log(`Network error: ${err.message}`);
     }
-  }
+  };
   //------------------------------------------------------------------------------------------------
   /**
    * Get all users

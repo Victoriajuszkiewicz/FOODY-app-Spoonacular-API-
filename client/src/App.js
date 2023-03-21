@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"; //this is a the css file used in react bootstrap libraries
 import "./App.css";
-import { Local } from "./helpers/Local";
+import { Local } from "./helpers/local";
 import { Api } from "./helpers/Api";
 
 import NavBar from "./components/NavBar";
