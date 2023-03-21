@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Select from "react-select";
 import { useNavigate } from "react-router-dom";
-import ResultView from "../../components/ResultView";
 import { Api } from "../../helpers/Api";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./SearchBar.css";
@@ -14,10 +12,10 @@ const SearchBar = (props) => {
   const { setAllRecipes, allRecipes, ingredients, setIngredients } = props;
 
   console.log(ingredients);
-  console.log(inputValue);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await Api.getRecipes(ingredients);
+    const result = await Api.getRecipes(inputValue);
     setAllRecipes(result); //Using state setter to save recipes fetched from api
     setInputValue(""); //reset empty input field after clicked search button
     navigate("/resultview"); //after "search" go to the ResultView

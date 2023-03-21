@@ -17,20 +17,20 @@ CREATE TABLE users (
 CREATE TABLE favorites (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     recipe_id INT NOT NULL,
-    recipe_name VARCHAR(100) NOT NULL,
-    recipe_image VARCHAR(100) NOT NULL,
-    recipe_link VARCHAR(100) NOT NULL,
+    recipe_title VARCHAR(100) NOT NULL,
+    recipe_image_url VARCHAR(200) NOT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE user_favorites (
-userId INT NOT NULL,
-favoritesId INT NOT NULL,
-PRIMARY KEY (userId, favoritesId),
-FOREIGN KEY (userId) REFERENCES users(id),
-FOREIGN KEY (favoritesId) REFERENCES favorites(id)
-);
+-- this part is not necessary because we don't have enough table that neded to be connected through a join table
+-- CREATE TABLE user_favorites (
+-- userId INT NOT NULL,
+-- favoritesId INT NOT NULL,
+-- PRIMARY KEY (userId, favoritesId),
+-- FOREIGN KEY (userId) REFERENCES users(id),
+-- FOREIGN KEY (favoritesId) REFERENCES favorites(id)
+-- );
 
 -- INSERT INTO users
 -- VALUES 

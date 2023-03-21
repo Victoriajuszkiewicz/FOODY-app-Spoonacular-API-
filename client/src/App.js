@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"; //this is a the css file used in react bootstrap libraries
 import "./App.css";
-import { Local } from "./helpers/local";
+import { Local } from "./helpers/Local";
 import { Api } from "./helpers/Api";
 
 import NavBar from "./components/NavBar";
@@ -24,9 +24,11 @@ function App() {
   let [allRegistered, setAllRegistered] = useState([]);
   let [ingredients, setIngredients] = useState([]);
 
-  const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
+  // nutrition must also be set at the start, we add it later
+  const [recipe, setRecipe] = useState({ nutrition: {} }); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [ingredientList, setIngredientList] = useState();
+  const [allfav, setAllFav] = useState([]);
 
   //BACKEND ROUTES
 
@@ -92,7 +94,9 @@ function App() {
   const showRecipe = async (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
     let recipePrepTime = await Api.getRecipeTime(id); //save it
+    let recipeNutrition = await Api.getRecipeNutrition(id);
     featuredRecipe.preparationTime = recipePrepTime; //create a new property to store the preparation time
+    featuredRecipe.nutrition = recipeNutrition;
     setRecipe(featuredRecipe); //save the correspondent recipe to the state
     Local.saveFeaturedRecipe(featuredRecipe); //save to the localStorage!!!
     navigate(`/featured/${id}`); //navigate to the correspondent recipe page
@@ -115,6 +119,53 @@ function App() {
   const handleClick = () => {
     console.log("fav button was pressed and passed to APP.js");
   };
+
+  // GET always first!
+  // const [allfav, setAllFav] = useState([]);
+  useEffect(() => {
+    getFav();
+  }, []);
+
+  const getFav = () => {
+    fetch("/favorites/userId")
+      .then((response) => {
+        console.log("this is from GET FAV");
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error(
+            `Server error: ${response.status}: ${response.statusText}`
+          );
+        }
+      })
+      .then((data) => {
+        setAllFav(data);
+        console.log("youre in then");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  //make one route for add/delete
+  const AddOrDelete = async (id) => {
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    };
+    console.log("this is from POST btw");
+    try {
+      let response = await fetch(`/favorites/userId`, options);
+      if (response.ok) {
+        let data = await response.json();
+        setAllFav(data);
+      } else {
+        console.log(`Server Error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network Error: ${err.message} `);
+    }
+  };
+
   return (
     <div className="App">
       <NavBar user={user} logoutCb={doLogout} setIngredients={setIngredients} />
@@ -143,7 +194,7 @@ function App() {
           }
         />
         <Route
-          path="/Featured/:id"
+          path="/featured/:id"
           element={
             <RecipeView
               recipe={recipe}
@@ -151,6 +202,7 @@ function App() {
               ingredientList={ingredientList}
               setRecipe={setRecipe}
               handleClick={handleClick}
+              AddOrDelete={AddOrDelete}
             />
           }
         />
@@ -166,7 +218,7 @@ function App() {
           path="/favorites"
           element={
             <PrivateRoute>
-              <FavoritesView />
+              <FavoritesView getFav={getFav} />
             </PrivateRoute>
           }
         />

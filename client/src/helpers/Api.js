@@ -1,4 +1,4 @@
-import { Local } from "./local";
+import { Local } from "./Local";
 
 export class Api {
   //get recipe by ingredietns API
@@ -42,6 +42,35 @@ export class Api {
       console.log(`Network error: ${err.message}`);
     }
   };
+
+  //get recipe nutrition API
+
+  static getRecipeNutrition = async (recipeId) => {
+    const apiKey = `?apiKey=${process.env.REACT_APP_SPOONACULAR_KEY}`;
+    const url = `https://api.spoonacular.com/recipes/${recipeId}/nutritionWidget.json${apiKey}`;
+    
+    try {
+      let response = await fetch(url);
+      if (response.ok) {
+        let nutritionInfo = await response.json();
+        const recipeNutritions = {
+          calories: nutritionInfo.calories,
+          carbs: nutritionInfo.carbs,
+          fat: nutritionInfo.fat,
+          protein: nutritionInfo.protein
+        };
+        return recipeNutritions; //return only the info we want!
+      } else {
+        console.log("Server error: ", response);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
+  };
+
+  // static getFavourite = async () => {
+  //   return await
+  // }
   //------------------------------------------------------------------------------------------------
   /**
    * Get all users

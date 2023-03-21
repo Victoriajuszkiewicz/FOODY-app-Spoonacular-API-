@@ -62,12 +62,7 @@ const NavBar = (props) => {
                 Sign in
               </NavLink>
             </li>
-            {/* Leave the code below commented out for now please */}
-            {/* <li>
-              <NavLink to="/favorites" className="dropdown-item">
-                Favorites
-              </NavLink>
-            </li> */}
+
             <li>
               <NavLink to="/aboutUs" className="dropdown-item">
                 About us
