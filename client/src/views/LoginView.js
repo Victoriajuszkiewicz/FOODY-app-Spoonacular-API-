@@ -1,7 +1,8 @@
 import { useState } from "react";
 import InputBox from "../components/InputBox";
 import { useNavigate } from "react-router-dom";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Nav } from "react-bootstrap";
+import "./LoginView.css";
 
 const INIT_LOGINFORM = {
   emailLogin: "",
@@ -26,12 +27,7 @@ const LoginView = (props) => {
 
   return (
     <div>
-      <Button variant="secondary" onClick={(m) => navigate("/register")}>
-        Register
-      </Button>
-      {/* this button takes us to register page */}
-
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="form-container">
         <h2>Welcome back</h2>
         {/* Label and placeholder can have the value of your choice */}
         <Form.Group className="d-flex flex-column align-items-center">
@@ -68,6 +64,19 @@ const LoginView = (props) => {
           >
             Login
           </Button>
+          <div>
+            <p className="register-btn-container">
+              If you don't have an account, click{" "}
+              <button
+                className="button-here"
+                onClick={(m) => navigate("/register")}
+              >
+                here
+              </button>
+            </p>
+          </div>
+
+          {/* this button takes us to register page */}
         </div>
       </Form>
     </div>

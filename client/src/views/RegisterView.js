@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Container, Form, Button } from "react-bootstrap";
+import "./RegisterView.css";
 
 const RegisterView = (props) => {
   const INIT_REGISTRATION = {
@@ -29,8 +30,8 @@ const RegisterView = (props) => {
     setRegisterForm(INIT_REGISTRATION);
     //first show success alert (NOT DONE YET)
     showAlert();
-
-    // navigate("/login"); (WORKS FINE its commented out for testing purposes for now)
+    navigate("/login");
+    // ; (WORKS FINE its commented out for testing purposes for now)
   }
   function showAlert() {
     setShow(true);
@@ -50,9 +51,6 @@ const RegisterView = (props) => {
   //Info from form is saved  in state but never reaches DB
   return (
     <div>
-      <Button variant="secondary" onClick={(e) => navigate("/login")}>
-        Login
-      </Button>
       {show ? (
         <div>
           <ToastContainer />

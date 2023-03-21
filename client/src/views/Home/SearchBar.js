@@ -15,7 +15,7 @@ const SearchBar = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await Api.getRecipes(inputValue);
+    const result = await Api.getRecipes(ingredients);
     setAllRecipes(result); //Using state setter to save recipes fetched from api
     setInputValue(""); //reset empty input field after clicked search button
     navigate("/resultview"); //after "search" go to the ResultView
