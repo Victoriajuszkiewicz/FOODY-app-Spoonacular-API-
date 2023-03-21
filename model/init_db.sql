@@ -23,13 +23,14 @@ CREATE TABLE favorites (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE user_favorites (
-userId INT NOT NULL,
-favoritesId INT NOT NULL,
-PRIMARY KEY (userId, favoritesId),
-FOREIGN KEY (userId) REFERENCES users(id),
-FOREIGN KEY (favoritesId) REFERENCES favorites(id)
-);
+-- this part is not necessary because we don't have enough table that neded to be connected through a join table
+-- CREATE TABLE user_favorites (
+-- userId INT NOT NULL,
+-- favoritesId INT NOT NULL,
+-- PRIMARY KEY (userId, favoritesId),
+-- FOREIGN KEY (userId) REFERENCES users(id),
+-- FOREIGN KEY (favoritesId) REFERENCES favorites(id)
+-- );
 
 -- INSERT INTO users
 -- VALUES 
