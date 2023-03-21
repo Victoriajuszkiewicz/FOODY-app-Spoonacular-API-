@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Local } from "../helpers/local";
+import { Local } from "../helpers/Local";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "react-bootstrap/Container";

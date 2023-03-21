@@ -1,4 +1,4 @@
-import { Local } from "./local";
+import { Local } from "./Local";
 
 export class Api {
   //get recipe by ingredietns API
