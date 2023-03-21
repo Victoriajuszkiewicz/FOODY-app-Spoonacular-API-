@@ -115,6 +115,7 @@ function App() {
   const handleClick = () => {
     console.log("fav button was pressed and passed to APP.js");
   };
+
   return (
     <div className="App">
       <NavBar user={user} logoutCb={doLogout} setIngredients={setIngredients} />
