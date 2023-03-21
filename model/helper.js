@@ -36,11 +36,12 @@ module.exports = async function db(query) {
         if (!result.length) {
           if (result.affectedRows === 0) {
             results.error = "Action not complete";
-            console.log(err);
+            console.log("error select", err);
             reject(err);
             con.end();
             return;
           }
+          // results.data.push(result);
         } else if (result[0].constructor.name == "RowDataPacket") {
           // push each row (RowDataPacket) to data
           result.forEach((row) => results.data.push(row));
