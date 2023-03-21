@@ -22,13 +22,16 @@ export default function RecipeView(props) {
   }
 
   useEffect(() => {
-    /*we use Object.keys() checkes if an object is empty, 
-    it returns an array of keys when is not empty else return an empty array, 
-    then checks the array using .length if it's emty array. we should run the effect if is empty */
-    if (Object.keys(recipe).length === 0) {
+    /*
+    We check if the recipe.id is empty to know if the recipe is already in the state or not.
+    If it is not we get it from the local storage and set the state.
+    This prevents us from getting an infinite loop: https://react.dev/reference/react/useEffect#my-effect-keeps-re-running-in-an-infinite-cycle
+    */
+    if (recipe.id === undefined) {
       setRecipe(Local.getFeaturedRecipe()); //set the state from the recipe we stored in the localStorage
     }
-  }, [recipe, setRecipe]);
+  }, [recipe]);
+
   return (
     <Container
       className="container"
@@ -102,6 +105,23 @@ export default function RecipeView(props) {
               </Card>
             );
           })}
+
+        <Card style={{ width: "18rem" }}>
+          <Card.Header>
+            <strong>Nutrition</strong>
+          </Card.Header>
+        </Card>
+
+        <Card style={{ width: "18rem" }}>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              calories: {recipe.nutrition.calories}
+            </ListGroup.Item>
+            <ListGroup.Item>carbs: {recipe.nutrition.carbs}</ListGroup.Item>
+            <ListGroup.Item>fat: {recipe.nutrition.fat}</ListGroup.Item>
+            <ListGroup.Item>protein: {recipe.nutrition.protein}</ListGroup.Item>
+          </ListGroup>
+        </Card>
       </div>
     </Container>
   );

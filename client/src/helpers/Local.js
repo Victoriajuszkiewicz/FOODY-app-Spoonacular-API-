@@ -13,7 +13,7 @@ export class Local {
   static getFeaturedRecipe() {
     let recipejson = localStorage.getItem("recipe");
     // JSON.parse() is to convert data into object
-    return recipejson ? JSON.parse(recipejson) : {};
+    return recipejson ? JSON.parse(recipejson) : { nutrition: {} };
   }
 
   //-------------------------------------------------------------------------------

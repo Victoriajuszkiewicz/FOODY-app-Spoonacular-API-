@@ -10,11 +10,10 @@ const SearchBar = (props) => {
   const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
   const { setAllRecipes, allRecipes, ingredients, setIngredients } = props;
-
-  console.log(ingredients);
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await Api.getRecipes(ingredients);
+    const result = await Api.getRecipes(inputValue);
     setAllRecipes(result); //Using state setter to save recipes fetched from api
     setInputValue(""); //reset empty input field after clicked search button
     navigate("/resultview"); //after "search" go to the ResultView
