@@ -16,7 +16,6 @@ export default function ResultView(props) {
         <SearchBar
           setAllRecipes={setAllRecipes}
           setIngredients={setIngredients}
-          // allRecipes={allRecipes}
           ingredients={ingredients}
         />
       </div>
