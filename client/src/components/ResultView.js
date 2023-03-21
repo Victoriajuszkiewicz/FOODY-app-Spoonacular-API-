@@ -8,12 +8,17 @@ import SearchBar from "../views/Home/SearchBar";
 import "./ResultView.css";
 
 export default function ResultView(props) {
-  const { allRecipes, setAllRecipes, showRecipe } = props;
+  const { allRecipes, setAllRecipes, showRecipe, ingredients, setIngredients } =
+    props;
 
   return (
     <div>
       <div>
-        <SearchBar setAllRecipes={setAllRecipes} />
+        <SearchBar
+          setAllRecipes={setAllRecipes}
+          setIngredients={setIngredients}
+          ingredients={ingredients}
+        />
       </div>
 
       <Container
@@ -45,6 +50,7 @@ export default function ResultView(props) {
 
                 <Card.Body>
                   <Card.Title>{recipe.title}</Card.Title>
+                  <Card.Subtitle className="bi bi-hand-thumbs-up-fill">{recipe.likes}</Card.Subtitle>
                 </Card.Body>
               </Card>
             ))}

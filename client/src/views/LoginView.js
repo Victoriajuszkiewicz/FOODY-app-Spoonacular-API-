@@ -34,9 +34,10 @@ const LoginView = (props) => {
       <Form onSubmit={handleSubmit}>
         <h2>Welcome back</h2>
         {/* Label and placeholder can have the value of your choice */}
-        <Container className="d-flex flex-column align-items-center">
+        <Form.Group className="d-flex flex-column align-items-center">
+          <Form.Label>Email Address</Form.Label>
           <Form.Control
-            style={{ width: "18rem", textAlign: "center" }}
+            style={{ width: "18rem" }}
             id="email"
             type="text"
             placeholder="nugget@example.com"
@@ -46,19 +47,25 @@ const LoginView = (props) => {
             onChange={handleChange}
             required
           />
+          <Form.Label>Password</Form.Label>
           <Form.Control
-            style={{ width: "18rem", textAlign: "center" }}
+            style={{ width: "18rem" }}
             id="password"
             type="password"
             name="passwordLogin"
+            placeholder="your password..."
             value={loginInput.passwordLogin}
             label="Password"
             onChange={handleChange}
             required
           />
-        </Container>
+        </Form.Group>
         <div>
-          <Button variant="secondary" type="submit">
+          <Button
+            style={{ marginTop: "15px" }}
+            variant="secondary"
+            type="submit"
+          >
             Login
           </Button>
         </div>

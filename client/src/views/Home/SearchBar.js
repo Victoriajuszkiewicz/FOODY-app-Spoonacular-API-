@@ -1,28 +1,43 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ResultView from "../../components/ResultView";
 import { Api } from "../../helpers/Api";
-import { getSteps } from "../../helpers/Api";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./SearchBar.css";
+import Badge from "react-bootstrap/Badge";
+import XIcon from "../../components/XIcon";
 
 const SearchBar = (props) => {
-  let [ingredients, setIngredients] = useState(""); //ingredients we typed in the input field
-  // let [recipes, setRecipes] = useState([]); //recipes fetched from api. I moved it to the parent
+  const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
-  const { setAllRecipes, allRecipes } = props;
+  const { setAllRecipes, allRecipes, ingredients, setIngredients } = props;
 
+  console.log(ingredients);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await Api.getRecipes(ingredients);
     setAllRecipes(result); //Using state setter to save recipes fetched from api
-    setIngredients(""); //reset empty input field after clicked search button
+    setInputValue(""); //reset empty input field after clicked search button
     navigate("/resultview"); //after "search" go to the ResultView
   };
 
   const handleChange = (event) => {
-    const value = event.target.value;
-    setIngredients(value); // use setter to update the state data
+    setInputValue(event.target.value);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.keyCode === 32) {
+      event.preventDefault();
+      if (inputValue.trim() !== "") {
+        setIngredients([...ingredients, inputValue.trim()]);
+        setInputValue("");
+      }
+    }
+  };
+
+  const handleDelete = (index) => {
+    const newIngredients = [...ingredients];
+    newIngredients.splice(index, 1);
+    setIngredients(newIngredients);
   };
   return (
     <Container
@@ -35,22 +50,48 @@ const SearchBar = (props) => {
       id="container"
     >
       <Form onSubmit={handleSubmit}>
-        <Form.Label>
+        <Form.Label className="home-title">
           <h4 style={{ width: "25rem" }}> What do you have in the fridge?</h4>
         </Form.Label>
         <Form.Control
           style={{
             width: "18rem",
             marginLeft: "55px",
-            marginBottom: "5px",
+            marginBottom: "10px",
             textAlign: "center",
           }}
           type="text"
-          value={ingredients}
+          value={inputValue}
           onChange={handleChange}
-          placeholder="Search by ingredients"
+          onKeyDown={handleKeyDown}
+          placeholder="try tomato, eggs, cheese..."
         />
-        <Button variant="secondary" type="submit">
+        <div className="badge-container">
+          {ingredients &&
+            ingredients.map((ingredient, index) => (
+              <Badge
+                pill
+                bg="#ffb441"
+                style={{ backgroundColor: "#ffb441" }}
+                key={index}
+                className="badge"
+              >
+                {ingredient}
+                <button
+                  className="ingredient-x"
+                  onClick={() => handleDelete(index)}
+                >
+                  <XIcon />
+                </button>
+              </Badge>
+            ))}
+        </div>
+        <Button
+          className="submit-button"
+          style={{ backgroundColor: "#358484", borderBlockColor: "#358484" }}
+          variant="secondary"
+          type="submit"
+        >
           Search
         </Button>
       </Form>
