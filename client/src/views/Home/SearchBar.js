@@ -14,6 +14,7 @@ const SearchBar = (props) => {
   const { setAllRecipes, allRecipes, ingredients, setIngredients } = props;
 
   console.log(ingredients);
+  console.log(inputValue);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await Api.getRecipes(ingredients);
