@@ -17,9 +17,8 @@ CREATE TABLE users (
 CREATE TABLE favorites (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     recipe_id INT NOT NULL,
-    recipe_name VARCHAR(100) NOT NULL,
-    recipe_image VARCHAR(100) NOT NULL,
-    recipe_link VARCHAR(100) NOT NULL,
+    recipe_title VARCHAR(100) NOT NULL,
+    recipe_image_url VARCHAR(200) NOT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
