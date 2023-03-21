@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Select from "react-select";
 import { useNavigate } from "react-router-dom";
-import ResultView from "../../components/ResultView";
 import { Api } from "../../helpers/Api";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./SearchBar.css";
