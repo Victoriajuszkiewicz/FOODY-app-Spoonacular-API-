@@ -117,10 +117,10 @@ function App() {
   };
   return (
     <div className="App">
-      <NavBar user={user} logoutCb={doLogout} />
+      <NavBar user={user} logoutCb={doLogout} setIngredients={setIngredients} />
       <Routes>
         <Route
-          path="*"
+          path="/"
           element={
             <HomePage
               allRecipes={allRecipes}
