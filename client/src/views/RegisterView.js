@@ -3,7 +3,13 @@ import InputBox from "../components/InputBox";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Container, Form, Button } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Button,
+  ButtonGroup,
+  ToggleButton,
+} from "react-bootstrap";
 import "./RegisterView.css";
 
 const RegisterView = (props) => {
@@ -50,7 +56,7 @@ const RegisterView = (props) => {
   // NO ROUTS FOR DB yet!!!
   //Info from form is saved  in state but never reaches DB
   return (
-    <div>
+    <Container className="register-container">
       {show ? (
         <div>
           <ToastContainer />
@@ -59,8 +65,8 @@ const RegisterView = (props) => {
 
       <Form onSubmit={handleSubmit}>
         <h2>Welcome to FOODY!</h2>
-        <Form.Group className="d-flex flex-column align-items-center">
-          <Form.Label>Name</Form.Label>
+        <Form.Group className="register-form-group">
+          <Form.Label style={{ marginBottom: "0.2rem" }}>Name</Form.Label>
           <Form.Control
             style={{ width: "18rem" }}
             id="name"
@@ -73,7 +79,7 @@ const RegisterView = (props) => {
             required
             onChange={handleChange}
           />
-          <Form.Label>Email</Form.Label>
+          <Form.Label style={{ marginBottom: "0.2rem" }}>Email</Form.Label>
           <Form.Control
             style={{ width: "18rem" }}
             id="email"
@@ -85,7 +91,9 @@ const RegisterView = (props) => {
             required
             onChange={handleChange}
           />
-          <Form.Label>Password</Form.Label>
+          <Form.Label style={{ marginBottom: "0.2rem", alignContent: "left" }}>
+            Password
+          </Form.Label>
           <Form.Control
             style={{ width: "18rem" }}
             id="password"
@@ -108,7 +116,7 @@ const RegisterView = (props) => {
           </Button>
         </div>
       </Form>
-    </div>
+    </Container>
   );
 };
 export default RegisterView;

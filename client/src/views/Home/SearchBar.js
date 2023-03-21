@@ -50,52 +50,62 @@ const SearchBar = (props) => {
       className="d-flex flex-column align-items-center"
       id="container"
     >
-      <Form onSubmit={handleSubmit}>
-        <Form.Label className="home-title">
-          <h4 style={{ width: "25rem" }}> What do you have in the fridge?</h4>
-        </Form.Label>
-        <Form.Control
-          style={{
-            width: "18rem",
-            marginLeft: "55px",
-            marginBottom: "10px",
-            textAlign: "center",
-          }}
-          type="text"
-          value={inputValue}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          placeholder="try tomato, eggs, cheese..."
-        />
-        <div className="badge-container">
-          {ingredients &&
-            ingredients.map((ingredient, index) => (
-              <Badge
-                pill
-                bg="#ffb441"
-                style={{ backgroundColor: "#ffb441" }}
-                key={index}
-                className="badge"
-              >
-                {ingredient}
-                <button
-                  className="ingredient-x"
-                  onClick={() => handleDelete(index)}
-                >
-                  <XIcon />
-                </button>
-              </Badge>
-            ))}
-        </div>
-        <Button
-          className="submit-button"
-          style={{ backgroundColor: "#358484", borderBlockColor: "#358484" }}
-          variant="secondary"
-          type="submit"
-        >
-          Search
-        </Button>
-      </Form>
+      <Row>
+        <Col>
+          <Form onSubmit={handleSubmit}>
+            <Form.Label className="home-title">
+              <h4 style={{ width: "25rem" }}>
+                {" "}
+                What do you have in the fridge?
+              </h4>
+            </Form.Label>
+            <Form.Control
+              style={{
+                width: "18rem",
+                marginLeft: "55px",
+                marginBottom: "10px",
+                textAlign: "center",
+              }}
+              type="text"
+              value={inputValue}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
+              placeholder="try tomato, eggs, cheese..."
+            />
+            <div className="badge-container">
+              {ingredients &&
+                ingredients.map((ingredient, index) => (
+                  <Badge
+                    pill
+                    bg="#ffb441"
+                    style={{ backgroundColor: "#ffb441" }}
+                    key={index}
+                    className="badge"
+                  >
+                    {ingredient}
+                    <button
+                      className="ingredient-x"
+                      onClick={() => handleDelete(index)}
+                    >
+                      <XIcon />
+                    </button>
+                  </Badge>
+                ))}
+            </div>
+            <Button
+              className="submit-button"
+              style={{
+                backgroundColor: "#358484",
+                borderBlockColor: "#358484",
+              }}
+              variant="secondary"
+              type="submit"
+            >
+              Search
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     </Container>
   );
 };
