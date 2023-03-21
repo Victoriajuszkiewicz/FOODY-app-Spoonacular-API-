@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import Local from "../helpers/Local";
+import { Local } from "../helpers/local";
 
 function PrivateRoute(props) {
   // Redirect to /login if anonymous user

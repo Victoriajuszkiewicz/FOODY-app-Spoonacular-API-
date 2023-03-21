@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Local } from "../helpers/Local";
+import { Local } from "../helpers/local";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "react-bootstrap/Container";
@@ -50,8 +50,11 @@ export default function RecipeView(props) {
           >
             <i className="bi bi-heart"> Save</i>
           </button>
-            <h5 className="bi bi-hand-thumbs-up-fill">{recipe.likes}</h5>
-            <h5 className="bi bi-clock-fill"> Ready in {recipe.preparationTime} mins</h5>
+          <h5 className="bi bi-hand-thumbs-up-fill">{recipe.likes}</h5>
+          <h5 className="bi bi-clock-fill">
+            {" "}
+            Ready in {recipe.preparationTime} mins
+          </h5>
         </div>
 
         <Card style={{ width: "18rem" }}>

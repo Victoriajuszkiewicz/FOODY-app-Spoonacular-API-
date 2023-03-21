@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import aboutus from "../../img/about.jpg";
 import "./HomePage.css";
+import XIcon from "../../components/XIcon";
 
 const HomePage = (props) => {
   const { setAllRecipes, allRecipes, ingredients, setIngredients } = props;
