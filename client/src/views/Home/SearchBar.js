@@ -66,7 +66,7 @@ const SearchBar = (props) => {
           value={inputValue}
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          placeholder="Search by ingredients"
+          placeholder="try tomato, eggs, cheese..."
         />
         <div className="badge-container">
           {ingredients &&
