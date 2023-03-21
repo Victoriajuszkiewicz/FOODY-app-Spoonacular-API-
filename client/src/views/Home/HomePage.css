@@ -2,6 +2,9 @@
   width: 518px;
   height: 373px;
 }
+.parentAboutUsImage{
+  overflow: hidden;
+}
 
 .container {
   margin: 10px;

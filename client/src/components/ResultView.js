@@ -39,6 +39,7 @@ export default function ResultView(props) {
                 <Card.Img variant="top" src={recipe.image} />
                 <Card.Body>
                   <Card.Title>{recipe.title}</Card.Title>
+                  <Card.Subtitle className="bi bi-hand-thumbs-up-fill">{recipe.likes}</Card.Subtitle>
                 </Card.Body>
               </Card>
             ))}
