@@ -25,7 +25,7 @@ function App() {
   let [ingredients, setIngredients] = useState([]);
 
   // nutrition must also be set at the start, we add it later
-  const [recipe, setRecipe] = useState({ nutrition: {} }); //the recipe you clicked on in the result page
+  const [recipe, setRecipe] = useState(null); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [ingredientList, setIngredientList] = useState();
   const [allfav, setAllFav] = useState([]);
@@ -93,9 +93,9 @@ function App() {
   // RECIPES
   const showRecipe = async (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
-    let recipePrepTime = await Api.getRecipeTime(id); //save it
+    let recipeInfo = await Api.getRecipeInfo(id); //contains recipe preparation time
     let recipeNutrition = await Api.getRecipeNutrition(id);
-    featuredRecipe.preparationTime = recipePrepTime; //create a new property to store the preparation time
+    featuredRecipe.preparationTime = recipeInfo.readyInMinutes; //create a new property to store the preparation time
     featuredRecipe.nutrition = recipeNutrition;
     setRecipe(featuredRecipe); //save the correspondent recipe to the state
     Local.saveFeaturedRecipe(featuredRecipe); //save to the localStorage!!!
@@ -121,7 +121,6 @@ function App() {
   };
 
   // GET always first!
-  // const [allfav, setAllFav] = useState([]);
   useEffect(() => {
     getFav();
   }, []);
@@ -171,7 +170,7 @@ function App() {
       <NavBar user={user} logoutCb={doLogout} setIngredients={setIngredients} />
       <Routes>
         <Route
-          path="/"
+          path="/*"
           element={
             <HomePage
               allRecipes={allRecipes}
