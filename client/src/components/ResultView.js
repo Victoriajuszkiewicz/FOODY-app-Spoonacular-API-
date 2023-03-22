@@ -9,6 +9,8 @@ import "./ResultView.css";
 import { Api } from "../helpers/Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TbArrowsLeftRight } from "react-icons/tb";
+import { GiNoodles, GiChickenLeg } from "react-icons/gi";
 
 export default function ResultView(props) {
   const { allRecipes, setAllRecipes, showRecipe, ingredients, setIngredients } =
@@ -34,16 +36,21 @@ export default function ResultView(props) {
         title: recipeInfo.title,
         healthScore: recipeInfo.healthScore,
       };
+      if (recipeToCompare.recipeA.healthScore > recipeB.healthScore) {
+        showNutriAlert(recipeToCompare.recipeA, recipeB);
+      } else {
+        showNutriAlert(recipeB, recipeToCompare.recipeA);
+      }
       //get the info from both
-      showNutriAlert(recipeToCompare.recipeA, recipeB);
+
       setRecipeCompare({}); //reset state
     }
   };
 
-  const showNutriAlert = (recipeA, recipeB) => {
+  const showNutriAlert = (winner, loser) => {
     setShow(true);
     toast(
-      `💡 ${recipeA.title}'s health score is ${recipeA.healthScore}, ${recipeB.title}'s health score ${recipeB.healthScore}`,
+      `🌶 ${winner.title} has a better health score than ${loser.title}! (${winner.healthScore} VS ${loser.healthScore}) 🌶`,
       {
         position: "top-center",
         autoClose: 6000,
@@ -56,9 +63,11 @@ export default function ResultView(props) {
       }
     );
   };
-  {/* (line 90)Recipe onClick card and (line 114)compare button onClick will both be clicked on, 
+  {
+    /* (line 90)Recipe onClick card and (line 114)compare button onClick will both be clicked on, 
   so we need to give a if statement by checking the unic perperty from event.target to find which one we clicked on, 
-  then we disable onClick to render the recipe page  */}
+  then we disable onClick to render the recipe page  */
+  }
   return (
     <div>
       <div>
@@ -89,7 +98,10 @@ export default function ResultView(props) {
                 className="card-recipe"
                 style={{ width: "18rem" }}
                 onClick={(event) => {
-                  if (event.target.localName !== "button") {
+                  if (
+                    event.target.localName !== "svg" &&
+                    event.target.localName !== "path"
+                  ) {
                     showRecipe(recipe.id);
                   }
                 }}
@@ -107,15 +119,29 @@ export default function ResultView(props) {
 
                 <Card.Body>
                   <Card.Title>{recipe.title}</Card.Title>
-                  <Card.Subtitle className="bi bi-hand-thumbs-up-fill">
+                  <Card.Subtitle style={{ color: "orange" }}>
+                    <AiFillLike size="1.8rem" />
                     {recipe.likes}
                   </Card.Subtitle>
-                  <button
-                    type="button"
-                    title="Compare health score!"
-                    onClick={(event) => getRecipeInfoToCompare(recipe.id)}
-                    className="btn btn-outline-info bi bi-heart-pulse-fill"
-                  ></button>
+                  {/*(? means if recipeA is not undefined get the title, else return undefined)*/}
+                  {recipeToCompare.recipeA?.title !== recipe.title && (
+                    <button
+                      style={{
+                        color: "orange",
+                        backgroundColor: "transparent",
+                        borderColor: "transparent",
+                      }}
+                      type="button"
+                      title="Compare health score!"
+                      onClick={(event) => {
+                        getRecipeInfoToCompare(recipe.id);
+                      }}
+                    >
+                      <GiNoodles size="1.5rem" />
+                      <TbArrowsLeftRight size="1.1rem" />
+                      <GiChickenLeg size="1.5rem" />
+                    </button>
+                  )}
                 </Card.Body>
               </Card>
             ))}
