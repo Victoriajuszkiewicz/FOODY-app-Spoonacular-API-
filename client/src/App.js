@@ -98,8 +98,7 @@ function App() {
     featuredRecipe.preparationTime = recipeInfo.readyInMinutes; //create a new property to store the preparation time
     featuredRecipe.nutrition = recipeNutrition;
     setRecipe(featuredRecipe); //save the correspondent recipe to the state
-    let recipeNutrition = await Api.getRecipeNutrition(id);
-    featuredRecipe.nutrition = recipeNutrition;
+
     Local.saveFeaturedRecipe(featuredRecipe); //save to the localStorage!!!
     navigate(`/featured/${id}`); //navigate to the correspondent recipe page
   };
@@ -131,34 +130,45 @@ function App() {
   }, []);
 
   //GET ALL FAV of logged in user
-  const getFav = (id) => {
-    fetch(`/api/favorites/${id}`)
-      .then((response) => {
-        console.log("this is from GET FAV", id);
-        if (response.ok) {
-          return response.json(id);
-        } else {
-          throw new Error(
-            `Server error: ${response.status}: ${response.statusText}`
-          );
-        }
-      })
-      .then((data) => {
-        setAllFav(data);
-      })
-      .catch((error) => console.log(error));
+  const getFav = async (id) => {
+    let Uresponse = await Api.getFav(id);
+    if (Uresponse.ok) {
+      setAllFav(Uresponse.data);
+    } else {
+      console.log(Uresponse.error);
+    }
+    // fetch(`/api/favorites/${id}`)
+    //   .then((response) => {
+    //     console.log("this is from GET FAV", id, response);
+    //     if (response.ok) {
+    //       console.log("response", response);
+    //       return response.json();
+    //     } else {
+    //       throw new Error(
+    //         `Server error: ${response.status}: ${response.statusText}`
+    //       );
+    //     }
+    //   })
+    //   .then((allfav) => {
+    //     setAllFav(allfav);
+    //   })
+    //   .catch((error) => console.log(error));
   };
 
   //make one route for add/delete
   const AddOrDelete = async (id) => {
     let options = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + Local.getToken(),
+      },
       body: JSON.stringify({
         recipe_id: id,
         recipe_title: recipe.title,
         recipe_image_url: recipe.image,
-        user_id: user.user_id,
+        //user_id was undefined so we have to pass Local.getUserId!!!!
+        user_id: Local.getUserId(),
       }),
     };
     console.log("this is from POST btw", id);
@@ -229,7 +239,7 @@ function App() {
           path="/favorites"
           element={
             <PrivateRoute>
-              <FavoritesView getFav={getFav} />
+              <FavoritesView allfav={allfav} />
             </PrivateRoute>
           }
         />
