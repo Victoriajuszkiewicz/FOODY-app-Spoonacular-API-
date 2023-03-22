@@ -118,17 +118,19 @@ function App() {
   };
 
   // GET always first!
-  // const [allfav, setAllFav] = useState([]);
+  //! THE URL ALWAYS have to start  from /api/ this is how back end is created
+
   useEffect(() => {
-    getFav();
+    //we need to pass id, current id is the one store in the local! Id of logged in user
+    getFav(Local.getUserId());
   }, []);
 
-  const getFav = () => {
-    fetch("/favorites/userId")
+  const getFav = (id) => {
+    fetch(`/api/favorites/${id}`)
       .then((response) => {
-        console.log("this is from GET FAV");
+        console.log("this is from GET FAV", id);
         if (response.ok) {
-          return response.json();
+          return response.json(id);
         } else {
           throw new Error(
             `Server error: ${response.status}: ${response.statusText}`
@@ -137,7 +139,6 @@ function App() {
       })
       .then((data) => {
         setAllFav(data);
-        console.log("youre in then");
       })
       .catch((error) => console.log(error));
   };
@@ -147,12 +148,19 @@ function App() {
     let options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
+      body: JSON.stringify({
+        recipe_id: id,
+        title: recipe.title,
+        image: recipe.image,
+        user_id: user.user_id,
+      }),
     };
-    console.log("this is from POST btw");
+    console.log("this is from POST btw", id);
     try {
-      let response = await fetch(`/favorites/userId`, options);
+      console.log("hello from try");
+      let response = await fetch(`/api/favorites`, options);
       if (response.ok) {
+        console.log("hello from response ok", response);
         let data = await response.json();
         setAllFav(data);
       } else {
@@ -225,3 +233,8 @@ function App() {
 }
 
 export default App;
+
+/*
+INSERT INTO FAVORITES (id,recipe_id, recipe_title,  recipe_image_url, user_id) 
+      VALUES (648090, "Easy Cheesy Scrambled Eggs", "https://spoonacular.com/recipeImages/641890-312x231.jpg", 8);
+*/

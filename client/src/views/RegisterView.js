@@ -46,7 +46,6 @@ const RegisterView = (props) => {
     });
   }
 
-  // NO ROUTS FOR DB yet!!!
   //Info from form is saved  in state but never reaches DB
   return (
     <div>
