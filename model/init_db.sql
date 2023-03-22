@@ -41,9 +41,9 @@ VALUES
 
 INSERT INTO favorites
 VALUES 
-(654679,"Parmesan Mashed Potatoes", "https://spoonacular.com/recipeImages/654679-312x231.jpg", 3),
-(661447,"Square Deviled Eggs", "https://spoonacular.com/recipeImages/661447-312x231.jpg", 1),
-(661447,"Square Deviled Eggs", "https://spoonacular.com/recipeImages/661447-312x231.jpg", 2),
-(636874,"Candy Cane Chocolate Marshmallows", "ttps://spoonacular.com/recipeImages/636874-312x231.jpg", 2),
-(636874,"Candy Cane Chocolate Marshmallows", "ttps://spoonacular.com/recipeImages/636874-312x231.jpg", 3),
-(652460,"Moscow Mule", "https://spoonacular.com/recipeImages/652460-312x231.jpg", 1);
+(1, 654679,"Parmesan Mashed Potatoes", "https://spoonacular.com/recipeImages/654679-312x231.jpg", 3),
+(2, 661447,"Square Deviled Eggs", "https://spoonacular.com/recipeImages/661447-312x231.jpg", 1),
+(3, 661447,"Square Deviled Eggs", "https://spoonacular.com/recipeImages/661447-312x231.jpg", 2),
+(4, 636874,"Candy Cane Chocolate Marshmallows", "ttps://spoonacular.com/recipeImages/636874-312x231.jpg", 2),
+(5, 636874,"Candy Cane Chocolate Marshmallows", "ttps://spoonacular.com/recipeImages/636874-312x231.jpg", 3),
+(6, 652460,"Moscow Mule", "https://spoonacular.com/recipeImages/652460-312x231.jpg", 1);
