@@ -48,7 +48,7 @@ export class Api {
   static getRecipeNutrition = async (recipeId) => {
     const apiKey = `?apiKey=${process.env.REACT_APP_SPOONACULAR_KEY}`;
     const url = `https://api.spoonacular.com/recipes/${recipeId}/nutritionWidget.json${apiKey}`;
-    
+
     try {
       let response = await fetch(url);
       if (response.ok) {
@@ -57,7 +57,7 @@ export class Api {
           calories: nutritionInfo.calories,
           carbs: nutritionInfo.carbs,
           fat: nutritionInfo.fat,
-          protein: nutritionInfo.protein
+          protein: nutritionInfo.protein,
         };
         return recipeNutritions; //return only the info we want!
       } else {
@@ -68,10 +68,13 @@ export class Api {
     }
   };
 
-  // static getFavourite = async () => {
-  //   return await
-  // }
-  //------------------------------------------------------------------------------------------------
+  static getFav = async (id) => {
+    return await this._doFetch(`/favorites/${id}`);
+  };
+  static AddOrDelete = async () => {
+    return await this._doFetch(`/favorites`);
+  };
+  // ------------------------------------------------------------------------------------------------
   /**
    * Get all users
    **/
