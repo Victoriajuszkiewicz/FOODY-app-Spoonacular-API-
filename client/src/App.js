@@ -93,9 +93,9 @@ function App() {
   // RECIPES
   const showRecipe = async (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
-    let recipePrepTime = await Api.getRecipeTime(id); //save it
+    let recipeInfo = await Api.getRecipeInfo(id); //contains recipe preparation time
     let recipeNutrition = await Api.getRecipeNutrition(id);
-    featuredRecipe.preparationTime = recipePrepTime; //create a new property to store the preparation time
+    featuredRecipe.preparationTime = recipeInfo.readyInMinutes; //create a new property to store the preparation time
     featuredRecipe.nutrition = recipeNutrition;
     setRecipe(featuredRecipe); //save the correspondent recipe to the state
     Local.saveFeaturedRecipe(featuredRecipe); //save to the localStorage!!!
@@ -121,7 +121,6 @@ function App() {
   };
 
   // GET always first!
-  // const [allfav, setAllFav] = useState([]);
   useEffect(() => {
     getFav();
   }, []);

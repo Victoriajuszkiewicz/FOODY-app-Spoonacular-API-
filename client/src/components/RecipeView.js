@@ -31,7 +31,7 @@ export default function RecipeView(props) {
       setRecipe(Local.getFeaturedRecipe()); //set the state from the recipe we stored in the localStorage
     }
   }, [recipe]);
-
+  // line36: recipe && (...) Only render the recipe page when the recipe state has value
   return (
     recipe && (
       <Container
