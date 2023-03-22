@@ -25,7 +25,7 @@ function App() {
   let [ingredients, setIngredients] = useState([]);
 
   // nutrition must also be set at the start, we add it later
-  const [recipe, setRecipe] = useState({ nutrition: {} }); //the recipe you clicked on in the result page
+  const [recipe, setRecipe] = useState(null); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [ingredientList, setIngredientList] = useState();
   const [allfav, setAllFav] = useState([]);
@@ -171,7 +171,7 @@ function App() {
       <NavBar user={user} logoutCb={doLogout} setIngredients={setIngredients} />
       <Routes>
         <Route
-          path="/"
+          path="/*"
           element={
             <HomePage
               allRecipes={allRecipes}
