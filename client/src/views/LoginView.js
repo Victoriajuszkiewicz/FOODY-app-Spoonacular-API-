@@ -19,6 +19,9 @@ const INIT_LOGINFORM = {
 const LoginView = (props) => {
   const [loginInput, setLoginInput] = useState(INIT_LOGINFORM);
   const navigate = useNavigate();
+  //TOGGLE BUTTON
+  // const [active, isActive] = useState(false);
+  // const [buttonValue, setButtonValue] = useState("1");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,9 +35,32 @@ const LoginView = (props) => {
     console.log("someone want to log in... oh lala");
   };
 
+  //TOGGLE BUTTON
+  const buttons = [
+    { name: "Register", value: "1" },
+    { name: "Login", value: "2" },
+  ];
+
   return (
-    <div>
+    <Container>
       <Form onSubmit={handleSubmit} className="form-container">
+        {/* <ButtonGroup className="button-group">
+          {buttons.map((button, index) => (
+            <ToggleButton
+              className="toggle-button"
+              key={index}
+              id={`radio-${index}`}
+              type="radio"
+              variant="secondary"
+              name="radio"
+              value={button.value}
+              checked={buttonValue === button.value}
+              onChange={(e) => setButtonValue(e.currentTarget.value)}
+            >
+              {button.name}
+            </ToggleButton>
+          ))}
+        </ButtonGroup> */}
         <h2>Welcome back</h2>
         {/* Label and placeholder can have the value of your choice */}
         <Form.Group className="d-flex flex-column align-items-center">
@@ -71,7 +97,7 @@ const LoginView = (props) => {
             variant="secondary"
             type="submit"
           >
-            Login
+            Log in
           </Button>
 
           <div>
@@ -89,7 +115,7 @@ const LoginView = (props) => {
           {/* this button takes us to register page */}
         </div>
       </Form>
-    </div>
+    </Container>
   );
 };
 

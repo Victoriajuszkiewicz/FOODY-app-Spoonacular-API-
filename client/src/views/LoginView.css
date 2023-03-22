@@ -16,3 +16,13 @@
 .form-container {
   margin-top: 15px;
 }
+
+.button-group {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #358484;
+}
+
+.toggle-button {
+  background-color: #358484;
+}
