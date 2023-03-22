@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TbArrowsLeftRight } from "react-icons/tb";
 import { GiNoodles, GiChickenLeg } from "react-icons/gi";
+import { AiFillLike } from "react-icons/ai";
 
 export default function ResultView(props) {
   const { allRecipes, setAllRecipes, showRecipe, ingredients, setIngredients } =
