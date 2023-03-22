@@ -21,7 +21,7 @@ const LoginView = (props) => {
     event.preventDefault();
     props.inputLoginCb(loginInput);
     setLoginInput(INIT_LOGINFORM);
-    console.log("someone want to log in... oh lala");
+    // console.log("someone want to log in... oh lala");
   };
 
   return (

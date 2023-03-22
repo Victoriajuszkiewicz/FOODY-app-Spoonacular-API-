@@ -24,8 +24,7 @@ function App() {
   let [allRegistered, setAllRegistered] = useState([]);
   let [ingredients, setIngredients] = useState([]);
 
-  // nutrition must also be set at the start, we add it later
-  const [recipe, setRecipe] = useState({ nutrition: {} }); //the recipe you clicked on in the result page
+  const [recipe, setRecipe] = useState(null); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [ingredientList, setIngredientList] = useState();
   const [allfav, setAllFav] = useState([]);
@@ -94,10 +93,10 @@ function App() {
   const showRecipe = async (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
     let recipePrepTime = await Api.getRecipeTime(id); //save it
-    let recipeNutrition = await Api.getRecipeNutrition(id);
     featuredRecipe.preparationTime = recipePrepTime; //create a new property to store the preparation time
-    featuredRecipe.nutrition = recipeNutrition;
     setRecipe(featuredRecipe); //save the correspondent recipe to the state
+    let recipeNutrition = await Api.getRecipeNutrition(id);
+    featuredRecipe.nutrition = recipeNutrition;
     Local.saveFeaturedRecipe(featuredRecipe); //save to the localStorage!!!
     navigate(`/featured/${id}`); //navigate to the correspondent recipe page
   };
@@ -128,6 +127,7 @@ function App() {
     getFav(Local.getUserId());
   }, []);
 
+  //GET ALL FAV of logged in user
   const getFav = (id) => {
     fetch(`/api/favorites/${id}`)
       .then((response) => {
@@ -153,14 +153,14 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         recipe_id: id,
-        title: recipe.title,
-        image: recipe.image,
+        recipe_title: recipe.title,
+        recipe_image_url: recipe.image,
         user_id: user.user_id,
       }),
     };
     console.log("this is from POST btw", id);
     try {
-      console.log("hello from try");
+      console.log("hello from try", id, recipe.title);
       let response = await fetch(`/api/favorites`, options);
       if (response.ok) {
         console.log("hello from response ok", response);
@@ -179,7 +179,7 @@ function App() {
       <NavBar user={user} logoutCb={doLogout} setIngredients={setIngredients} />
       <Routes>
         <Route
-          path="/"
+          path="/*"
           element={
             <HomePage
               allRecipes={allRecipes}
@@ -202,7 +202,7 @@ function App() {
           }
         />
         <Route
-          path="/featured/:id"
+          path="/Featured/:id"
           element={
             <RecipeView
               recipe={recipe}
@@ -236,8 +236,3 @@ function App() {
 }
 
 export default App;
-
-/*
-INSERT INTO FAVORITES (id,recipe_id, recipe_title,  recipe_image_url, user_id) 
-      VALUES (648090, "Easy Cheesy Scrambled Eggs", "https://spoonacular.com/recipeImages/641890-312x231.jpg", 8);
-*/
