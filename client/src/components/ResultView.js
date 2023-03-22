@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
@@ -6,14 +6,67 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import SearchBar from "../views/Home/SearchBar";
 import "./ResultView.css";
+import { Api } from "../helpers/Api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ResultView(props) {
   const { allRecipes, setAllRecipes, showRecipe, ingredients, setIngredients } =
     props;
+  const [recipeToCompare, setRecipeCompare] = useState({});
+  const [show, setShow] = useState(false);
 
+  //ALERT function: we need recipe name, healthScore to show on the alert
+  const getRecipeInfoToCompare = async (id) => {
+    const recipeInfo = await Api.getRecipeInfo(id);
+    // first time when user clicks on the button, checks if it's empty.
+    if (recipeToCompare.recipeA === undefined) {
+      //save in object format
+      setRecipeCompare({
+        recipeA: {
+          title: recipeInfo.title,
+          healthScore: recipeInfo.healthScore,
+        },
+      });
+    } else {
+      //we get the second click, get the value straight from the object
+      const recipeB = {
+        title: recipeInfo.title,
+        healthScore: recipeInfo.healthScore,
+      };
+      //get the info from both
+      showNutriAlert(recipeToCompare.recipeA, recipeB);
+      setRecipeCompare({}); //reset state
+    }
+  };
+
+  const showNutriAlert = (recipeA, recipeB) => {
+    setShow(true);
+    toast(
+      `💡 ${recipeA.title}'s health score is ${recipeA.healthScore}, ${recipeB.title}'s health score ${recipeB.healthScore}`,
+      {
+        position: "top-center",
+        autoClose: 6000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      }
+    );
+  };
+  {/* (line 90)Recipe onClick card and (line 114)compare button onClick will both be clicked on, 
+  so we need to give a if statement by checking the unic perperty from event.target to find which one we clicked on, 
+  then we disable onClick to render the recipe page  */}
   return (
     <div>
       <div>
+        {show ? (
+          <div>
+            <ToastContainer />
+          </div>
+        ) : null}
         <SearchBar
           setAllRecipes={setAllRecipes}
           setIngredients={setIngredients}
@@ -35,7 +88,11 @@ export default function ResultView(props) {
                 key={recipe.id}
                 className="card-recipe"
                 style={{ width: "18rem" }}
-                onClick={(event) => showRecipe(recipe.id)}
+                onClick={(event) => {
+                  if (event.target.localName !== "button") {
+                    showRecipe(recipe.id);
+                  }
+                }}
               >
                 <div className="container">
                   <button
@@ -50,7 +107,15 @@ export default function ResultView(props) {
 
                 <Card.Body>
                   <Card.Title>{recipe.title}</Card.Title>
-                  <Card.Subtitle className="bi bi-hand-thumbs-up-fill">{recipe.likes}</Card.Subtitle>
+                  <Card.Subtitle className="bi bi-hand-thumbs-up-fill">
+                    {recipe.likes}
+                  </Card.Subtitle>
+                  <button
+                    type="button"
+                    title="Compare health score!"
+                    onClick={(event) => getRecipeInfoToCompare(recipe.id)}
+                    className="btn btn-outline-info bi bi-heart-pulse-fill"
+                  ></button>
                 </Card.Body>
               </Card>
             ))}

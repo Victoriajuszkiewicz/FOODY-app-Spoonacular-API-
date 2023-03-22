@@ -26,15 +26,15 @@ export class Api {
 
   //get recipe imformation API
 
-  static getRecipeTime = async (recipeId) => {
+  static getRecipeInfo = async (recipeId) => {
     const apiKey = `?apiKey=${process.env.REACT_APP_SPOONACULAR_KEY}`;
     const url = `https://api.spoonacular.com/recipes/${recipeId}/information${apiKey}`;
 
     try {
       let response = await fetch(url);
       if (response.ok) {
-        let recipeTime = await response.json();
-        return recipeTime.readyInMinutes; //return only the recipe preparation time!
+        let recipeInfo = await response.json();
+        return recipeInfo;
       } else {
         console.log("Server error: ", response);
       }
@@ -119,7 +119,6 @@ export class Api {
 
     // Add token to headers if it exists in localStorage
     let token = Local.getToken();
-    console.log(token);
     if (token) {
       options.headers["Authorization"] = "Bearer " + token;
     }

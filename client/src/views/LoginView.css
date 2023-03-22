@@ -1,0 +1,28 @@
+.button-here {
+  background-color: white;
+  border-color: white;
+  border-width: 0;
+  color: #358484;
+  font-weight: 500;
+  padding: 1px 1px;
+  text-decoration: underline;
+}
+
+.register-btn-container {
+  margin-top: 15px;
+  font-size: small;
+}
+
+.form-container {
+  margin-top: 15px;
+}
+
+.button-group {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #358484;
+}
+
+.toggle-button {
+  background-color: #358484;
+}
