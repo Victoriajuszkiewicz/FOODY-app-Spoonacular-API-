@@ -23,17 +23,27 @@ CREATE TABLE favorites (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-CREATE TABLE user_favorites (
-userId INT NOT NULL,
-favoritesId INT NOT NULL,
-PRIMARY KEY (userId, favoritesId),
-FOREIGN KEY (userId) REFERENCES users(id),
-FOREIGN KEY (favoritesId) REFERENCES favorites(id)
-);
+-- this part is not necessary because we don't have enough table that neded to be connected through a join table
+-- CREATE TABLE user_favorites (
+-- userId INT NOT NULL,
+-- favoritesId INT NOT NULL,
+-- PRIMARY KEY (userId, favoritesId),
+-- FOREIGN KEY (userId) REFERENCES users(id),
+-- FOREIGN KEY (favoritesId) REFERENCES favorites(id)
+-- );
 
--- INSERT INTO users
--- VALUES 
--- (1,'Jim','jim.nugget@nuggetlove.com','$2b$12$eFzMWbS9SogNtxkmo3J7a08FQMIOVsF6GGKpTQdgq.W'), 
--- (2,'Maya','maya.nugget@nuggetlove.com','$2b$12$eFzMWbS9SogNtxkmo3J7a08FQMIOVsF6GGKpTQdgq.E'), 
--- (3,'Dodo','dodo.nugget@nuggetlove.com','$2b$12$eFzMWbS9SogNtxkmo3J7a08FQMIOVsF6GGKpTQdgq.R');
+INSERT INTO users
+VALUES 
+(1,'Jim','jim.nugget@nuggetlove.com','$2b$12$eFzMWbS9SogNtxkmo3J7a08FQMIOVsF6GGKpTQdgq.W'), 
+(2,'Maya','maya.nugget@nuggetlove.com','$2b$12$eFzMWbS9SogNtxkmo3J7a08FQMIOVsF6GGKpTQdgq.E'), 
+(3,'Dodo','dodo.nugget@nuggetlove.com','$2b$12$eFzMWbS9SogNtxkmo3J7a08FQMIOVsF6GGKpTQdgq.R');
 
+
+INSERT INTO favorites
+VALUES 
+(654679,"Parmesan Mashed Potatoes", "https://spoonacular.com/recipeImages/654679-312x231.jpg", 3),
+(661447,"Square Deviled Eggs", "https://spoonacular.com/recipeImages/661447-312x231.jpg", 1),
+(661447,"Square Deviled Eggs", "https://spoonacular.com/recipeImages/661447-312x231.jpg", 2),
+(636874,"Candy Cane Chocolate Marshmallows", "ttps://spoonacular.com/recipeImages/636874-312x231.jpg", 2),
+(636874,"Candy Cane Chocolate Marshmallows", "ttps://spoonacular.com/recipeImages/636874-312x231.jpg", 3),
+(652460,"Moscow Mule", "https://spoonacular.com/recipeImages/652460-312x231.jpg", 1);

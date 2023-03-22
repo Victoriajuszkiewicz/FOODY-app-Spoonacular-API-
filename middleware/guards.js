@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { SECRET_KEY } = require("../config");
 
+//to make sure that the token is still there
 function ensureUserLoggedIn(req, res, next) {
   let token = _getToken(req);
 
@@ -13,6 +14,7 @@ function ensureUserLoggedIn(req, res, next) {
   }
 }
 
+//for example if we want to get access to the profile
 function ensureSameUser(req, res, next) {
   let token = _getToken(req);
 
@@ -20,7 +22,7 @@ function ensureSameUser(req, res, next) {
     // Throws error on invalid/missing token
     let payload = jwt.verify(token, SECRET_KEY);
     // if we get here, it means that a valid token was passed
-    console.log(payload);
+    console.log("what are yiou showing here" + payload);
     if (payload.id === Number(req.params.id)) {
       next();
     } else {

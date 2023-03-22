@@ -11,11 +11,8 @@ const SearchBar = (props) => {
   const navigate = useNavigate();
   const { setAllRecipes, allRecipes, ingredients, setIngredients } = props;
 
-  // console.log(ingredients);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    //changed ingredients to input value on line 19 to fix the bug!
     const result = await Api.getRecipes(inputValue);
     setAllRecipes(result); //Using state setter to save recipes fetched from api
     setInputValue(""); //reset empty input field after clicked search button

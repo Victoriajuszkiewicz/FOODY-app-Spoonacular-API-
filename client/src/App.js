@@ -24,7 +24,8 @@ function App() {
   let [allRegistered, setAllRegistered] = useState([]);
   let [ingredients, setIngredients] = useState([]);
 
-  const [recipe, setRecipe] = useState(""); //the recipe you clicked on in the result page
+  // nutrition must also be set at the start, we add it later
+  const [recipe, setRecipe] = useState({ nutrition: {} }); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [ingredientList, setIngredientList] = useState();
   const [allfav, setAllFav] = useState([]);
@@ -93,7 +94,9 @@ function App() {
   const showRecipe = async (id) => {
     let featuredRecipe = allRecipes.find((r) => r.id === id); //use the id to find the correspondent recipe
     let recipePrepTime = await Api.getRecipeTime(id); //save it
+    let recipeNutrition = await Api.getRecipeNutrition(id);
     featuredRecipe.preparationTime = recipePrepTime; //create a new property to store the preparation time
+    featuredRecipe.nutrition = recipeNutrition;
     setRecipe(featuredRecipe); //save the correspondent recipe to the state
     Local.saveFeaturedRecipe(featuredRecipe); //save to the localStorage!!!
     navigate(`/featured/${id}`); //navigate to the correspondent recipe page
@@ -199,7 +202,7 @@ function App() {
           }
         />
         <Route
-          path="/Featured/:id"
+          path="/featured/:id"
           element={
             <RecipeView
               recipe={recipe}
