@@ -37,10 +37,18 @@ export default function ResultView(props) {
         title: recipeInfo.title,
         healthScore: recipeInfo.healthScore,
       };
+
+      const winningMessage = (winner, loser) =>
+        `🌶 ${winner.title} has a better health score than ${loser.title}! (${winner.healthScore} VS ${loser.healthScore}) 🌶`;
+
       if (recipeToCompare.recipeA.healthScore > recipeB.healthScore) {
-        showNutriAlert(recipeToCompare.recipeA, recipeB);
+        showNutriAlert(winningMessage(recipeToCompare.recipeA, recipeB));
+      } else if (recipeToCompare.recipeA.healthScore < recipeB.healthScore) {
+        showNutriAlert(winningMessage(recipeB, recipeToCompare.recipeA));
       } else {
-        showNutriAlert(recipeB, recipeToCompare.recipeA);
+        showNutriAlert(
+          `🌶 ${recipeToCompare.recipeA.title} and ${recipeB.title} has same health score: ${recipeB.healthScore}! 🌶`
+        );
       }
       //get the info from both
 
@@ -48,21 +56,18 @@ export default function ResultView(props) {
     }
   };
 
-  const showNutriAlert = (winner, loser) => {
+  const showNutriAlert = (message) => {
     setShow(true);
-    toast(
-      `🌶 ${winner.title} has a better health score than ${loser.title}! (${winner.healthScore} VS ${loser.healthScore}) 🌶`,
-      {
-        position: "top-center",
-        autoClose: 6000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      }
-    );
+    toast(message, {
+      position: "top-center",
+      autoClose: 6000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   {
     /* (line 90)Recipe onClick card and (line 114)compare button onClick will both be clicked on, 
