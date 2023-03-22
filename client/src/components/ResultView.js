@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import SearchBar from "../views/Home/SearchBar";
+import "./ResultView.css";
 
 export default function ResultView(props) {
   const { allRecipes, setAllRecipes, showRecipe, ingredients, setIngredients } =
@@ -36,7 +37,17 @@ export default function ResultView(props) {
                 style={{ width: "18rem" }}
                 onClick={(event) => showRecipe(recipe.id)}
               >
-                <Card.Img variant="top" src={recipe.image} />
+                <div className="container">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    id="buttononrecipe"
+                  >
+                    <i id="heartbutton" className="bi bi-heart"></i>
+                  </button>
+                  <Card.Img variant="top" src={recipe.image} />
+                </div>
+
                 <Card.Body>
                   <Card.Title>{recipe.title}</Card.Title>
                   <Card.Subtitle className="bi bi-hand-thumbs-up-fill">{recipe.likes}</Card.Subtitle>
