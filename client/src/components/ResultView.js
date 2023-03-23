@@ -9,6 +9,9 @@ import "./ResultView.css";
 import { Api } from "../helpers/Api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TbArrowsLeftRight } from "react-icons/tb";
+import { GiNoodles, GiChickenLeg } from "react-icons/gi";
+import { AiFillLike } from "react-icons/ai";
 
 export default function ResultView(props) {
   const {
@@ -41,27 +44,37 @@ export default function ResultView(props) {
         title: recipeInfo.title,
         healthScore: recipeInfo.healthScore,
       };
+
+      const winningMessage = (winner, loser) =>
+        `🌶 ${winner.title} has a better health score than ${loser.title}! (${winner.healthScore} VS ${loser.healthScore}) 🌶`;
+
+      if (recipeToCompare.recipeA.healthScore > recipeB.healthScore) {
+        showNutriAlert(winningMessage(recipeToCompare.recipeA, recipeB));
+      } else if (recipeToCompare.recipeA.healthScore < recipeB.healthScore) {
+        showNutriAlert(winningMessage(recipeB, recipeToCompare.recipeA));
+      } else {
+        showNutriAlert(
+          `🌶 ${recipeToCompare.recipeA.title} and ${recipeB.title} has same health score: ${recipeB.healthScore}! 🌶`
+        );
+      }
       //get the info from both
-      showNutriAlert(recipeToCompare.recipeA, recipeB);
+
       setRecipeCompare({}); //reset state
     }
   };
 
-  const showNutriAlert = (recipeA, recipeB) => {
+  const showNutriAlert = (message) => {
     setShow(true);
-    toast(
-      `💡 ${recipeA.title}'s health score is ${recipeA.healthScore}, ${recipeB.title}'s health score ${recipeB.healthScore}`,
-      {
-        position: "top-center",
-        autoClose: 6000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      }
-    );
+    toast(message, {
+      position: "top-center",
+      autoClose: 6000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
   {
     /* (line 90)Recipe onClick card and (line 114)compare button onClick will both be clicked on, 
@@ -97,49 +110,51 @@ export default function ResultView(props) {
                 key={recipe.id}
                 className="card-recipe"
                 style={{ width: "18rem" }}
+                onClick={(event) => {
+                  if (
+                    event.target.localName !== "svg" &&
+                    event.target.localName !== "path"
+                  ) {
+                    showRecipe(recipe.id);
+                  }
+                }}
               >
-                <Card.Img
-                  variant="top"
-                  src={recipe.image}
-                  onClick={(event) => {
-                    if (event.target.localName !== "button") {
-                      showRecipe(recipe.id);
-                    }
-                  }}
-                />
+                <div className="container">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    id="buttononrecipe"
+                  >
+                    <i id="heartbutton" className="bi bi-heart"></i>
+                  </button>
+                  <Card.Img variant="top" src={recipe.image} />
+                </div>
 
                 <Card.Body>
                   <Card.Title>{recipe.title}</Card.Title>
-                  <div className="container">
-                    {allfav.some((e) => recipe.id === e.recipe_id) ? (
-                      <button
-                        type="button"
-                        onClick={() => AddOrDelete(recipe.id)}
-                        className="btn btn-danger"
-                        id="buttononrecipe"
-                      >
-                        <i id="heartbutton" className="bi bi-heart-fill"></i>
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => AddOrDelete(recipe.id)}
-                        className="btn btn-secondary"
-                        id="buttononrecipe"
-                      >
-                        <i id="heartbutton" className="bi bi-heart"></i>
-                      </button>
-                    )}
-                  </div>
-                  <Card.Subtitle className="bi bi-hand-thumbs-up-fill">
+                  <Card.Subtitle style={{ color: "orange" }}>
+                    <AiFillLike size="1.8rem" />
                     {recipe.likes}
                   </Card.Subtitle>
-                  <button
-                    type="button"
-                    title="Compare health score!"
-                    onClick={(event) => getRecipeInfoToCompare(recipe.id)}
-                    className="btn btn-outline-info bi bi-heart-pulse-fill"
-                  ></button>
+                  {/*(? means if recipeA is not undefined get the title, else return undefined)*/}
+                  {recipeToCompare.recipeA?.title !== recipe.title && (
+                    <button
+                      style={{
+                        color: "orange",
+                        backgroundColor: "transparent",
+                        borderColor: "transparent",
+                      }}
+                      type="button"
+                      title="Compare health score!"
+                      onClick={(event) => {
+                        getRecipeInfoToCompare(recipe.id);
+                      }}
+                    >
+                      <GiNoodles size="1.5rem" />
+                      <TbArrowsLeftRight size="1.1rem" />
+                      <GiChickenLeg size="1.5rem" />
+                    </button>
+                  )}
                 </Card.Body>
               </Card>
             ))}

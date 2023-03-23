@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Api } from "../../helpers/Api";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, InputGroup } from "react-bootstrap";
 import "./SearchBar.css";
 import Badge from "react-bootstrap/Badge";
 import XIcon from "../../components/XIcon";
@@ -20,17 +20,22 @@ const SearchBar = (props) => {
   };
 
   const handleChange = (event) => {
-    setInputValue(event.target.value);
+    setInputValue(event.target.value.trim());
   };
 
   const handleKeyDown = (event) => {
-    if (event.keyCode === 32) {
+    if (event.key === "Enter") {
       event.preventDefault();
-      if (inputValue.trim() !== "") {
-        setIngredients([...ingredients, inputValue.trim()]);
-        setInputValue("");
+
+      if (inputValue !== "") {
+        handleAddIngredient();
       }
     }
+  };
+
+  const handleAddIngredient = () => {
+    setIngredients([...ingredients, inputValue]);
+    setInputValue("");
   };
 
   const handleDelete = (index) => {
@@ -57,19 +62,36 @@ const SearchBar = (props) => {
                 What do you have in the fridge?
               </h4>
             </Form.Label>
-            <Form.Control
-              style={{
-                width: "18rem",
-                marginLeft: "55px",
-                marginBottom: "10px",
-                textAlign: "center",
-              }}
-              type="text"
-              value={inputValue}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-              placeholder="try tomato, eggs, cheese..."
-            />
+            <Row>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  style={
+                    {
+                      // width: "18rem",
+                      // marginLeft: "55px",
+                      // marginBottom: "10px",
+                      // textAlign: "center",
+                    }
+                  }
+                  type="text"
+                  value={inputValue}
+                  onChange={handleChange}
+                  onKeyDown={handleKeyDown}
+                  placeholder="tomato, eggs, cheese..."
+                />
+                <Button
+                  style={{
+                    backgroundColor: "#358484",
+                    borderBlockColor: "#358484",
+                  }}
+                  className="ingredient-button"
+                  variant="secondary"
+                  onClick={handleAddIngredient}
+                >
+                  Add ingredient
+                </Button>
+              </InputGroup>
+            </Row>
             <div className="badge-container">
               {ingredients &&
                 ingredients.map((ingredient, index) => (
@@ -91,6 +113,7 @@ const SearchBar = (props) => {
                 ))}
             </div>
             <Button
+              disabled={!ingredients.length}
               className="submit-button"
               style={{
                 backgroundColor: "#358484",
@@ -99,7 +122,7 @@ const SearchBar = (props) => {
               variant="secondary"
               type="submit"
             >
-              Search
+              Search recipes with these ingredients
             </Button>
           </Form>
         </Col>

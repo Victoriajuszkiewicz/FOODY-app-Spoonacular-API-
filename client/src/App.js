@@ -28,7 +28,7 @@ function App() {
   const [recipe, setRecipe] = useState(null); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [ingredientList, setIngredientList] = useState();
-  const [allfav, setAllFav] = useState([]);
+  const [allFav, setAllFav] = useState([]);
 
   //BACKEND ROUTES
 
@@ -122,9 +122,11 @@ function App() {
   };
 
   // GET always first!
-  //! THE URL ALWAYS have to start  from /api/ this is how back end is created
+  //! THE URL ALWAYS have to start from /api/ this is how back end is created
 
   useEffect(() => {
+    //we need to pass id, current id is the one store in the local! Id of logged in user
+    getFav(Local.getUserId());
     //we need to pass id, current id is the one store in the local! Id of logged in user
     getFav(Local.getUserId());
   }, []);
@@ -154,11 +156,24 @@ function App() {
         //user_id was undefined so we have to pass Local.getUserId!!!!
         user_id: Local.getUserId(),
       }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + Local.getToken(),
+      },
+      body: JSON.stringify({
+        recipe_id: id,
+        recipe_title: recipe.title,
+        recipe_image_url: recipe.image,
+        //user_id was undefined so we have to pass Local.getUserId!!!!
+        user_id: Local.getUserId(),
+      }),
     };
     console.log("this is from POST btw", id);
+
     try {
       // console.log("hello from try", id, recipe.title);
       let response = await fetch(`/api/favorites`, options);
+
       if (response.ok) {
         // console.log("hello from response ok", response);
         let data = await response.json();
@@ -202,6 +217,7 @@ function App() {
         />
         <Route
           path="/Featured/:id"
+          path="/Featured/:id"
           element={
             <RecipeView
               recipe={recipe}
@@ -226,7 +242,7 @@ function App() {
           path="/favorites"
           element={
             <PrivateRoute>
-              <FavoritesView allfav={allfav} />
+              <FavoritesView allFav={allFav} />
             </PrivateRoute>
           }
         />
