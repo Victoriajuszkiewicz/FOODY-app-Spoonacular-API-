@@ -169,14 +169,12 @@ function App() {
       }),
     };
     console.log("this is from POST btw", id);
-    console.log("this is from POST btw", id);
+
     try {
       console.log("hello from try", id, recipe.title);
       let response = await fetch(`/api/favorites`, options);
-      console.log("hello from try", id, recipe.title);
-      let response = await fetch(`/api/favorites`, options);
+
       if (response.ok) {
-        console.log("hello from response ok", response);
         console.log("hello from response ok", response);
         let data = await response.json();
         setAllFav(data);
