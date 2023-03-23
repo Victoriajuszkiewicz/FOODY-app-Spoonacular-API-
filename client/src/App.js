@@ -28,7 +28,7 @@ function App() {
   const [recipe, setRecipe] = useState(null); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [ingredientList, setIngredientList] = useState();
-  const [allfav, setAllFav] = useState([]);
+  const [allFav, setAllFav] = useState([]);
 
   //BACKEND ROUTES
 
@@ -98,6 +98,7 @@ function App() {
     featuredRecipe.preparationTime = recipeInfo.readyInMinutes; //create a new property to store the preparation time
     featuredRecipe.nutrition = recipeNutrition;
     setRecipe(featuredRecipe); //save the correspondent recipe to the state
+
     Local.saveFeaturedRecipe(featuredRecipe); //save to the localStorage!!!
     navigate(`/featured/${id}`); //navigate to the correspondent recipe page
   };
@@ -121,40 +122,45 @@ function App() {
   };
 
   // GET always first!
+  //! THE URL ALWAYS have to start from /api/ this is how back end is created
+
   useEffect(() => {
-    getFav();
+    //we need to pass id, current id is the one store in the local! Id of logged in user
+    getFav(Local.getUserId());
   }, []);
 
-  const getFav = () => {
-    fetch("/favorites/userId")
-      .then((response) => {
-        console.log("this is from GET FAV");
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error(
-            `Server error: ${response.status}: ${response.statusText}`
-          );
-        }
-      })
-      .then((data) => {
-        setAllFav(data);
-        console.log("youre in then");
-      })
-      .catch((error) => console.log(error));
+  //GET ALL FAV of logged in user
+  const getFav = async (id) => {
+    let Uresponse = await Api.getFav(id);
+    if (Uresponse.ok) {
+      setAllFav(Uresponse.data);
+    } else {
+      console.log(Uresponse.error);
+    }
   };
 
   //make one route for add/delete
   const AddOrDelete = async (id) => {
     let options = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + Local.getToken(),
+      },
+      body: JSON.stringify({
+        recipe_id: id,
+        recipe_title: recipe.title,
+        recipe_image_url: recipe.image,
+        //user_id was undefined so we have to pass Local.getUserId!!!!
+        user_id: Local.getUserId(),
+      }),
     };
-    console.log("this is from POST btw");
+    console.log("this is from POST btw", id);
     try {
-      let response = await fetch(`/favorites/userId`, options);
+      console.log("hello from try", id, recipe.title);
+      let response = await fetch(`/api/favorites`, options);
       if (response.ok) {
+        console.log("hello from response ok", response);
         let data = await response.json();
         setAllFav(data);
       } else {
@@ -193,7 +199,7 @@ function App() {
           }
         />
         <Route
-          path="/featured/:id"
+          path="/Featured/:id"
           element={
             <RecipeView
               recipe={recipe}
@@ -217,7 +223,7 @@ function App() {
           path="/favorites"
           element={
             <PrivateRoute>
-              <FavoritesView getFav={getFav} />
+              <FavoritesView allFav={allFav} />
             </PrivateRoute>
           }
         />

@@ -31,7 +31,6 @@ CREATE TABLE favorites (
 -- FOREIGN KEY (userId) REFERENCES users(id),
 -- FOREIGN KEY (favoritesId) REFERENCES favorites(id)
 -- );
-
 INSERT INTO users
 VALUES 
 (1,"jim","jim@nuggetlove.com","$2a$12$BDxZviP5nIvS6stEGg.ftuhoneUwIG9Je8ws03Q5NSsm745HNMVI2"), 
