@@ -1,8 +1,8 @@
 /* * {
   box-sizing: border-box;
-}
+} */
 
-.container {
+/* .container {
   margin-bottom: 100px;
   align-items: center;
   display: flex;
@@ -14,5 +14,6 @@
 #buttononrecipe {
   margin: auto 0 0;
   position: absolute;
-  left: 233px;
+  left: 0px;
+  top: 10px;
 }

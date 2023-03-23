@@ -126,6 +126,7 @@ export default function ResultView(props) {
                     (allfav.some((e) => recipe.id === e.recipe_id) ? (
                       <div>
                         <button
+                          id="buttononrecipe"
                           type="button"
                           onClick={(event) => {
                             //tried: event.preventDefault(); &event.stopPropagation();
@@ -141,6 +142,7 @@ export default function ResultView(props) {
                     ) : (
                       <div>
                         <button
+                          id="buttononrecipe"
                           type="button"
                           onClick={(event) => {
                             // event.preventDefault();
