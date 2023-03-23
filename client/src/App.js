@@ -127,6 +127,8 @@ function App() {
   useEffect(() => {
     //we need to pass id, current id is the one store in the local! Id of logged in user
     getFav(Local.getUserId());
+    //we need to pass id, current id is the one store in the local! Id of logged in user
+    getFav(Local.getUserId());
   }, []);
 
   //GET ALL FAV of logged in user
@@ -154,12 +156,27 @@ function App() {
         //user_id was undefined so we have to pass Local.getUserId!!!!
         user_id: Local.getUserId(),
       }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + Local.getToken(),
+      },
+      body: JSON.stringify({
+        recipe_id: id,
+        recipe_title: recipe.title,
+        recipe_image_url: recipe.image,
+        //user_id was undefined so we have to pass Local.getUserId!!!!
+        user_id: Local.getUserId(),
+      }),
     };
+    console.log("this is from POST btw", id);
     console.log("this is from POST btw", id);
     try {
       console.log("hello from try", id, recipe.title);
       let response = await fetch(`/api/favorites`, options);
+      console.log("hello from try", id, recipe.title);
+      let response = await fetch(`/api/favorites`, options);
       if (response.ok) {
+        console.log("hello from response ok", response);
         console.log("hello from response ok", response);
         let data = await response.json();
         setAllFav(data);
@@ -199,6 +216,7 @@ function App() {
           }
         />
         <Route
+          path="/Featured/:id"
           path="/Featured/:id"
           element={
             <RecipeView

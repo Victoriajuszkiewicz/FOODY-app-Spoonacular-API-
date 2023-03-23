@@ -3,6 +3,8 @@ import { Local } from "../helpers/Local";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Container from "react-bootstrap/Container";
+import { FcClock } from "react-icons/fc";
+import { AiFillLike } from "react-icons/ai";
 
 export default function RecipeView(props) {
   const {
@@ -13,9 +15,10 @@ export default function RecipeView(props) {
     handleClick,
     AddOrDelete,
   } = props;
-
+  //Empty array is truthy
   const recipeSteps = [];
-  if (recipeInstructions) {
+  //recipeInstructions is an array, we need to check both if is not empty and lentgh more than 0
+  if (recipeInstructions && recipeInstructions.length > 0) {
     for (let step of recipeInstructions[0].steps) {
       recipeSteps[step.number] = step.step;
     }
@@ -27,7 +30,7 @@ export default function RecipeView(props) {
     If it is not we get it from the local storage and set the state.
     This prevents us from getting an infinite loop: https://react.dev/reference/react/useEffect#my-effect-keeps-re-running-in-an-infinite-cycle
     */
-    if (recipe.id === undefined) {
+    if (recipe?.id === undefined) {
       setRecipe(Local.getFeaturedRecipe()); //set the state from the recipe we stored in the localStorage
     }
   }, [recipe]);
@@ -61,9 +64,12 @@ export default function RecipeView(props) {
             >
               <i className="bi bi-heart"> Save</i>
             </button>
-            <h5 className="bi bi-hand-thumbs-up-fill">{recipe.likes}</h5>
-            <h5 className="bi bi-clock-fill">
-              {" "}
+            <h5 style={{ color: "orange", marginTop: "1rem" }}>
+              <AiFillLike size="1.8rem" />
+              {recipe.likes}
+            </h5>
+            <h5>
+              <FcClock size="2rem" />
               Ready in {recipe.preparationTime} mins
             </h5>
           </div>
@@ -93,8 +99,7 @@ export default function RecipeView(props) {
               <strong> Step-by-step preparation</strong>
             </Card.Header>
           </Card>
-          {/* <h3>Step-by-step preparation</h3> */}
-          {recipeInstructions &&
+          {recipeSteps.length > 0 ? (
             recipeSteps.map((step, index) => {
               return (
                 <Card style={{ width: "18rem" }} key={index}>
@@ -105,7 +110,12 @@ export default function RecipeView(props) {
                   </ListGroup>
                 </Card>
               );
-            })}
+            })
+          ) : (
+            <Card>
+              <p>The recipe instruction is not available...</p>
+            </Card>
+          )}
 
           <Card style={{ width: "18rem" }}>
             <Card.Header>
