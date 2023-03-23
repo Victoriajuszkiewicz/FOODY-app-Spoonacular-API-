@@ -46,6 +46,9 @@ VALUES
 (3, 661447,"Square Deviled Eggs", "https://spoonacular.com/recipeImages/661447-312x231.jpg", 2),
 (4, 636874,"Candy Cane Chocolate Marshmallows", "ttps://spoonacular.com/recipeImages/636874-312x231.jpg", 2),
 (5, 636874,"Candy Cane Chocolate Marshmallows", "ttps://spoonacular.com/recipeImages/636874-312x231.jpg", 3),
+<<<<<<< HEAD
+(6, 652460,"Moscow Mule", "https://spoonacular.com/recipeImages/652460-312x231.jpg", 1);
+=======
 (6, 652460,"Moscow Mule", "https://spoonacular.com/recipeImages/652460-312x231.jpg", 1);
 
 -- INSERT INTO users
@@ -63,3 +66,4 @@ VALUES
 -- (636874,"Candy Cane Chocolate Marshmallows", "ttps://spoonacular.com/recipeImages/636874-312x231.jpg", 2),
 -- (636874,"Candy Cane Chocolate Marshmallows", "ttps://spoonacular.com/recipeImages/636874-312x231.jpg", 3),
 -- (652460,"Moscow Mule", "https://spoonacular.com/recipeImages/652460-312x231.jpg", 1);
+>>>>>>> main
