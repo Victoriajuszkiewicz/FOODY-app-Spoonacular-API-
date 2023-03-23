@@ -11,8 +11,6 @@ const SearchBar = (props) => {
   const navigate = useNavigate();
   const { setAllRecipes, allRecipes, ingredients, setIngredients } = props;
 
-  // console.log(ingredients);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await Api.getRecipes(ingredients);

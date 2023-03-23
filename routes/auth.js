@@ -41,16 +41,6 @@ router.post("/login", async (req, res) => {
     } else {
       let user = results.data[0]; //the user's row/record from the db
       let passwordsEqual = await bcrypt.compare(passwordLogin, user.password);
-
-      // console.log(
-      //   "WHAT IS PASSWORD",
-      //   password,
-      //   " WHAT IS USER.PASSWORD",
-      //   password
-      // );
-      // console.log(user);
-      // console.log(await bcrypt.compare(password, password));
-
       if (passwordsEqual) {
         //passwords match
         let payload = { id: user.id };

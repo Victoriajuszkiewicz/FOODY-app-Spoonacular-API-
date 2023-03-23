@@ -35,7 +35,7 @@ const RegisterView = (props) => {
     //handleSubmit saves all info in register form
     setRegisterForm(INIT_REGISTRATION);
     //first show success alert (NOT DONE YET)
-    showAlert();
+    // showAlert();
     navigate("/login");
     // ; (WORKS FINE its commented out for testing purposes for now)
   }
@@ -53,7 +53,6 @@ const RegisterView = (props) => {
     });
   }
 
-  // NO ROUTS FOR DB yet!!!
   //Info from form is saved  in state but never reaches DB
   return (
     <Container className="register-container">
