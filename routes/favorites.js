@@ -44,12 +44,19 @@ router.post("/favorites", ensureUserLoggedIn, async (req, res) => {
       INSERT INTO FAVORITES (recipe_id, recipe_title, recipe_image_url, user_id) 
       VALUES ("${recipe_id}", "${recipe_title}", "${recipe_image_url}", "${user_id}")`;
       let result = await db(sql);
+      //return updated list of favourites
+      sql = `SELECT * FROM favorites WHERE user_id="${user_id}"`;
+      result = await db(sql);
+      //it never returned updated list of fav so button fav didnt get that info and coulnt change colour!!!!
       res.status(200).send(result.data);
     } else {
       // or else delete it
       let sql = `
-      DELETE FROM FAVORITES WHERE recipe_id === "${recipe_id}" and user_id="${user_id}"`;
+      DELETE FROM FAVORITES WHERE recipe_id = "${recipe_id}" and user_id="${user_id}"`;
       let response = await db(sql);
+      //return updated list of favourites
+      sql = `SELECT * FROM favorites WHERE user_id="${user_id}"`;
+      result = await db(sql);
       res.send(response.data);
     }
   } catch (err) {

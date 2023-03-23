@@ -11,8 +11,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function ResultView(props) {
-  const { allRecipes, setAllRecipes, showRecipe, ingredients, setIngredients } =
-    props;
+  const {
+    allRecipes,
+    setAllRecipes,
+    showRecipe,
+    ingredients,
+    setIngredients,
+    allfav,
+    AddOrDelete,
+  } = props;
   const [recipeToCompare, setRecipeCompare] = useState({});
   const [show, setShow] = useState(false);
 
@@ -56,9 +63,11 @@ export default function ResultView(props) {
       }
     );
   };
-  {/* (line 90)Recipe onClick card and (line 114)compare button onClick will both be clicked on, 
+  {
+    /* (line 90)Recipe onClick card and (line 114)compare button onClick will both be clicked on, 
   so we need to give a if statement by checking the unic perperty from event.target to find which one we clicked on, 
-  then we disable onClick to render the recipe page  */}
+  then we disable onClick to render the recipe page  */
+  }
   return (
     <div>
       <div>
@@ -88,25 +97,40 @@ export default function ResultView(props) {
                 key={recipe.id}
                 className="card-recipe"
                 style={{ width: "18rem" }}
-                onClick={(event) => {
-                  if (event.target.localName !== "button") {
-                    showRecipe(recipe.id);
-                  }
-                }}
               >
-                <div className="container">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    id="buttononrecipe"
-                  >
-                    <i id="heartbutton" className="bi bi-heart"></i>
-                  </button>
-                  <Card.Img variant="top" src={recipe.image} />
-                </div>
+                <Card.Img
+                  variant="top"
+                  src={recipe.image}
+                  onClick={(event) => {
+                    if (event.target.localName !== "button") {
+                      showRecipe(recipe.id);
+                    }
+                  }}
+                />
 
                 <Card.Body>
                   <Card.Title>{recipe.title}</Card.Title>
+                  <div className="container">
+                    {allfav.some((e) => recipe.id === e.recipe_id) ? (
+                      <button
+                        type="button"
+                        onClick={() => AddOrDelete(recipe.id)}
+                        className="btn btn-danger"
+                        id="buttononrecipe"
+                      >
+                        <i id="heartbutton" className="bi bi-heart-fill"></i>
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => AddOrDelete(recipe.id)}
+                        className="btn btn-secondary"
+                        id="buttononrecipe"
+                      >
+                        <i id="heartbutton" className="bi bi-heart"></i>
+                      </button>
+                    )}
+                  </div>
                   <Card.Subtitle className="bi bi-hand-thumbs-up-fill">
                     {recipe.likes}
                   </Card.Subtitle>

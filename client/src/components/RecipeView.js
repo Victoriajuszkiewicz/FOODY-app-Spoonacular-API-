@@ -10,9 +10,14 @@ export default function RecipeView(props) {
     setRecipe,
     recipeInstructions,
     ingredientList,
-    handleClick,
     AddOrDelete,
+    allfav,
+    allRecipes,
   } = props;
+
+  // console.log(allfav);
+  // console.log(recipe.id);
+  // console.log(recipe);
 
   const recipeSteps = [];
   if (recipeInstructions) {
@@ -53,14 +58,29 @@ export default function RecipeView(props) {
           </Card>
 
           <div>
-            {/* if added to fav heart isn't filled once clicked it calls addFav fn from App.js clicked again it calls deleteFav */}
-            <button
-              type="button"
-              onClick={() => AddOrDelete(recipe.id)}
-              className="btn btn-secondary"
-            >
-              <i className="bi bi-heart"> Save</i>
-            </button>
+            <div key={recipe.id}>
+              {allfav.some((e) => recipe.id === e.recipe_id) ? (
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => AddOrDelete(recipe.id)}
+                    className="btn btn-danger"
+                  >
+                    <i className="bi bi-heart-fill"> Saved</i>
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => AddOrDelete(recipe.id)}
+                    className="btn btn-secondary"
+                  >
+                    <i className="bi bi-heart"> Save</i>
+                  </button>
+                </div>
+              )}
+            </div>
             <h5 className="bi bi-hand-thumbs-up-fill">{recipe.likes}</h5>
             <h5 className="bi bi-clock-fill">
               {" "}

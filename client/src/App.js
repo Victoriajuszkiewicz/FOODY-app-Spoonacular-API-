@@ -137,22 +137,6 @@ function App() {
     } else {
       console.log(Uresponse.error);
     }
-    // fetch(`/api/favorites/${id}`)
-    //   .then((response) => {
-    //     console.log("this is from GET FAV", id, response);
-    //     if (response.ok) {
-    //       console.log("response", response);
-    //       return response.json();
-    //     } else {
-    //       throw new Error(
-    //         `Server error: ${response.status}: ${response.statusText}`
-    //       );
-    //     }
-    //   })
-    //   .then((allfav) => {
-    //     setAllFav(allfav);
-    //   })
-    //   .catch((error) => console.log(error));
   };
 
   //make one route for add/delete
@@ -173,10 +157,10 @@ function App() {
     };
     console.log("this is from POST btw", id);
     try {
-      console.log("hello from try", id, recipe.title);
+      // console.log("hello from try", id, recipe.title);
       let response = await fetch(`/api/favorites`, options);
       if (response.ok) {
-        console.log("hello from response ok", response);
+        // console.log("hello from response ok", response);
         let data = await response.json();
         setAllFav(data);
       } else {
@@ -211,6 +195,8 @@ function App() {
               showRecipe={showRecipe}
               ingredients={ingredients}
               setIngredients={setIngredients}
+              allfav={allfav}
+              AddOrDelete={AddOrDelete}
             />
           }
         />
@@ -222,8 +208,9 @@ function App() {
               recipeInstructions={recipeInstructions}
               ingredientList={ingredientList}
               setRecipe={setRecipe}
-              handleClick={handleClick}
               AddOrDelete={AddOrDelete}
+              allfav={allfav}
+              allRecipes={allRecipes}
             />
           }
         />
