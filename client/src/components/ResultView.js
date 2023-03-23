@@ -22,6 +22,7 @@ export default function ResultView(props) {
     setIngredients,
     allfav,
     AddOrDelete,
+    // recipe,
   } = props;
   const [recipeToCompare, setRecipeCompare] = useState({});
   const [show, setShow] = useState(false);
@@ -120,14 +121,38 @@ export default function ResultView(props) {
                 }}
               >
                 <div className="container">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    id="buttononrecipe"
-                  >
-                    <i id="heartbutton" className="bi bi-heart"></i>
-                  </button>
                   <Card.Img variant="top" src={recipe.image} />
+                  {recipe &&
+                    (allfav.some((e) => recipe.id === e.recipe_id) ? (
+                      <div>
+                        <button
+                          type="button"
+                          onClick={(event) => {
+                            //tried: event.preventDefault(); &event.stopPropagation();
+                            event.preventDefault();
+                            event.stopPropagation();
+                            AddOrDelete(recipe.id);
+                          }}
+                          className="btn btn-danger"
+                        >
+                          <i className="bi bi-heart-fill"> </i>
+                        </button>
+                      </div>
+                    ) : (
+                      <div>
+                        <button
+                          type="button"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            AddOrDelete(recipe.id);
+                          }}
+                          className="btn btn-secondary"
+                        >
+                          <i className="bi bi-heart"></i>
+                        </button>
+                      </div>
+                    ))}
                 </div>
 
                 <Card.Body>

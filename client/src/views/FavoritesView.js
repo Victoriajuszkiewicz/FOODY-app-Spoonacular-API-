@@ -4,7 +4,7 @@ import "./Favorites.css";
 import Local from "../helpers/Local";
 
 const FavoritesView = (props) => {
-  const { allFav } = props;
+  const { allfav } = props;
 
   //get all from fav by user id and display it
   return (
@@ -19,7 +19,7 @@ const FavoritesView = (props) => {
       >
         <Row xs={1} md={2} className="g-4">
           <Col>
-            {allFav.map((favorite) => (
+            {allfav.map((favorite) => (
               <Card
                 key={favorite.user_id}
                 className="card-recipe"

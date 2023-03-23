@@ -28,8 +28,9 @@ function App() {
   const [recipe, setRecipe] = useState(null); //the recipe you clicked on in the result page
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [ingredientList, setIngredientList] = useState();
-  const [allFav, setAllFav] = useState([]);
+  const [allfav, setAllFav] = useState([]);
 
+  // console.log(recipe);
   //BACKEND ROUTES
 
   //GETs all registered users/works yay!
@@ -143,46 +144,50 @@ function App() {
 
   //make one route for add/delete
   const AddOrDelete = async (id) => {
-    let options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + Local.getToken(),
-      },
-      body: JSON.stringify({
-        recipe_id: id,
-        recipe_title: recipe.title,
-        recipe_image_url: recipe.image,
-        //user_id was undefined so we have to pass Local.getUserId!!!!
-        user_id: Local.getUserId(),
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + Local.getToken(),
-      },
-      body: JSON.stringify({
-        recipe_id: id,
-        recipe_title: recipe.title,
-        recipe_image_url: recipe.image,
-        //user_id was undefined so we have to pass Local.getUserId!!!!
-        user_id: Local.getUserId(),
-      }),
-    };
-    console.log("this is from POST btw", id);
+    if (recipe) {
+      let options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + Local.getToken(),
+        },
+        body: JSON.stringify({
+          recipe_id: id,
+          recipe_title: recipe.title,
+          recipe_image_url: recipe.image,
+          //user_id was undefined so we have to pass Local.getUserId!!!!
+          user_id: Local.getUserId(),
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + Local.getToken(),
+        },
+        body: JSON.stringify({
+          recipe_id: id,
+          recipe_title: recipe.title,
+          recipe_image_url: recipe.image,
+          //user_id was undefined so we have to pass Local.getUserId!!!!
+          user_id: Local.getUserId(),
+        }),
+      };
+      console.log("this is from POST btw", id);
 
-    try {
-      // console.log("hello from try", id, recipe.title);
-      let response = await fetch(`/api/favorites`, options);
+      try {
+        // console.log("hello from try", id, recipe.title);
+        let response = await fetch(`/api/favorites`, options);
 
-      if (response.ok) {
-        // console.log("hello from response ok", response);
-        let data = await response.json();
-        setAllFav(data);
-      } else {
-        console.log(`Server Error: ${response.status} ${response.statusText}`);
+        if (response.ok) {
+          // console.log("hello from response ok", response);
+          let data = await response.json();
+          setAllFav(data);
+        } else {
+          console.log(
+            `Server Error: ${response.status} ${response.statusText}`
+          );
+        }
+      } catch (err) {
+        console.log(`Network Error: ${err.message} `);
       }
-    } catch (err) {
-      console.log(`Network Error: ${err.message} `);
     }
   };
 
@@ -212,11 +217,11 @@ function App() {
               setIngredients={setIngredients}
               allfav={allfav}
               AddOrDelete={AddOrDelete}
+              // recipe={recipe}
             />
           }
         />
         <Route
-          path="/Featured/:id"
           path="/Featured/:id"
           element={
             <RecipeView
@@ -242,7 +247,7 @@ function App() {
           path="/favorites"
           element={
             <PrivateRoute>
-              <FavoritesView allFav={allFav} />
+              <FavoritesView allfav={allfav} />
             </PrivateRoute>
           }
         />

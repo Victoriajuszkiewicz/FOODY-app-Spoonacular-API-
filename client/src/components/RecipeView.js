@@ -63,19 +63,7 @@ export default function RecipeView(props) {
 
           <div>
             {/* if added to fav heart isn't filled once clicked it calls addFav fn from App.js clicked again it calls deleteFav */}
-            <button
-              type="button"
-              onClick={() => AddOrDelete(recipe.id)}
-              className="btn btn-secondary"
-            >
-              <i className="bi bi-heart"> Save</i>
-            </button>
-            <h5 style={{ color: "orange", marginTop: "1rem" }}>
-              <AiFillLike size="1.8rem" />
-              {recipe.likes}
-            </h5>
-            <h5>
-              <FcClock size="2rem" />
+
             <div key={recipe.id}>
               {allfav.some((e) => recipe.id === e.recipe_id) ? (
                 <div>
@@ -100,18 +88,15 @@ export default function RecipeView(props) {
               )}
             </div>
 
-            <h5 className="bi bi-hand-thumbs-up-fill">{recipe.likes}</h5>
             <h5 style={{ color: "orange", marginTop: "1rem" }}>
-              <AiFillLike size="1.8rem" />
-              {recipe.likes}
-            </h5>
-            <h5>
-              <FcClock size="2rem" />
-              Ready in {recipe.preparationTime} mins
-            </h5>
-           
-             
-             
+              <AiFillLike size="1.8rem" />
+              {recipe.likes}
+            </h5>
+
+            <h5>
+              <FcClock size="2rem" />
+              Ready in {recipe.preparationTime} mins
+            </h5>
           </div>
 
           <Card style={{ width: "18rem" }}>
