@@ -114,6 +114,14 @@ const RegisterView = (props) => {
             Create an account
           </Button>
         </div>
+        <div>
+          <p className="register-btn-container">
+            Do you have an account? Click{" "}
+            <button className="button-here" onClick={(m) => navigate("/login")}>
+              here
+            </button>
+          </p>
+        </div>
       </Form>
     </Container>
   );
