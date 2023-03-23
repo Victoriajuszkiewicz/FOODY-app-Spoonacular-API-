@@ -69,7 +69,7 @@ export default function RecipeView(props) {
                 <div>
                   <button
                     type="button"
-                    onClick={() => AddOrDelete(recipe.id)}
+                    onClick={() => AddOrDelete(recipe)}
                     className="btn btn-danger"
                   >
                     <i className="bi bi-heart-fill"> Saved</i>
@@ -79,7 +79,7 @@ export default function RecipeView(props) {
                 <div>
                   <button
                     type="button"
-                    onClick={() => AddOrDelete(recipe.id)}
+                    onClick={() => AddOrDelete(recipe)}
                     className="btn btn-secondary"
                   >
                     <i className="bi bi-heart"> Save</i>

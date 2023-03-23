@@ -30,7 +30,7 @@ function App() {
   const [ingredientList, setIngredientList] = useState();
   const [allfav, setAllFav] = useState([]);
 
-  // console.log(recipe);
+  console.log(allfav);
   //BACKEND ROUTES
 
   //GETs all registered users/works yay!
@@ -143,7 +143,11 @@ function App() {
   };
 
   //make one route for add/delete
-  const AddOrDelete = async (id) => {
+  const AddOrDelete = async (recipe, event) => {
+    if (event) {
+      event.stopPropagation();
+    }
+
     if (recipe) {
       let options = {
         method: "POST",
@@ -152,25 +156,25 @@ function App() {
           Authorization: "Bearer " + Local.getToken(),
         },
         body: JSON.stringify({
-          recipe_id: id,
+          recipe_id: recipe.id,
           recipe_title: recipe.title,
           recipe_image_url: recipe.image,
           //user_id was undefined so we have to pass Local.getUserId!!!!
           user_id: Local.getUserId(),
         }),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + Local.getToken(),
-        },
-        body: JSON.stringify({
-          recipe_id: id,
-          recipe_title: recipe.title,
-          recipe_image_url: recipe.image,
-          //user_id was undefined so we have to pass Local.getUserId!!!!
-          user_id: Local.getUserId(),
-        }),
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   Authorization: "Bearer " + Local.getToken(),
+        // },
+        // body: JSON.stringify({
+        //   recipe_id: recipe.id,
+        //   recipe_title: recipe.title,
+        //   recipe_image_url: recipe.image,
+        //   //user_id was undefined so we have to pass Local.getUserId!!!!
+        //   user_id: Local.getUserId(),
+        // }),
       };
-      console.log("this is from POST btw", id);
+      // console.log("this is from POST btw", id);
 
       try {
         // console.log("hello from try", id, recipe.title);

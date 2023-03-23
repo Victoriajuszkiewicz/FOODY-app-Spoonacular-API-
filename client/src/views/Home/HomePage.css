@@ -14,8 +14,20 @@
 }
 
 .searchdiv {
-  background: #c9ebeb;
+  background: #49bbbd;
   height: 400px;
   margin: 0;
   padding: 0;
 }
+/* .nuggetspng {
+  height: 400px;
+  margin: auto 0 0;
+  position: relative;
+  top: 0px;
+  left: 500px;
+
+  /* position: absolute; */
+/* }
+.searchbar {
+  position: absolute;
+} */

@@ -129,9 +129,9 @@ export default function ResultView(props) {
                           type="button"
                           onClick={(event) => {
                             //tried: event.preventDefault(); &event.stopPropagation();
-                            event.preventDefault();
-                            event.stopPropagation();
-                            AddOrDelete(recipe.id);
+                            // event.preventDefault();
+                            // event.stopPropagation();
+                            AddOrDelete(recipe, event);
                           }}
                           className="btn btn-danger"
                         >
@@ -143,9 +143,9 @@ export default function ResultView(props) {
                         <button
                           type="button"
                           onClick={(event) => {
-                            event.preventDefault();
-                            event.stopPropagation();
-                            AddOrDelete(recipe.id);
+                            // event.preventDefault();
+                            // event.stopPropagation();
+                            AddOrDelete(recipe, event);
                           }}
                           className="btn btn-secondary"
                         >

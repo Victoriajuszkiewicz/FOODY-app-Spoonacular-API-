@@ -2,6 +2,8 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import aboutus from "../../img/about.jpg";
 import "./HomePage.css";
+import nuggets from "../../img/nuggets.png";
+import nuggetsb from "../../img/nuggets2.png";
 
 const HomePage = (props) => {
   const { setAllRecipes, allRecipes, ingredients, setIngredients } = props;
@@ -9,14 +11,29 @@ const HomePage = (props) => {
   return (
     <div>
       <div className="searchdiv">
-        <SearchBar
-          setAllRecipes={setAllRecipes}
-          allRecipes={allRecipes}
-          ingredients={ingredients}
-          setIngredients={setIngredients}
-        />
+        <div>
+          {/* <img
+            src={nuggets}
+            className="nuggetspng"
+            alt="this is png picture of nuggets"
+          /> */}
+        </div>
+        <div className="searchbar">
+          <SearchBar
+            setAllRecipes={setAllRecipes}
+            allRecipes={allRecipes}
+            ingredients={ingredients}
+            setIngredients={setIngredients}
+          />
+        </div>
       </div>
-
+      <div>
+        <section>
+          <div className="containerfluid">
+            <h2>Popular recipes</h2>
+          </div>
+        </section>
+      </div>
       <div className="container text-center">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2">
           <div className="col" id="textabout">

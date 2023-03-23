@@ -15,13 +15,7 @@ router.get("/favorites/:id", ensureSameUser, async function (req, res) {
     let sql = `SELECT * FROM favorites WHERE user_id = ${id}`;
     let results = await db(sql);
     let favorites = results.data;
-
-    if (favorites.length === 0) {
-      //if the database is empty
-      res.send("You haven't added any favorite recipe yet");
-    } else {
-      res.status(200).send(favorites);
-    }
+    res.status(200).send(favorites);
   } catch (err) {
     res.status(500).send(`${err.message}`);
   }
@@ -57,10 +51,14 @@ router.post("/favorites", ensureUserLoggedIn, async (req, res) => {
       //return updated list of favourites
       sql = `SELECT * FROM favorites WHERE user_id="${user_id}"`;
       result = await db(sql);
-      res.send(response.data);
+      res.send(result.data);
     }
   } catch (err) {
-    res.status(500).send(`${err.message}`);
+    if (err) {
+      res.status(500).send(`${err.message}`);
+    } else {
+      res.status(500).send("Error happened - favourites");
+    }
   }
 });
 
