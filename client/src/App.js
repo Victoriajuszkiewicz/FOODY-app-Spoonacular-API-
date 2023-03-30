@@ -162,20 +162,8 @@ function App() {
           //user_id was undefined so we have to pass Local.getUserId!!!!
           user_id: Local.getUserId(),
         }),
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   Authorization: "Bearer " + Local.getToken(),
-        // },
-        // body: JSON.stringify({
-        //   recipe_id: recipe.id,
-        //   recipe_title: recipe.title,
-        //   recipe_image_url: recipe.image,
-        //   //user_id was undefined so we have to pass Local.getUserId!!!!
-        //   user_id: Local.getUserId(),
-        // }),
       };
       // console.log("this is from POST btw", id);
-
       try {
         // console.log("hello from try", id, recipe.title);
         let response = await fetch(`/api/favorites`, options);
@@ -251,7 +239,7 @@ function App() {
           path="/favorites"
           element={
             <PrivateRoute>
-              <FavoritesView allfav={allfav} />
+              <FavoritesView allFav={allfav} />
             </PrivateRoute>
           }
         />

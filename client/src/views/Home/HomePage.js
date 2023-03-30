@@ -2,8 +2,9 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import aboutus from "../../img/about.jpg";
 import "./HomePage.css";
-import nuggets from "../../img/nuggets.png";
-import nuggetsb from "../../img/nuggets2.png";
+import nuggetrecipe1 from "../../img/nuggetrecipe1.jpg";
+import nuggetrecipe2 from "../../img/nuggetrecipe2.jpg";
+import nuggetrecipe3 from "../../img/nuggetrecipe3.jpg";
 
 const HomePage = (props) => {
   const { setAllRecipes, allRecipes, ingredients, setIngredients } = props;
@@ -11,13 +12,7 @@ const HomePage = (props) => {
   return (
     <div>
       <div className="searchdiv">
-        <div>
-          {/* <img
-            src={nuggets}
-            className="nuggetspng"
-            alt="this is png picture of nuggets"
-          /> */}
-        </div>
+        <div></div>
         <div className="searchbar">
           <SearchBar
             setAllRecipes={setAllRecipes}
@@ -28,11 +23,55 @@ const HomePage = (props) => {
         </div>
       </div>
       <div>
-        <section>
-          <div className="containerfluid">
-            <h2>Popular recipes</h2>
+        <h2 className="text-center">Popular Recipes</h2>
+        {/*  display-1 mb-5 */}
+
+        <div className="container">
+          <div className="row gy-3">
+            <div className="col-6 col-sm-6 col-md-4 col-lg-3">
+              <div className="card border-0 shadow" id="card1">
+                <img src={nuggetrecipe1} alt="" className="card-img-top" />
+                <div className="card-body">
+                  <div className="card-title text-center">
+                    <h4>Chicken nuggets</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-6 col-sm-6 col-md-4 col-lg-3">
+              <div className="card border-0 shadow" id="card1">
+                <img src={nuggetrecipe2} alt="" className="card-img-top" />
+                <div className="card-body">
+                  <div className="card-title text-center">
+                    <h4>Also chicken nuggets</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-6 col-sm-6 col-md-4 col-lg-3">
+              <div className="card border-0 shadow" id="card1">
+                <img src={nuggetrecipe3} alt="" class="card-img-top" />
+                <div className="card-body">
+                  <div className="card-title text-center">
+                    <h4>Chicken nuggets again</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-6 col-sm-6 col-md-4 col-lg-3">
+              <div className="card border-0 shadow" id="card1">
+                <img src={nuggetrecipe2} alt="" className="card-img-top" />
+                <div className="card-body">
+                  <div className="card-title text-center">
+                    <h4>Chicken nuggets</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
       </div>
       <div className="container text-center">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2">

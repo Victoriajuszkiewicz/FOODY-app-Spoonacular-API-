@@ -19,15 +19,38 @@
   margin: 0;
   padding: 0;
 }
-/* .nuggetspng {
-  height: 400px;
-  margin: auto 0 0;
-  position: relative;
-  top: 0px;
-  left: 500px;
+.owl-carousel {
+  margin: 10;
 
-  /* position: absolute; */
-/* }
-.searchbar {
-  position: absolute;
+  /* nav:true, */
+  /* responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        } */
+}
+#card1 {
+  width: 200px;
+}
+/* .allgrids {
+  display: grid;
+  gap: 10px;
+  text-align: center;
+  /* padding-left: 170px; */
+/* margin-left: 0;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0 auto;
+  text-align: center;
+  padding: 15px;
 } */
+.text-center {
+  padding: 10px;
+}
+/* .searchbar {
+  position: absolute;
+}  */
