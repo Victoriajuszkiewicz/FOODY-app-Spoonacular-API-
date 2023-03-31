@@ -70,3 +70,8 @@ Db tables= users, favorites
 ![homepage.foodyapp](./public/homepage.png)
 ![error.foody](./public/error1.png)
 ![error2.foody](./public/error2.png)
+
+## Collaborative project
+
+This is collaborative project made with love (for coding) by 4 people:
+Kelly, Wen,Sol & me.
