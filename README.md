@@ -56,4 +56,17 @@ User can compare health score
 - MySql
 - Node js
 - Bootstrap
--
+- bcrypt
+
+## Backend tables
+
+Db name= recipes
+Db tables= users, favorites
+
+![database.foodyapp](./public/database.png)
+
+## Website overview & error handling
+
+![homepage.foodyapp](./public/homepage.png)
+![error.foody](./public/error1.png)
+![error2.foody](./public/error2.png)
