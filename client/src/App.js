@@ -20,7 +20,7 @@ function App() {
   const [allRecipes, setAllRecipes] = useState([]); //I just changed to allRecipes to differenciate with "recipe" state
   const navigate = useNavigate(); //define it first then you can use it later
   const [user, setUser] = useState(Local.getUser());
-  const [loginErrorMsg, setLoginErrorMsg] = useState("");
+  const [loginErrorMsg, setLoginErrorMsg] = useState([]);
   let [allRegistered, setAllRegistered] = useState([]);
   let [ingredients, setIngredients] = useState([]);
 
@@ -30,9 +30,8 @@ function App() {
   const [ingredientList, setIngredientList] = useState();
   const [allfav, setAllFav] = useState([]);
 
-  console.log(allfav);
+  // console.log(allfav);
   //BACKEND ROUTES
-
   //GETs all registered users/works yay!
   useEffect(() => {
     fetch("http://localhost:5000/api/register")
@@ -67,23 +66,43 @@ function App() {
     }
   }
 
+  //AUTHORISATION OLD CODEEEEEE
+  // login
+  // async function doLogin(loginObj) {
+  //   const myresponse = await Api.loginUser(loginObj);
+  //   console.log("passed to DB");
+  //   if (myresponse.ok) {
+  //     Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
+  //     console.log("you are logged in");
+  //     setUser(myresponse.data.user);
+  //     setLoginErrorMsg("");
+  //     //after clicking on login, if the action succeed then the user is redirected to the homepage
+  //     navigate("*");
+  //   } else {
+  //     setLoginErrorMsg("Login failed");
+  //   }
+  // }
   //AUTHORISATION
   // login
   async function doLogin(loginObj) {
     const myresponse = await Api.loginUser(loginObj);
     console.log("passed to DB");
+    console.log(loginErrorMsg);
     if (myresponse.ok) {
       Local.saveUserInfo(myresponse.data.token, myresponse.data.user);
       console.log("you are logged in");
       setUser(myresponse.data.user);
-      setLoginErrorMsg("");
+      // need add line 80 because this will fetch all the fav data when loging in and not showing the one from the previous user
+      getFav(Local.getUserId());
+      //remember to setloginerrormsg to false, so when loging out the error message won't appear if previously we had the message
+      setLoginErrorMsg(!loginErrorMsg);
       //after clicking on login, if the action succeed then the user is redirected to the homepage
       navigate("*");
     } else {
-      setLoginErrorMsg("Login failed");
+      //no need to pass any argument since the default usestate is already set to true
+      setLoginErrorMsg();
     }
   }
-
   // logout
   function doLogout() {
     Local.removeUserInfo();

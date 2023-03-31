@@ -62,7 +62,10 @@ const SearchBar = (props) => {
                 What do you have in the fridge?
               </h4>
             </Form.Label>
-            <Row>
+            <Row
+              className="seachBox"
+              style={{ width: "90%", display: "block", marginLeft: "20px" }}
+            >
               <InputGroup className="mb-3">
                 <Form.Control
                   style={

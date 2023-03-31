@@ -69,7 +69,8 @@ Db tables= users, favorites
 
 ![homepage.foodyapp](./public/homepage.png)
 ![error.foody](./public/error1.png)
-![error2.foody](./public/error2.png)
+![error2.foody](./public/error3.png)
+![signed.foody](./public/signedin.png)
 
 ## Collaborative project
 

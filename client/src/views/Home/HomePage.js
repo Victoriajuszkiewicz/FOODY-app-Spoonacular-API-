@@ -51,7 +51,7 @@ const HomePage = (props) => {
             </div>
             <div className="col-6 col-sm-6 col-md-4 col-lg-3">
               <div className="card border-0 shadow" id="card1">
-                <img src={nuggetrecipe3} alt="" class="card-img-top" />
+                <img src={nuggetrecipe3} alt="" className="card-img-top" />
                 <div className="card-body">
                   <div className="card-title text-center">
                     <h4>Chicken nuggets again</h4>

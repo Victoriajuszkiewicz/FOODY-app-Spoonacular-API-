@@ -11,7 +11,10 @@ const NavBar = (props) => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light">
+    <nav
+      className="navbar navbar-expand-lg navbar-light"
+      style={{ padding: "0px 10px" }}
+    >
       {props.user ? (
         <div className="btn-group">
           <button
