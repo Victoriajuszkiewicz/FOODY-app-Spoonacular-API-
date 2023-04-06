@@ -1,5 +1,5 @@
 import { useState, state } from "react";
-import InputBox from "../components/InputBox";
+// import InputBox from "../components/InputBox";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -37,23 +37,21 @@ const RegisterView = (props) => {
     //first show success alert (NOT DONE YET)
     // showAlert();
     navigate("/login");
-    // ; (WORKS FINE its commented out for testing purposes for now)
   }
-  function showAlert() {
-    setShow(true);
-    toast.success("Success!", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  }
+  // function showAlert() {
+  //   setShow(true);
+  //   toast.success("Success!", {
+  //     position: "top-center",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //     theme: "colored",
+  //   });
+  // }
 
-  //Info from form is saved  in state but never reaches DB
   return (
     <Container className="register-container">
       {show ? (
