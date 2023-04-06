@@ -10,7 +10,6 @@ const FavoritesView = (props) => {
 
   const handleClick = (recipe_id) => {
     showRecipeFavCb(recipe_id); //time, nutrition
-    // console.log("someone is clicking on a fav card");
   };
   //get all from fav by user id and display it
   return (
