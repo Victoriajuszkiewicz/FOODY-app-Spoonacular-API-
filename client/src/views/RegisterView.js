@@ -31,7 +31,7 @@ const RegisterView = (props) => {
   function handleSubmit(event) {
     event.preventDefault();
     props.addNewCb(registerForm);
-    console.log("create an account submited", registerForm);
+    console.log("create an acc", registerForm);
     //handleSubmit saves all info in register form
     setRegisterForm(INIT_REGISTRATION);
     //first show success alert (NOT DONE YET)

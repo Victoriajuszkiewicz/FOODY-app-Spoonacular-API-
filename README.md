@@ -65,6 +65,10 @@ Db tables= users, favorites
 
 ![database.foodyapp](./public/database.png)
 
+## DEMO
+
+![screen-gif](./public/demo.gif)
+
 ## Website overview & error handling
 
 ![homepage.foodyapp](./public/homepage.png)
