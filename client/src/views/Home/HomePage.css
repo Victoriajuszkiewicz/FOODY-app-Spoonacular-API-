@@ -48,6 +48,9 @@
 } */
 .text-center {
 	padding: 10px;
+	font-family: Imported;
+	margin: 20px 5px 20px 5px;
+	font-size: 40px;
 }
 #searchbardiv {
 	margin-top: 20px;
