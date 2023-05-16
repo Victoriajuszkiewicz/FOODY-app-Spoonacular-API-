@@ -1,11 +1,18 @@
 nav {
-  background-color: #49bbbd;
-  margin: 0px auto;
-  padding: 0px;
-  border: 0px;
-  /* margin-bottom: 20px; */
+	background-color: #49bbbd;
+	margin: 0px auto;
+	padding: 0px;
+	border: 0px;
+	/* margin-bottom: 20px; */
 }
 
 button {
-  background-color: #358484;
+	background-color: #358484;
+}
+.spaceforlogo {
+	margin: 0px 20px 0px 20px;
+}
+#stylesforbuttonnav {
+	background-color: #ffb340;
+	color: aliceblue;
 }

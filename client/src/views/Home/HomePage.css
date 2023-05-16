@@ -1,29 +1,27 @@
 .aboutusimage {
-  width: 518px;
-  height: 373px;
+	width: 518px;
+	height: 373px;
 }
 .parentAboutUsImage {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 .container {
-  margin: 10px;
+	margin: 10px;
 }
 #textabout {
-  text-align: left;
+	text-align: left;
 }
 
 .searchdiv {
-  background: #49bbbd;
-  height: 400px;
-  margin: 0;
-  padding: 0;
+	background-image: url(../../img/background.png);
+	height: 400px;
 }
 .owl-carousel {
-  margin: 10;
+	margin: 10;
 
-  /* nav:true, */
-  /* responsive:{
+	/* nav:true, */
+	/* responsive:{
         0:{
             items:1
         },
@@ -35,7 +33,7 @@
         } */
 }
 #card1 {
-  width: 200px;
+	width: 200px;
 }
 /* .allgrids {
   display: grid;
@@ -49,8 +47,8 @@
   padding: 15px;
 } */
 .text-center {
-  padding: 10px;
+	padding: 10px;
 }
-/* .searchbar {
-  position: absolute;
-}  */
+#searchbardiv {
+	margin-top: 20px;
+}

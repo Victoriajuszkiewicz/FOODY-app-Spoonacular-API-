@@ -1,34 +1,43 @@
+@font-face {
+	font-family: Imported;
+	src: url(../../fonts/PetitCochon.ttf);
+}
+
 #container {
-  margin: 0px auto;
+	margin: 0px auto;
 }
 
 .ingredient-x {
-  background: none;
-  border: none;
-  color: white;
-  padding: 0 0 0 8px;
-  background-color: #ffb441;
+	background: none;
+	border: none;
+	color: white;
+	padding: 0 0 0 8px;
+	background-color: #ffb441;
 }
 
 button.ingredient-x:hover {
-  transform: translate(0, -1px);
-  transition-property: transform;
+	transform: translate(0, -1px);
+	transition-property: transform;
 }
 
 .submit-button {
-  margin-top: 25px;
+	margin-top: 25px;
 }
 
 .badge {
-  background-color: #ffb441;
+	background-color: #ffb441;
 }
 
 .home-title {
-  margin-top: 20px;
+	margin-top: 20px;
 }
-
+.fontformainquestion {
+	color: white;
+	font-family: Imported;
+	font-size: 60px;
+}
 .x-icon {
-  height: 8px;
-  width: 8px;
-  display: inline-block;
+	height: 8px;
+	width: 8px;
+	display: inline-block;
 }
