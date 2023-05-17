@@ -65,16 +65,16 @@ Db tables= users, favorites
 
 ![database.foodyapp](./public/database.png)
 
-## DEMO
+<!-- ## DEMO
 
-![screen-gif](./public/demo.gif)
+![screen-gif](./public/demo.gif) -->
 
 ## Website overview & error handling
 
-![homepage.foodyapp](./public/homepage.png)
+![homepage.foodyapp](./public/recipeappp.png)
 ![error.foody](./public/error1.png)
-![error2.foody](./public/error3.png)
-![signed.foody](./public/signedin.png)
+![error2.foody](./public/appp.png)
+![signed.foody](./public/recipeview.png)
 
 ## Collaborative project
 
