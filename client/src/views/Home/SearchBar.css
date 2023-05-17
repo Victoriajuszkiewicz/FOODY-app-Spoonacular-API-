@@ -8,7 +8,7 @@
 
 @font-face {
 	font-family: Imported;
-	src: url(../../fonts/PetitCochon.ttf) ;
+	src: url(../../fonts/PetitCochon.ttf);
 }
 
 #container {
@@ -40,7 +40,7 @@ button.ingredient-x:hover {
 	margin-top: 20px;
 }
 .fontformainquestion {
-	color: white;
+	color: #1d4a4a;
 	font-family: Imported;
 	font-size: 40px;
 }

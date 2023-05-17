@@ -12,7 +12,7 @@ const NavBar = (props) => {
 
 	return (
 		<nav
-			className="navbar navbar-expand-lg navbar-light"
+			className="navbar navbar-expand-lg navbar-light justify-content-between"
 			style={{ padding: "0px 10px" }}
 		>
 			<div className="spaceforlogo">
@@ -26,66 +26,70 @@ const NavBar = (props) => {
 					/>
 				</NavLink>
 			</div>
-			{props.user ? (
-				<div className="btn-group">
-					<button
-						className="btn btn-light btn-sm dropdown-toggle"
-						id="stylesforbuttonnav"
-						type="button"
-						data-bs-toggle="dropdown"
-						aria-expanded="false"
-					>
-						{/* this is the icon I have imported directly from react-icon library */}
-						<GiCookingPot />
-					</button>
-					<ul className="dropdown-menu dropdown-menu-dark">
-						<li>
-							<NavLink
-								to="/login"
-								onClick={props.logoutCb}
-								className="dropdown-item"
-							>
-								Sign out
-							</NavLink>
-						</li>
-						<li>
-							<NavLink to="/favorites" className="dropdown-item">
-								Favorites
-							</NavLink>
-						</li>
-						<li>
-							<NavLink to="/aboutUs" className="dropdown-item">
-								About us
-							</NavLink>
-						</li>
-					</ul>
-				</div>
-			) : (
-				<div className="btn-group">
-					<button
-						className="btn btn-secondary btn-sm dropdown-toggle"
-						type="button"
-						data-bs-toggle="dropdown"
-						aria-expanded="false"
-					>
-						{/* this is the icon I have imported directly from react-icon library */}
-						<GiCookingPot />
-					</button>
-					<ul className="dropdown-menu dropdown-menu-dark">
-						<li>
-							<NavLink to="/login" className="dropdown-item">
-								Sign in
-							</NavLink>
-						</li>
+			<div className="menubutton  dropleft">
+				{props.user ? (
+					<div className="btn-group dropleft dropstart">
+						<button
+							className="btn btn-light btn-sm dropdown-toggle dropleft"
+							id="stylesforbuttonnav"
+							type="button"
+							data-bs-toggle="dropdown"
+							aria-expanded="false"
+							aria-haspopup="true"
+						>
+							{/* this is the icon I have imported directly from react-icon library */}
+							<GiCookingPot />
+						</button>
+						<ul className="dropdown-menu dropdown-menu-dark dropleft">
+							<li>
+								<NavLink
+									to="/login"
+									onClick={props.logoutCb}
+									className="dropdown-item"
+								>
+									Sign out
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to="/favorites" className="dropdown-item">
+									Favorites
+								</NavLink>
+							</li>
+							<li>
+								<NavLink to="/aboutUs" className="dropdown-item">
+									About us
+								</NavLink>
+							</li>
+						</ul>
+					</div>
+				) : (
+					<div className="btn-group dropleft dropstart">
+						<button
+							className="btn btn-secondary btn-sm dropdown-toggle  dropleft"
+							type="button"
+							data-bs-toggle="dropdown"
+							aria-expanded="false"
+							id="stylesforbuttonnav"
+						>
+							{/* this is the icon I have imported directly from react-icon library */}
+							<GiCookingPot />
+						</button>
+						<ul className="dropdown-menu dropdown-menu-dark  dropleft">
+							<li>
+								<NavLink to="/login" className="dropdown-item">
+									Sign in
+								</NavLink>
+							</li>
 
-						<li>
-							<NavLink to="/aboutUs" className="dropdown-item">
-								About us
-							</NavLink>
-						</li>
-					</ul>
-				</div>
-			)}
+							<li>
+								<NavLink to="/aboutUs" className="dropdown-item">
+									About us
+								</NavLink>
+							</li>
+						</ul>
+					</div>
+				)}
+			</div>
 		</nav>
 	);
 };
