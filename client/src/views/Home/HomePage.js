@@ -24,13 +24,13 @@ const HomePage = (props) => {
 					<div className="col-sm"></div>
 				</div>
 			</div>
-			<div>
+			<div className="wholepopular">
 				<h2 className="text-center">Popular Recipes</h2>
 				{/*  display-1 mb-5 */}
 
 				<div className="container">
 					<div className="row gy-3">
-						<div className="col-6 col-sm-6 col-md-4 col-lg-3">
+						<div className="col-12 col-sm-6 col-md-6 col-lg-3">
 							<div className="card border-0 shadow" id="card1">
 								<img src={nuggetrecipe1} alt="" className="card-img-top" />
 								<div className="card-body">
@@ -41,7 +41,7 @@ const HomePage = (props) => {
 							</div>
 						</div>
 
-						<div className="col-6 col-sm-6 col-md-4 col-lg-3">
+						<div className="col-12 col-sm-6 col-md-6 col-lg-3">
 							<div className="card border-0 shadow" id="card1">
 								<img src={nuggetrecipe2} alt="" className="card-img-top" />
 								<div className="card-body">
@@ -51,7 +51,7 @@ const HomePage = (props) => {
 								</div>
 							</div>
 						</div>
-						<div className="col-6 col-sm-6 col-md-4 col-lg-3">
+						<div className="col-12 col-sm-6 col-md-6 col-lg-3">
 							<div className="card border-0 shadow" id="card1">
 								<img src={nuggetrecipe3} alt="" className="card-img-top" />
 								<div className="card-body">
@@ -62,7 +62,7 @@ const HomePage = (props) => {
 							</div>
 						</div>
 
-						<div className="col-6 col-sm-6 col-md-4 col-lg-3">
+						<div className="col-12 col-sm-6 col-md-6 col-lg-3">
 							<div className="card border-0 shadow" id="card1">
 								<img src={nuggetrecipe2} alt="" className="card-img-top" />
 								<div className="card-body">
