@@ -12,8 +12,8 @@ const HomePage = (props) => {
 	return (
 		<div>
 			<div className="searchdiv">
-				<div class="row">
-					<div class="col-sm" id="searchbardiv">
+				<div className="row">
+					<div className="col-12 col-sm-12 col-m-8 col-lg-8" id="searchbardiv">
 						<SearchBar
 							setAllRecipes={setAllRecipes}
 							allRecipes={allRecipes}
@@ -21,7 +21,7 @@ const HomePage = (props) => {
 							setIngredients={setIngredients}
 						/>
 					</div>
-					<div class="col-sm"></div>
+					<div className="col-sm"></div>
 				</div>
 			</div>
 			<div>
@@ -75,10 +75,10 @@ const HomePage = (props) => {
 					</div>
 				</div>
 			</div>
-			<div className="container text-center">
+			<div className="container ">
 				<div className="row row-cols-1 row-cols-sm-2 row-cols-md-2">
 					<div className="col" id="textabout">
-						<h3>About us</h3>
+						<h3 className="aboutustext">About us</h3>
 						<p>
 							A food app that helps users search for recipes based on the
 							ingredients they already have in their fridge is very practical

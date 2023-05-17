@@ -54,10 +54,10 @@ const SearchBar = (props) => {
 			id="container"
 		>
 			<Row>
-				<Col>
+				<Col className="col-12 col-sm-12 col-md-8 col-lg-8">
 					<Form onSubmit={handleSubmit}>
 						<Form.Label className="home-title">
-							<h4 style={{ width: "30rem" }} className="fontformainquestion">
+							<h4 className="fontformainquestion">
 								What do you have in the fridge?
 							</h4>
 						</Form.Label>

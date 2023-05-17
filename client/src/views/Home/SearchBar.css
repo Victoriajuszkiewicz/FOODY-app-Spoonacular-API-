@@ -1,6 +1,14 @@
+/* @media (max-width: 540px) {
+	.fontformainquestion {
+		color: white;
+		font-family: Imported;
+		font-size: 10px;
+	}
+} */
+
 @font-face {
 	font-family: Imported;
-	src: url(../../fonts/PetitCochon.ttf);
+	src: url(../../fonts/PetitCochon.ttf) ;
 }
 
 #container {
@@ -34,10 +42,22 @@ button.ingredient-x:hover {
 .fontformainquestion {
 	color: white;
 	font-family: Imported;
-	font-size: 60px;
+	font-size: 40px;
 }
 .x-icon {
 	height: 8px;
 	width: 8px;
 	display: inline-block;
+}
+
+@media screen and (min-width: 600px) {
+	.fontformainquestion {
+		font-size: 40px;
+	}
+}
+
+@media screen and (min-width: 800px) {
+	.fontformainquestion {
+		font-size: 60px;
+	}
 }

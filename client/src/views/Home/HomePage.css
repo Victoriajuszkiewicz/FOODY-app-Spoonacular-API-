@@ -1,3 +1,5 @@
+/* phone */
+
 .aboutusimage {
 	width: 518px;
 	height: 373px;
@@ -19,39 +21,32 @@
 }
 .owl-carousel {
 	margin: 10;
-
-	/* nav:true, */
-	/* responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:3
-        },
-        1000:{
-            items:5
-        } */
 }
 #card1 {
-	width: 200px;
+	width: 300px;
 }
-/* .allgrids {
-  display: grid;
-  gap: 10px;
-  text-align: center;
-  /* padding-left: 170px; */
-/* margin-left: 0;
-  grid-template-columns: repeat(4, 1fr);
-  margin: 0 auto;
-  text-align: center;
-  padding: 15px;
-} */
 .text-center {
 	padding: 10px;
 	font-family: Imported;
 	margin: 20px 5px 20px 5px;
 	font-size: 40px;
 }
+.aboutustext {
+	font-family: Imported;
+	margin: 20px 5px 20px 5px;
+	font-size: 40px;
+	text-align: left;
+}
 #searchbardiv {
 	margin-top: 20px;
 }
+/* tablet */
+@media screen and(min-width: 600px) {
+	#searchbardiv {
+		margin-top: 10px;
+	}
+	.aboutustext {
+		color: blue;
+	}
+}
+/* laptop */
